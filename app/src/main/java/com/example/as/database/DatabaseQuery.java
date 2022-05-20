@@ -4,16 +4,22 @@ import android.util.Log;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Arrays;
 
-public class DatabaseService extends Thread {
+public class DatabaseQuery extends Thread {
     private Connection connection;
     private Statement statement;
     private String sql;
     private ResultSet resultSet;
+    private SQLException exception = null;
 
-    public DatabaseService(String sql) {
+    public SQLException getException() {
+        return exception;
+    }
+
+    public DatabaseQuery(String sql) {
         this.sql = sql;
     }
 
@@ -25,9 +31,9 @@ public class DatabaseService extends Thread {
             connection = AppDatabase.getInstance();
             statement = connection.createStatement();
             statement.execute(sql);
-           this.resultSet = statement.getResultSet();
-        } catch (Exception e) {
-            e.printStackTrace();
+            this.resultSet = statement.getResultSet();
+        } catch (SQLException e) {
+            this.exception = e;
         }
     }
 

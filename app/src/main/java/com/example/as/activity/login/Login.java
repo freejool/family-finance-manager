@@ -1,6 +1,5 @@
-package com.example.as.activity;
+package com.example.as.activity.login;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -12,36 +11,37 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.fragment.app.FragmentActivity;
+
 import com.example.as.R;
-import com.example.as.dao.PwdDAO;
+import com.example.as.activity.MainActivity;
+import com.example.as.dao.LoginDAO;
 import com.example.as.Entity.UserInfo;
 
-import java.sql.SQLException;
+public class Login extends FragmentActivity {
+    EditText edittextPasswd; // 密码编辑框
+    EditText edittextUsername; // 用户名编辑框
 
-public class Login extends Activity {
-    EditText edittextPasswd;// 创建EditText对象
-    EditText edittextUsername;
-
-    Button btnlogin, btnclose;// 创建两个Button对象
+    Button buttonLogin, buttonClose, buttonRegister;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);// 设置布局文件
 
         edittextUsername = (EditText) findViewById(R.id.login_user_id);// 获取密码文本框
         edittextPasswd = (EditText) findViewById(R.id.login_passwd);// 获取密码文本框
 
-        btnlogin = (Button) findViewById(R.id.btnLogin);// 获取登录按钮
-        btnclose = (Button) findViewById(R.id.btnClose);// 获取取消按钮
+        buttonLogin = findViewById(R.id.button_login);
+        buttonClose = findViewById(R.id.button_close);
+        buttonRegister = findViewById(R.id.button_register);
 
 
         TextView.OnEditorActionListener onEnterClicked = new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) || (actionId == EditorInfo.IME_ACTION_DONE)) {
-                    btnlogin.performClick();
+                    buttonLogin.performClick();
                 }
                 return false;
             }
@@ -50,16 +50,24 @@ public class Login extends Activity {
         edittextPasswd.setOnEditorActionListener(onEnterClicked);
 
 
-        btnlogin.setOnClickListener(new OnClickListener() {// 为登录按钮设置监听事件
+        buttonRegister.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogRegister dialogRegister = new DialogRegister();
+                dialogRegister.show(Login.this.getSupportFragmentManager(), "register");
+
+            }
+        });
+
+        buttonLogin.setOnClickListener(new OnClickListener() {// 为登录按钮设置监听事件
             @Override
             public void onClick(View arg0) {
                 Intent intent = new Intent(Login.this, MainActivity.class);// 创建Intent对象
-                PwdDAO pwdDAO = new PwdDAO(Login.this);// 创建PwdDAO对象
+                LoginDAO loginDAO = new LoginDAO();// 创建PwdDAO对象
                 // 判断是否有密码及是否输入了密码
                 long passwordCnt = 0;
-                passwordCnt = pwdDAO.getPasswordCount();
+                passwordCnt = loginDAO.getPasswordCount();
 
-                //  passwordCnt = 0;
                 if (passwordCnt == 0) {
                     if (edittextPasswd.getText().toString().isEmpty()) {
                         startActivity(intent);// 启动主Activity
@@ -69,21 +77,28 @@ public class Login extends Activity {
                     }
                 } else {
                     // 判断输入的密码是否与数据库中的密码一致
-                    UserInfo user = pwdDAO.findWithPassword(edittextPasswd.getText().toString());
+                    String username = edittextUsername.getText().toString();
+                    String passwd = edittextPasswd.getText().toString();
+                    if (username.equals("") || passwd.equals("")) {
+                        Toast.makeText(Login.this, "用户或密码为空！",
+                                Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    UserInfo user = loginDAO.findUser(username, passwd);
                     if (user != null) {
                         intent.putExtra("user_id", user.getID());
                         startActivity(intent);// 启动主Activity
                     } else {
                         // 弹出信息提示
-                        Toast.makeText(Login.this, "请输入正确的密码！",
+                        Toast.makeText(Login.this, "用户或密码不正确！",
                                 Toast.LENGTH_SHORT).show();
                     }
                 }
-                edittextPasswd.setText("");// 清空密码文本框
+
             }
         });
 
-        btnclose.setOnClickListener(new OnClickListener() {// 为取消按钮设置监听事件
+        buttonClose.setOnClickListener(new OnClickListener() {// 为取消按钮设置监听事件
             @Override
             public void onClick(View arg0) {
                 // TODO Auto-generated method stub

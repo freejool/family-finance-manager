@@ -29,7 +29,7 @@
         android:padding="8dp"
         android:textColor="#8C6931"
         android:textSize="16pt" />
-    <!-- 添加输入密码的编辑框EditText -->
+
     <EditText
         android:id="@+id/login_passwd"
         android:layout_width="match_parent"
@@ -40,16 +40,42 @@
         android:inputType="textPassword"
         android:padding="8dp"
         android:textSize="16pt" />
-    <!-- 添加“取消”按钮 -->
+
     <Button
-        android:id="@+id/btnClose"
+        android:id="@+id/button_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/login_passwd"
-        android:layout_alignParentRight="true"
-        android:layout_marginLeft="30dp"
         android:layout_marginTop="8dp"
-        android:layout_marginRight="100dp"
+        android:layout_marginEnd="30dp"
+        android:layout_toStartOf="@id/button_login"
+        android:backgroundTint="#33CCCC	"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="@string/registor"
+        android:textSize="16pt" />
+
+    <Button
+        android:id="@+id/button_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/login_passwd"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#33CCCC	"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="@string/enter"
+        android:textSize="16pt" />
+
+    <Button
+        android:id="@+id/button_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/login_passwd"
+        android:layout_toEndOf="@id/button_login"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="8dp"
         android:backgroundTint="#33CCCC	"
         android:gravity="center"
         android:padding="8dp"
@@ -57,17 +83,5 @@
         android:textSize="16pt" />
     <!-- 添加“登录”按钮 -->
 
-    <Button
-        android:id="@+id/btnLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/login_passwd"
-        android:layout_marginTop="8dp"
-        android:layout_toLeftOf="@id/btnClose"
 
-        android:backgroundTint="#33CCCC	"
-        android:gravity="center"
-        android:padding="8dp"
-        android:text="@string/enter"
-        android:textSize="16pt" />
 </RelativeLayout>

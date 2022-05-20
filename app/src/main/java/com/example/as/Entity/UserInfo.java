@@ -2,6 +2,7 @@ package com.example.as.Entity;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import java.sql.ResultSet;
@@ -21,6 +22,9 @@ public class UserInfo// 密码数据表实体类
     private String email;
     private LocalDateTime create_date;
     private int isAdmin;
+
+    public UserInfo() {
+    }
 
     public UserInfo(ResultSet rs) {
         try {
@@ -112,5 +116,30 @@ public class UserInfo// 密码数据表实体类
 
     public void setIsAdmin(int isAdmin) {
         this.isAdmin = isAdmin;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "" +
+                name +
+                password +
+                sex +
+                birthday +
+                email +
+                create_date +
+                isAdmin;
+    }
+
+    public String getSqlValues() {
+        return "values(" +
+                (name.equals("") ? "null" : "'" + name + "'") + "," +
+                "'" + password + "'" + "," +
+                (sex.equals("") ? "null" : "'" + sex + "'") + "," +
+                (birthday == null ? "null" : "'" + birthday.toLocalDate() + "'") + "," +
+                (email.equals("") ? "null" : "'" + email + "'") + "," +
+                (create_date == null ? "null" : "'" + create_date.toLocalDate() + "'") + "," +
+                (isAdmin == 0 ? "0" : "1") +
+                ")";
     }
 }
