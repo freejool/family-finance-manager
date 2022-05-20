@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+   <string-array name="outtype">
+   		<item>餐费</item>
+   		<item>应酬</item>
+   		<item>礼金</item>
+   		<item>车费</item>
+   		<item>其他</item>
+   </string-array>
+   <string-array name="intype">
+   		<item>工资</item>
+   		<item>兼职</item>
+   		<item>分红</item>
+   		<item>奖金</item>
+   		<item>其他</item>
+   </string-array>
+</resources>

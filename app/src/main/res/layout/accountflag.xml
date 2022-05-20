@@ -1,0 +1,56 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/itemflag"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="@color/backgroundColor"
+    android:gravity="center"
+     >
+	<!-- 显示标题文本框 -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal"
+        android:text="新增便签"
+        android:textSize="40sp"
+        android:textStyle="bold" />
+	<!-- 显示提示文字文本框 -->
+    <TextView
+        android:id="@+id/tvFlag"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:text="请输入便签，最多输入200字"
+        android:textColor="#8C6931"
+        android:textSize="22sp" />
+	<!-- 输入便签内容编辑框 -->
+    <EditText
+        android:id="@+id/txtFlag"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvFlag"
+        android:gravity="top"
+        android:lines="10" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:padding="10dp" >
+
+        <Button
+            android:id="@+id/btnflagCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="10dp"
+            android:text="取消" />
+
+        <Button
+            android:id="@+id/btnflagSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/btnflagCancel"
+            android:text="保存" />
+    </RelativeLayout>
+
+</LinearLayout>
