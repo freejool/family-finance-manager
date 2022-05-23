@@ -22,6 +22,7 @@
         android:textSize="@dimen/text_l" />
 
     <EditText
+        android:text="Jack"
         android:id="@+id/login_user_id"
         android:layout_width="match_parent"
         android:layout_height="64dp"
@@ -38,6 +39,7 @@
         android:textSize="@dimen/text_m" />
 
     <EditText
+        android:text="1234"
         android:id="@+id/login_passwd"
         android:layout_width="match_parent"
         android:layout_height="64dp"
