@@ -9,7 +9,6 @@
     <string name="Set">设置</string>
 
 
-
     <string name="main">个人理财通</string>
     <string name="app_name">个人理财通</string>
     <string name="addoutaccount">新增支出</string>
@@ -21,10 +20,10 @@
     <string name="accountflag">收支便签</string>
     <string name="infomanage">收支管理</string>
     <string name="flagmanage">便签管理</string>
-        <string name="help">帮助</string>
-        <string name="chart">统计图表</string>
+    <string name="help">帮助</string>
+    <string name="chart">统计图表</string>
     <string name="action_settings">Settings</string>
-    <string name="registor">注册</string>
+    <string name="register">注册</string>
     <string name="username">用户名</string>
     <string name="passwd">密码</string>
     <string name="confirm_passwd">确认密码</string>
@@ -33,4 +32,5 @@
     <string name="email">邮箱</string>
     <string name="choose_birthday">选择生日</string>
     <string name="admin">管理员</string>
+    <string name="input_username">请输入用户名:</string>
 </resources>

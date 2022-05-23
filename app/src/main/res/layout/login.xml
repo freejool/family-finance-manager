@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     android:background="#33FFCC"
     android:gravity="center"
-    android:padding="5dp"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -15,31 +14,39 @@
         android:id="@+id/login_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_s"
         android:gravity="center"
-        android:padding="8dp"
+        android:maxLines="1"
+        android:padding="@dimen/padding_s"
         android:text="@string/appName"
-        android:textSize="28pt" />
-    <!-- 添加“请输入密码”文本框 TextView-->
+        android:textSize="@dimen/text_l" />
+
     <EditText
         android:id="@+id/login_user_id"
         android:layout_width="match_parent"
         android:layout_height="64dp"
         android:layout_below="@id/login_title"
-        android:layout_marginTop="8dp"
-        android:padding="8dp"
+        android:layout_marginStart="@dimen/margin_s"
+        android:layout_marginTop="@dimen/margin_s"
+        android:layout_marginEnd="@dimen/margin_s"
+        android:layout_marginBottom="@dimen/margin_s"
+        android:hint="@string/input_username"
+        android:inputType="text"
+        android:maxLines="1"
+        android:padding="@dimen/padding_s"
         android:textColor="#8C6931"
-        android:textSize="16pt" />
+        android:textSize="@dimen/text_m" />
 
     <EditText
         android:id="@+id/login_passwd"
         android:layout_width="match_parent"
         android:layout_height="64dp"
         android:layout_below="@id/login_user_id"
-        android:layout_marginTop="8dp"
+        android:layout_margin="@dimen/margin_s"
         android:hint="@string/input_your_password"
         android:inputType="textPassword"
-        android:padding="8dp"
-        android:textSize="16pt" />
+        android:padding="@dimen/padding_s"
+        android:textSize="@dimen/text_m" />
 
     <Button
         android:id="@+id/button_register"
@@ -51,9 +58,9 @@
         android:layout_toStartOf="@id/button_login"
         android:backgroundTint="#33CCCC	"
         android:gravity="center"
-        android:padding="8dp"
-        android:text="@string/registor"
-        android:textSize="16pt" />
+        android:padding="@dimen/padding_s"
+        android:text="@string/register"
+        android:textSize="@dimen/text_m" />
 
     <Button
         android:id="@+id/button_login"
@@ -66,22 +73,21 @@
         android:gravity="center"
         android:padding="8dp"
         android:text="@string/enter"
-        android:textSize="16pt" />
+        android:textSize="@dimen/text_m" />
 
     <Button
         android:id="@+id/button_close"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/login_passwd"
-        android:layout_toEndOf="@id/button_login"
         android:layout_marginStart="30dp"
         android:layout_marginTop="8dp"
+        android:layout_toEndOf="@id/button_login"
         android:backgroundTint="#33CCCC	"
         android:gravity="center"
-        android:padding="8dp"
+        android:padding="@dimen/padding_s"
         android:text="@string/cancel"
-        android:textSize="16pt" />
-    <!-- 添加“登录”按钮 -->
+        android:textSize="@dimen/text_m" />
 
 
 </RelativeLayout>
