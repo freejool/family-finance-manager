@@ -19,10 +19,14 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.fragment.app.FragmentActivity;
+
 import com.example.as.R;
+import com.example.as.activity.login.DialogRegister;
+import com.example.as.activity.login.Login;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends FragmentActivity {
     ListView gvInfo;// 创建GridView对象
     // 定义字符串数组，存储系统功能
     String[] titles = new String[]{"新增支出", "新增收入", "我的支出", "我的收入",
@@ -62,8 +66,8 @@ public class MainActivity extends Activity {
                         startActivity(intent);// 打开AddOutaccount
                         break;
                     case 1:
-                        intent = new Intent(MainActivity.this, AddInaccount.class);// 使用AddInaccount窗口初始化Intent
-                        startActivity(intent);// 打开AddInaccount
+                        DialogAddIncome dialogaddincome = new DialogAddIncome();
+                        dialogaddincome.show(MainActivity.this.getSupportFragmentManager(), "register");
                         break;
                     case 2:
                         intent = new Intent(MainActivity.this, Outaccountinfo.class);// 使用Outaccountinfo窗口初始化Intent
