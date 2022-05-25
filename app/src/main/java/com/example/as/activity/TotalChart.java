@@ -19,12 +19,12 @@ import com.example.as.dao.OutaccountDAO;
 
 public class TotalChart extends Activity {
 	private float[] money=new float[]{600,1000,600,300,1500};	//各项金额的默认值
-	private int[] color=new int[]{Color.GREEN,Color.YELLOW,Color.RED,Color.MAGENTA,Color.BLUE};	//各项颜色
+	private final int[] color=new int[]{Color.GREEN,Color.YELLOW,Color.RED,Color.MAGENTA,Color.BLUE};	//各项颜色
 	private final int WIDTH = 30;	//柱型的宽度
 	private final int OFFSET = 15;	//间距
-	private int x =70;	//起点x
-	private int y=329;	//终点y
-	private int height=5200;	//高度
+	private final int x =70;	//起点x
+	private final int y=329;	//终点y
+	private final int height=5200;	//高度
 	String[] type=null;		//金额的类型
 	private String passType="";	//记录是收入信息还是支出信息
 	@Override
@@ -48,7 +48,7 @@ public class TotalChart extends Activity {
 		
 		
 		
-		FrameLayout ll=(FrameLayout)findViewById(R.id.canvas);//获取布局文件中添加的帧布局管理器
+		FrameLayout ll= findViewById(R.id.canvas);//获取布局文件中添加的帧布局管理器
 		ll.addView(new MyView(this));				//将自定义的MyView视图添加到帧布局管理器中
 		
 	}

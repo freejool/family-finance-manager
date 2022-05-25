@@ -29,8 +29,8 @@ public class Login extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);// 设置布局文件
 
-        edittextUsername = (EditText) findViewById(R.id.login_user_id);// 获取密码文本框
-        edittextPasswd = (EditText) findViewById(R.id.login_passwd);// 获取密码文本框
+        edittextUsername = findViewById(R.id.login_user_id);// 获取密码文本框
+        edittextPasswd = findViewById(R.id.login_passwd);// 获取密码文本框
 
         buttonLogin = findViewById(R.id.button_login);
         buttonClose = findViewById(R.id.button_close);

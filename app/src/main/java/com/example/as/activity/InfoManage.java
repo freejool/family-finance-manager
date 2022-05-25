@@ -55,15 +55,15 @@ public class InfoManage extends Activity {
 
 
 		setContentView(R.layout.infomanage);// 设置布局文件
-		tvtitle = (TextView) findViewById(R.id.inouttitle);// 获取标题标签对象
-		textView = (TextView) findViewById(R.id.tvInOut);// 获取地点/付款方标签对象
-		txtMoney = (EditText) findViewById(R.id.txtInOutMoney);// 获取金额文本框
-		txtTime = (EditText) findViewById(R.id.txtInOutTime);// 获取时间文本框
-		spType = (Spinner) findViewById(R.id.spInOutType);// 获取类别下拉列表
-		txtHA = (EditText) findViewById(R.id.txtInOut);// 获取地点/付款方文本框
-		txtMark = (EditText) findViewById(R.id.txtInOutMark);// 获取备注文本框
-		btnEdit = (Button) findViewById(R.id.btnInOutEdit);// 获取修改按钮
-		btnDel = (Button) findViewById(R.id.btnInOutDelete);// 获取删除按钮
+		tvtitle = findViewById(R.id.inouttitle);// 获取标题标签对象
+		textView = findViewById(R.id.tvInOut);// 获取地点/付款方标签对象
+		txtMoney = findViewById(R.id.txtInOutMoney);// 获取金额文本框
+		txtTime = findViewById(R.id.txtInOutTime);// 获取时间文本框
+		spType = findViewById(R.id.spInOutType);// 获取类别下拉列表
+		txtHA = findViewById(R.id.txtInOut);// 获取地点/付款方文本框
+		txtMark = findViewById(R.id.txtInOutMark);// 获取备注文本框
+		btnEdit = findViewById(R.id.btnInOutEdit);// 获取修改按钮
+		btnDel = findViewById(R.id.btnInOutDelete);// 获取删除按钮
 
 		Intent intent = getIntent();// 创建Intent对象
 		Bundle bundle = intent.getExtras();// 获取传入的数据，并使用Bundle记录
@@ -170,7 +170,7 @@ public class InfoManage extends Activity {
 		return null;
 	}
 
-	private DatePickerDialog.OnDateSetListener mDateSetListener = new DatePickerDialog.OnDateSetListener() {
+	private final DatePickerDialog.OnDateSetListener mDateSetListener = new DatePickerDialog.OnDateSetListener() {
 		public void onDateSet(DatePicker view, int year, int monthOfYear,
 				int dayOfMonth) {
 			mYear = year;// 为年份赋值

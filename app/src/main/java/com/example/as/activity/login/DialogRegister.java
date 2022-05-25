@@ -25,7 +25,7 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 
 public class DialogRegister extends DialogFragment {
-    private UserInfo newUser = new UserInfo();
+    private final UserInfo newUser = new UserInfo();
 
     private EditText username;
     private EditText password;

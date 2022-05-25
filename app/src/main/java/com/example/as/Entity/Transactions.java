@@ -93,15 +93,17 @@ public class Transactions //收支记录表实体类
         this.note = note;
     }
 
-
+    @Override
     public String toString() {
-        return "" +
-                user_id +
-                type +
-                amount +
-                in_or_out +
-                Transaction_time +
-                note;
+        return "Transactions{" +
+                "ID=" + ID +
+                ", user_id=" + user_id +
+                ", type='" + type + '\'' +
+                ", amount=" + amount +
+                ", in_or_out='" + in_or_out + '\'' +
+                ", Transaction_time=" + Transaction_time +
+                ", note='" + note + '\'' +
+                '}';
     }
 
     public String getSqlValues() {
@@ -109,9 +111,7 @@ public class Transactions //收支记录表实体类
                 user_id + "," +
                 "'" + type + "'" + "," + amount + "," + "'" + in_or_out + "'" + "," +
                 "'" + Transaction_time.toLocalDate() + "'" + "," +
-
                 (note.equals("") ? "null" : "'" + note + "'") +
-
                 ")";
     }
 }

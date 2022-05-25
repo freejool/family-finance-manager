@@ -9,8 +9,8 @@ import android.database.sqlite.SQLiteDatabase;
 import com.example.as.model.Tb_flag;
 
 public class FlagDAO {
-	private DBOpenHelper helper;// 创建DBOpenHelper对象
-	private SQLiteDatabase db;// 创建SQLiteDatabase对象
+	private final DBOpenHelper helper;// 创建DBOpenHelper对象
+	private final SQLiteDatabase db;// 创建SQLiteDatabase对象
 
 	public FlagDAO(Context context){// 定义构造函数
 		helper = new DBOpenHelper(context);// 初始化DBOpenHelper对象
@@ -73,7 +73,7 @@ public class FlagDAO {
 //			db = helper.getWritableDatabase();// 创建SQLiteDatabase对象
 			// 执行删除便签信息操作
 			db.execSQL("delete from tb_flag where _id in (" + sb + ")",
-					(Object[]) ids);
+					ids);
 		}
 	}
 

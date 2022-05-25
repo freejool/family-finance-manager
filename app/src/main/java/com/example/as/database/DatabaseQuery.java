@@ -11,7 +11,7 @@ import java.util.Arrays;
 public class DatabaseQuery extends Thread {
     private Connection connection;
     private Statement statement;
-    private String sql;
+    private final String sql;
     private ResultSet resultSet;
     private SQLException exception = null;
 

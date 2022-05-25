@@ -4,14 +4,15 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Sxing/Develop/family-finance-manager/app/src/main/res/layout/login.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/addincome_dialog.xml" value="0.2533447265625" />
         <entry key="app/src/main/res/layout/gvitem.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/login.xml" value="0.22271270751953132" />
+        <entry key="app/src/main/res/layout/login.xml" value="0.1" />
         <entry key="app/src/main/res/layout/main.xml" value="0.29386291503906253" />
         <entry key="app/src/main/res/layout/register_dialog.xml" value="0.295440673828125" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android API 32 Platform" project-jdk-type="Android SDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="Android API 32 Platform" project-jdk-type="Android SDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

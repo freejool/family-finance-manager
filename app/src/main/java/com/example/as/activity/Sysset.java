@@ -18,9 +18,9 @@ public class Sysset extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.sysset);// 设置布局文件
 
-		txtpwd = (EditText) findViewById(R.id.txtPwd);// 获取密码文本框
-		btnSet = (Button) findViewById(R.id.btnSet);// 获取设置按钮
-		btnsetCancel = (Button) findViewById(R.id.btnsetCancel);// 获取取消按钮
+		txtpwd = findViewById(R.id.txtPwd);// 获取密码文本框
+		btnSet = findViewById(R.id.btnSet);// 获取设置按钮
+		btnsetCancel = findViewById(R.id.btnsetCancel);// 获取取消按钮
 
 //		btnSet.setOnClickListener(new OnClickListener() {// 为设置按钮添加监听事件
 //			@Override

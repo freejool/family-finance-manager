@@ -1,152 +1,161 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
     android:id="@+id/initem"
-    android:orientation="vertical"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@color/backgroundColor"
-    >
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="top"
+    android:minWidth="500dp"
+    android:minHeight="700dp"
+    android:orientation="vertical">
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/margin_s"
+        android:gravity="center_horizontal"
+        android:paddingBottom="@dimen/padding_s"
+        android:text="@string/new_income"
+        android:textSize="@dimen/text_l" />
+
+
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="3"
-        >
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/padding_s"
+        android:gravity="center"
+        android:orientation="horizontal">
+
         <TextView
+            android:id="@+id/income_in_money_label"
             android:layout_width="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center_horizontal"
-            android:text="新增收入"
-            android:textSize="40sp"
-            android:textStyle="bold"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_s"
+            android:width="@dimen/input_label_width"
+            android:padding="@dimen/padding_s"
+            android:text="@string/value"
+            android:textSize="@dimen/text_s" />
+
+        <EditText
+            android:id="@+id/income_money_edittext"
+            android:layout_width="@dimen/input_box_width"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_s"
+            android:hint="0.00"
+            android:inputType="numberDecimal"
+            android:maxLength="9"
+            android:padding="@dimen/padding_s" />
     </LinearLayout>
+
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="1"
-        >
-        <RelativeLayout android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:padding="10dp"
-            >
-            <TextView android:layout_width="90dp"
-                android:id="@+id/tvInMoney"
-                android:textSize="20sp"
-                android:text="金  额："
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/txtInMoney"
-                android:layout_alignBottom="@+id/txtInMoney"
-                android:layout_alignParentLeft="true"
-                android:layout_marginLeft="16dp">
-            </TextView>
-            <EditText
-                android:id="@+id/txtInMoney"
-                android:layout_width="210dp"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/tvInMoney"
-                android:inputType="numberDecimal"
-                android:maxLength="9"
-                android:hint="0.00"
-                />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/padding_s"
+        android:gravity="center"
+        android:orientation="horizontal">
 
-<!--            <TextView-->
-<!--                android:id="@+id/tvInTime"-->
-<!--                android:layout_width="90dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_alignBaseline="@+id/txtInTime"-->
-<!--                android:layout_alignBottom="@+id/txtInTime"-->
-<!--                android:layout_toLeftOf="@+id/txtInMoney"-->
-<!--                android:text="时  间："-->
-<!--                android:textSize="20sp"></TextView>-->
+        <TextView
+            android:id="@+id/income_type_label"
+            android:layout_width="@dimen/input_label_width"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_s"
+            android:padding="@dimen/padding_s"
+            android:text="类别："
+            android:textSize="@dimen/text_s" />
 
-<!--            <EditText-->
-<!--                android:id="@+id/txtInTime"-->
-<!--                android:layout_width="210dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_below="@id/txtInMoney"-->
-<!--                android:layout_toRightOf="@id/tvInTime"-->
-<!--                android:hint="2015-01-01"-->
-<!--                android:inputType="datetime" />-->
-            <TextView
-                android:id="@+id/tvInType"
-                android:layout_width="90dp"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/spInType"
-                android:layout_alignLeft="@id/tvInMoney"
-                android:layout_alignBottom="@+id/spInType"
-                android:text="类  别："
-                android:textSize="20sp"></TextView>
+        <Spinner
+            android:id="@+id/income_type_spinner"
+            android:layout_width="@dimen/input_box_width"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_s"
 
-            <Spinner
-                android:id="@+id/spInType"
-                android:layout_width="210dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tvInMoney"
-                android:layout_toRightOf="@id/tvInType" />
-<!--                android:entries="@array/intype" />-->
 
-            <TextView
-                android:id="@+id/tvInHandler"
-                android:layout_width="90dp"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/txtInHandler"
-                android:layout_alignBottom="@+id/txtInHandler"
-                android:layout_toLeftOf="@+id/spInType"
-                android:text="用户名："
-                android:textSize="20sp"></TextView>
-
-            <EditText
-                android:id="@+id/txtInHandler"
-                android:layout_width="210dp"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/spInType"
-                android:layout_toRightOf="@id/tvInHandler"
-                android:singleLine="false" />
-            <TextView android:layout_width="90dp"
-                android:id="@+id/tvInMark"
-                android:textSize="20sp"
-                android:text="备  注："
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/txtInMark"
-                android:layout_toLeftOf="@+id/txtInHandler">
-            </TextView>
-
-            <EditText
-                android:id="@+id/txtInMark"
-                android:layout_width="210dp"
-                android:layout_height="150dp"
-                android:layout_below="@id/txtInHandler"
-                android:layout_toRightOf="@id/tvInMark"
-                android:gravity="top"
-                android:singleLine="false" />
-        </RelativeLayout>
+            android:padding="@dimen/padding_s" />
     </LinearLayout>
+
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="3"
-        >
-        <RelativeLayout android:layout_width="fill_parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/padding_s"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/income_user_label"
+            android:layout_width="@dimen/input_label_width"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_s"
+            android:padding="@dimen/padding_s"
+            android:text="@string/userId"
+            android:textSize="@dimen/text_s" />
+
+        <EditText
+            android:id="@+id/income_user_id_edittext"
+            android:layout_width="@dimen/input_box_width"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_s"
+            android:hint="用户ID"
+            android:padding="@dimen/padding_s" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/padding_s"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/income_note"
+            android:layout_width="@dimen/input_label_width"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_s"
+            android:padding="@dimen/padding_s"
+            android:text="备注："
+            android:textSize="@dimen/text_s" />
+
+        <EditText
+            android:id="@+id/income_note_edittext"
+            android:layout_width="@dimen/input_box_width"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_s"
+            android:gravity="top"
+            android:padding="@dimen/padding_s"
+            android:singleLine="false" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:padding="10dp"
-            >
-            <Button
-                android:id="@+id/btnInCancel"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginLeft="10dp"
-                android:text="取消"
-                />
+            android:layout_margin="@dimen/margin_s"
+            android:gravity="end"
+            android:padding="@dimen/padding_s">
+
 
             <Button
-                android:id="@+id/btnInSave"
+                android:id="@+id/income_cancel_button"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
-                android:layout_toLeftOf="@id/btnInCancel"
-                android:text="保存" />
-        </RelativeLayout>
+                android:layout_margin="@dimen/margin_s"
+                android:padding="@dimen/padding_s"
+                android:text="@string/cancel" />
+
+            <Button
+                android:id="@+id/income_save_button"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_s"
+                android:padding="@dimen/padding_s"
+                android:text="@string/confirm" />
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>

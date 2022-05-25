@@ -33,10 +33,10 @@ public class Showinfo extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.showinfo);// 设置布局文件
 
-		lvinfo = (ListView) findViewById(R.id.lvinfo);// 获取布局文件中的ListView组件
-		btnoutinfo = (Button) findViewById(R.id.btnoutinfo);// 获取布局文件中的支出信息按钮
-		btnininfo = (Button) findViewById(R.id.btnininfo);// 获取布局文件中的收入信息按钮
-		btnflaginfo = (Button) findViewById(R.id.btnflaginfo);// 获取布局文件中的便签信息按钮
+		lvinfo = findViewById(R.id.lvinfo);// 获取布局文件中的ListView组件
+		btnoutinfo = findViewById(R.id.btnoutinfo);// 获取布局文件中的支出信息按钮
+		btnininfo = findViewById(R.id.btnininfo);// 获取布局文件中的收入信息按钮
+		btnflaginfo = findViewById(R.id.btnflaginfo);// 获取布局文件中的便签信息按钮
 
 		//ShowInfo(R.id.btnoutinfo);// 默认显示支出信息
 

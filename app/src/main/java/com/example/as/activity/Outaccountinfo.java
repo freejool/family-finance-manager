@@ -25,7 +25,7 @@ public class Outaccountinfo extends Activity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.outaccountinfo);// 设置布局文件
-		lvinfo = (ListView) findViewById(R.id.lvoutaccountinfo);// 获取布局文件中的ListView组件
+		lvinfo = findViewById(R.id.lvoutaccountinfo);// 获取布局文件中的ListView组件
 
 		ShowInfo(R.id.btnoutinfo);// 调用自定义方法显示支出信息
 
@@ -57,7 +57,7 @@ public class Outaccountinfo extends Activity {
 		for (Tb_outaccount tb_outaccount : listoutinfos) {// 遍历List泛型集合
 			// 将支出相关信息组合成一个字符串，存储到字符串数组的相应位置
 			strInfos[i] = tb_outaccount.getid() + "|" + tb_outaccount.getType()
-					+ " " + String.valueOf(tb_outaccount.getMoney()) + "元     "
+					+ " " + tb_outaccount.getMoney() + "元     "
 					+ tb_outaccount.getTime();
 			i++;// 标识加1
 		}
