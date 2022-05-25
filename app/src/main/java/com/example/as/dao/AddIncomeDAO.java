@@ -14,10 +14,10 @@ import java.util.List;
 public class AddIncomeDAO {
     private DatabaseQuery db;
 
-    public AddIncomeDAO(){
-
+    public AddIncomeDAO() {
     }
-    public void addincome(Transactions transactions)throws SQLException {
+
+    public void addIncome(Transactions transactions) throws SQLException {
         try {
             Log.i("SQL", transactions.getSqlValues());
             db = new DatabaseQuery(
@@ -31,28 +31,28 @@ public class AddIncomeDAO {
             Log.e("ThreadError", Arrays.toString(e.getStackTrace()));
         }
     }
-    public  List<String> findtype () throws SQLException{
-        List<String> rerurnList = new ArrayList<>();
+
+    public List<String> findType() throws SQLException {
+        List<String> returnList = new ArrayList<>();
         ResultSet res;
         String type;
         try {
 
             db = new DatabaseQuery(
-                    "select type from trans_type where in_or_out ='收入' " );
+                    "select type from trans_type where in_or_out ='收入' ");
             db.start();
             db.join();
             res = db.getResultSet();
-            while (res.next())
-            {
-                type=res.getString("type");
-                rerurnList.add(type);
+            while (res.next()) {
+                type = res.getString("type");
+                returnList.add(type);
             }
             res.close();
-        }  catch (SQLException e) {
+        } catch (SQLException e) {
             Log.e("SqlError", Arrays.toString(e.getStackTrace()));
         } catch (InterruptedException e) {
             Log.e("ThreadError", Arrays.toString(e.getStackTrace()));
         }
-        return rerurnList;
+        return returnList;
     }
 }

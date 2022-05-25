@@ -25,7 +25,7 @@ public class Inaccountinfo extends Activity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.inaccountinfo);// 设置布局文件
-		lvinfo = (ListView) findViewById(R.id.lvinaccountinfo);// 获取布局文件中的ListView组件
+		lvinfo = findViewById(R.id.lvinaccountinfo);// 获取布局文件中的ListView组件
 
 		ShowInfo(R.id.btnininfo);// 调用自定义方法显示收入信息
 
@@ -56,7 +56,7 @@ public class Inaccountinfo extends Activity {
 		for (Tb_inaccount tb_inaccount : listinfos) {// 遍历List泛型集合
 			// 将收入相关信息组合成一个字符串，存储到字符串数组的相应位置
 			strInfos[m] = tb_inaccount.getid() + "|" + tb_inaccount.getType()
-					+ " " + String.valueOf(tb_inaccount.getMoney()) + "元     "
+					+ " " + tb_inaccount.getMoney() + "元     "
 					+ tb_inaccount.getTime();
 			m++;// 标识加1
 		}

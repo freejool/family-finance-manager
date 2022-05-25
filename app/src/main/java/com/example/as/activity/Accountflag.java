@@ -22,9 +22,9 @@ public class Accountflag extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.accountflag);
 
-		txtFlag = (EditText) findViewById(R.id.txtFlag);// 获取便签文本框
-		btnflagSaveButton = (Button) findViewById(R.id.btnflagSave);// 获取保存按钮
-		btnflagCancelButton = (Button) findViewById(R.id.btnflagCancel);// 获取取消按钮
+		txtFlag = findViewById(R.id.txtFlag);// 获取便签文本框
+		btnflagSaveButton = findViewById(R.id.btnflagSave);// 获取保存按钮
+		btnflagCancelButton = findViewById(R.id.btnflagCancel);// 获取取消按钮
 		btnflagSaveButton.setOnClickListener(new OnClickListener() {// 为保存按钮设置监听事件
 					@Override
 					public void onClick(View arg0) {

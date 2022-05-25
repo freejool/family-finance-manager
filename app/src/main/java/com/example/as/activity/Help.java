@@ -16,7 +16,7 @@ public class Help extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.help);
-		WebView webview=(WebView)findViewById(R.id.webView1);//获取布局管理器中添加的WebView组件
+		WebView webview= findViewById(R.id.webView1);//获取布局管理器中添加的WebView组件
 		//创建一个字符串构建器，将要显示的HTML内容放置在该构建器中
 		StringBuilder sb=new StringBuilder();
 		sb.append("<div>《个人理财通》使用帮助：</div>");

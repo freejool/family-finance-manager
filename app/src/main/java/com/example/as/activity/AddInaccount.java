@@ -33,13 +33,13 @@ public class AddInaccount extends Activity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.addinaccount);// 设置布局文件
-		txtInMoney = (EditText) findViewById(R.id.txtInMoney);// 获取金额文本框
-		txtInTime = (EditText) findViewById(R.id.txtInTime);// 获取时间文本框
-		txtInHandler = (EditText) findViewById(R.id.txtInHandler);// 获取付款方文本框
-		txtInMark = (EditText) findViewById(R.id.txtInMark);// 获取备注文本框
-		spInType = (Spinner) findViewById(R.id.spInType);// 获取类别下拉列表
-		btnInSaveButton = (Button) findViewById(R.id.btnInSave);// 获取保存按钮
-		btnInCancelButton = (Button) findViewById(R.id.btnInCancel);// 获取取消按钮
+		txtInMoney = findViewById(R.id.income_money_edittext);// 获取金额文本框
+		txtInTime = findViewById(R.id.txtInTime);// 获取时间文本框
+		txtInHandler = findViewById(R.id.income_user_id_edittext);// 获取付款方文本框
+		txtInMark = findViewById(R.id.income_note_edittext);// 获取备注文本框
+		spInType = findViewById(R.id.income_type_spinner);// 获取类别下拉列表
+		btnInSaveButton = findViewById(R.id.income_save_button);// 获取保存按钮
+		btnInCancelButton = findViewById(R.id.income_cancel_button);// 获取取消按钮
 
 		txtInTime.setOnClickListener(new OnClickListener() {// 为时间文本框设置单击监听事件
 					@Override
@@ -109,7 +109,7 @@ public class AddInaccount extends Activity {
 		return null;
 	}
 
-	private DatePickerDialog.OnDateSetListener mDateSetListener = 
+	private final DatePickerDialog.OnDateSetListener mDateSetListener =
 			new DatePickerDialog.OnDateSetListener() {
 		public void onDateSet(DatePicker view, int year, int monthOfYear,
 				int dayOfMonth) {

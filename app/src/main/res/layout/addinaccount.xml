@@ -31,20 +31,20 @@
 		    android:padding="10dp"
 		    >
 		    <TextView android:layout_width="90dp" 
-		    android:id="@+id/tvInMoney" 
+		    android:id="@+id/income_in_money_label"
 		    android:textSize="20sp" 
 		    android:text="金  额：" 
 		    android:layout_height="wrap_content" 
-		    android:layout_alignBaseline="@+id/txtInMoney" 
-		    android:layout_alignBottom="@+id/txtInMoney" 
+		    android:layout_alignBaseline="@+id/income_money_edittext"
+		    android:layout_alignBottom="@+id/income_money_edittext"
 		    android:layout_alignParentLeft="true" 
 		    android:layout_marginLeft="16dp">
 		    </TextView>
 		    <EditText 
-		    android:id="@+id/txtInMoney"
+		    android:id="@+id/income_money_edittext"
 		    android:layout_width="210dp"
 		    android:layout_height="wrap_content"
-		    android:layout_toRightOf="@id/tvInMoney"
+		    android:layout_toRightOf="@id/income_in_money_label"
 		    android:inputType="number"
 		    android:numeric="integer"
 		    android:maxLength="9"
@@ -57,64 +57,64 @@
 		    android:layout_height="wrap_content" 
 		    android:layout_alignBaseline="@+id/txtInTime" 
 		    android:layout_alignBottom="@+id/txtInTime" 
-		    android:layout_toLeftOf="@+id/txtInMoney">
+		    android:layout_toLeftOf="@+id/income_money_edittext">
 		    </TextView>
 		    <EditText 
 		    android:id="@+id/txtInTime"
 		    android:layout_width="210dp"
 		    android:layout_height="wrap_content"
 		    android:layout_toRightOf="@id/tvInTime"
-		    android:layout_below="@id/txtInMoney"
+		    android:layout_below="@id/income_money_edittext"
 		    android:inputType="datetime"
 		    android:hint="2015-01-01"
 		    />
 		    <TextView android:layout_width="90dp" 
-		    android:id="@+id/tvInType" 
+		    android:id="@+id/income_type_label"
 		    android:textSize="20sp" 
 		    android:text="类  别：" 
 		    android:layout_height="wrap_content" 
-		    android:layout_alignBaseline="@+id/spInType" 
-		    android:layout_alignBottom="@+id/spInType" 
+		    android:layout_alignBaseline="@+id/income_type_spinner"
+		    android:layout_alignBottom="@+id/income_type_spinner"
 		    android:layout_alignLeft="@+id/tvInTime">
 		    </TextView>
-		    <Spinner android:id="@+id/spInType"
+		    <Spinner android:id="@+id/income_type_spinner"
 		    android:layout_width="210dp"
 		    android:layout_height="wrap_content"
-		    android:layout_toRightOf="@id/tvInType"
+		    android:layout_toRightOf="@id/income_type_label"
 		    android:layout_below="@id/txtInTime"
 		    android:entries="@array/intype"
 		    />
 		    <TextView android:layout_width="90dp" 
-		    android:id="@+id/tvInHandler" 
+		    android:id="@+id/income_user_label"
 		    android:textSize="20sp" 
 		    android:text="付款方：" 
 		    android:layout_height="wrap_content" 
-		    android:layout_alignBaseline="@+id/txtInHandler" 
-		    android:layout_alignBottom="@+id/txtInHandler" 
-		    android:layout_toLeftOf="@+id/spInType">
+		    android:layout_alignBaseline="@+id/income_user_id_edittext"
+		    android:layout_alignBottom="@+id/income_user_id_edittext"
+		    android:layout_toLeftOf="@+id/income_type_spinner">
 		    </TextView>
 		    <EditText 
-		    android:id="@+id/txtInHandler"
+		    android:id="@+id/income_user_id_edittext"
 		    android:layout_width="210dp"
 		    android:layout_height="wrap_content"
-		    android:layout_toRightOf="@id/tvInHandler"
-		    android:layout_below="@id/spInType"
+		    android:layout_toRightOf="@id/income_user_label"
+		    android:layout_below="@id/income_type_spinner"
 		    android:singleLine="false"
 		    />
 		    <TextView android:layout_width="90dp" 
-		    android:id="@+id/tvInMark" 
+		    android:id="@+id/income_note"
 		    android:textSize="20sp" 
 		    android:text="备  注：" 
 		    android:layout_height="wrap_content" 
-		    android:layout_alignTop="@+id/txtInMark" 
-		    android:layout_toLeftOf="@+id/txtInHandler">
+		    android:layout_alignTop="@+id/income_note_edittext"
+		    android:layout_toLeftOf="@+id/income_user_id_edittext">
 		    </TextView>
 		    <EditText 
-		    android:id="@+id/txtInMark"
+		    android:id="@+id/income_note_edittext"
 		    android:layout_width="210dp"
 		    android:layout_height="150dp"
-		    android:layout_toRightOf="@id/tvInMark"
-		    android:layout_below="@id/txtInHandler"
+		    android:layout_toRightOf="@id/income_note"
+		    android:layout_below="@id/income_user_id_edittext"
 		    android:gravity="top"
 		    android:singleLine="false"
 		    />
@@ -131,7 +131,7 @@
 		    android:padding="10dp"
 		    >
 		<Button
-		    android:id="@+id/btnInCancel"
+		    android:id="@+id/income_cancel_button"
 		    android:layout_width="80dp"
 		    android:layout_height="wrap_content"
 		    android:layout_alignParentRight="true"
@@ -139,10 +139,10 @@
 		    android:text="取消"
 		    />
 		    <Button 
-			android:id="@+id/btnInSave"
+			android:id="@+id/income_save_button"
 			android:layout_width="80dp"
 		    android:layout_height="wrap_content"
-			android:layout_toLeftOf="@id/btnInCancel"
+			android:layout_toLeftOf="@id/income_cancel_button"
 			android:text="保存"    
 		    />
 		</RelativeLayout>

@@ -32,13 +32,13 @@ public class AddOutaccount extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.addoutaccount);// 设置布局文件
-		txtMoney = (EditText) findViewById(R.id.txtMoney);// 获取金额文本框
-		txtTime = (EditText) findViewById(R.id.txtTime);// 获取时间文本框
-		txtAddress = (EditText) findViewById(R.id.txtAddress);// 获取地点文本框
-		txtMark = (EditText) findViewById(R.id.txtMark);// 获取备注文本框
-		spType = (Spinner) findViewById(R.id.spType);// 获取类别下拉列表
-		btnSaveButton = (Button) findViewById(R.id.btnSave);// 获取保存按钮
-		btnCancelButton = (Button) findViewById(R.id.btnCancel);// 获取取消按钮
+		txtMoney = findViewById(R.id.txtMoney);// 获取金额文本框
+		txtTime = findViewById(R.id.txtTime);// 获取时间文本框
+		txtAddress = findViewById(R.id.txtAddress);// 获取地点文本框
+		txtMark = findViewById(R.id.txtMark);// 获取备注文本框
+		spType = findViewById(R.id.spType);// 获取类别下拉列表
+		btnSaveButton = findViewById(R.id.btnSave);// 获取保存按钮
+		btnCancelButton = findViewById(R.id.btnCancel);// 获取取消按钮
 
 		txtTime.setOnClickListener(new OnClickListener() {// 为时间文本框设置单击监听事件
 
@@ -111,7 +111,7 @@ public class AddOutaccount extends Activity {
 		return null;
 	}
 
-	private DatePickerDialog.OnDateSetListener mDateSetListener = new DatePickerDialog.OnDateSetListener() {
+	private final DatePickerDialog.OnDateSetListener mDateSetListener = new DatePickerDialog.OnDateSetListener() {
 		public void onDateSet(DatePicker view, int year, int monthOfYear,
 				int dayOfMonth) {
 			mYear = year;// 为年份赋值

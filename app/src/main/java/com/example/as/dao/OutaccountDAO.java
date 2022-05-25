@@ -11,8 +11,8 @@ import android.database.sqlite.SQLiteDatabase;
 import com.example.as.model.Tb_outaccount;
 
 public class OutaccountDAO {
-	private DBOpenHelper helper;// 创建DBOpenHelper对象
-	private SQLiteDatabase db;// 创建SQLiteDatabase对象
+	private final DBOpenHelper helper;// 创建DBOpenHelper对象
+	private final SQLiteDatabase db;// 创建SQLiteDatabase对象
 
 	public OutaccountDAO(Context context){// 定义构造函数
 		helper = new DBOpenHelper(context);// 初始化DBOpenHelper对象
@@ -90,7 +90,7 @@ public class OutaccountDAO {
 //			db = helper.getWritableDatabase();// 初始化SQLiteDatabase对象
 			// 执行删除支出信息操作
 			db.execSQL("delete from tb_outaccount where _id in (" + sb + ")",
-					(Object[]) ids);
+					ids);
 		}
 	}
 	/**

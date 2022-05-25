@@ -22,9 +22,9 @@ public class FlagManage extends Activity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.flagmanage);// 设置布局文件
-		txtFlag = (EditText) findViewById(R.id.txtFlagManage);// 获取便签文本框
-		btnEdit = (Button) findViewById(R.id.btnFlagManageEdit);// 获取修改按钮
-		btnDel = (Button) findViewById(R.id.btnFlagManageDelete);// 获取删除按钮
+		txtFlag = findViewById(R.id.txtFlagManage);// 获取便签文本框
+		btnEdit = findViewById(R.id.btnFlagManageEdit);// 获取修改按钮
+		btnDel = findViewById(R.id.btnFlagManageDelete);// 获取删除按钮
 
 		Intent intent = getIntent();// 创建Intent对象
 		Bundle bundle = intent.getExtras();// 获取便签id
