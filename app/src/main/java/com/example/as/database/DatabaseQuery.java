@@ -28,6 +28,7 @@ public class DatabaseQuery extends Thread {
     public void run() {
         ResultSet resultSet;
         try {
+            //获取连接的全局实例
             connection = AppDatabase.getInstance();
             statement = connection.createStatement();
             statement.execute(sql);

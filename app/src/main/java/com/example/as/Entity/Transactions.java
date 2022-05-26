@@ -2,96 +2,82 @@ package com.example.as.Entity;
 
 import android.util.Log;
 
+import com.example.as.database.CanBeRef;
+import com.example.as.database.Col;
+import com.example.as.database.IFromResultset;
+import com.example.as.database.IToDatabaseValue;
+import com.example.as.database.Row;
+
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.Arrays;
 
 
-public class Transactions //收支记录表实体类
+public class Transactions extends Row //收支记录表实体类
 {
-    private int ID;
-    private int user_id;
-    private String type;
-    private float amount;
-    private String in_or_out;
-    private LocalDateTime Transaction_time;
-    private String note;
+    @Col
+    public CanBeRef<Integer> ID;
+    @Col
+    private CanBeRef<Integer> user_id;
+    @Col
+    private CanBeRef<String> type;
+    @Col
+    private CanBeRef<Float> amount;
+    @Col
+    private CanBeRef<String> in_or_out;
+    @Col(col_name = "transaction_time")
+    private CanBeRef<LocalDateTime> Transaction_time;
+    @Col
+    private CanBeRef<String> note;
 
-    public Transactions() {
+    //进行数据库更新时会更新的字段
+//    public Vector<Object> update_list;
 
+    public Transactions()
+    {
+        table_name="transactions";
+        ID=new CanBeRef<>(DBCatcher.int_catcher, DBTranser.int_transer);
+        user_id=new CanBeRef<>(DBCatcher.int_catcher, DBTranser.int_transer);
+        type=new CanBeRef<>(DBCatcher.string_catcher, DBTranser.string_transer);
+        amount=new CanBeRef<>(DBCatcher.float_catcher, DBTranser.float_transer);
+        in_or_out=new CanBeRef<>(DBCatcher.string_catcher, DBTranser.string_transer);
+        Transaction_time=new CanBeRef<>
+        ((IFromResultset<LocalDateTime>) (rs, col_name) ->
+        {
+            try
+            {
+                return rs.getTimestamp("Transaction_time").toInstant().atZone(ZoneId.of("CST")).toLocalDateTime();
+            }
+            catch (SQLException e)
+            {
+                {Log.e("SQLError","未能获取对应列");return LocalDateTime.MIN;}
+            }
+        },
+        (IToDatabaseValue<LocalDateTime, String>)local_value ->local_value.toLocalDate().toString());
+        note=new CanBeRef<>(DBCatcher.string_catcher, DBTranser.string_transer);
+
+        Bind();
     }
 
-    public Transactions(ResultSet rs) {
-        try {
-            this.ID = rs.getInt("ID");
-            this.user_id = rs.getInt("user_id");
-            this.type = rs.getString("type");
-            this.amount = rs.getFloat("amount");
-            this.in_or_out = rs.getString("in_or_out");
-            this.Transaction_time = rs.getTimestamp("Transaction_time").toInstant().atZone(ZoneId.of("CST")).toLocalDateTime();
-            this.note = rs.getString("note");
-        } catch (Exception e) {
-            Log.e("SqlError", Arrays.toString(e.getStackTrace()));
-        }
+    public Transactions(ResultSet resultSet)
+    {
+        this();
+        setByResultSet(resultSet);
     }
 
+//    @Override
+//    public String getTableName()
+//    {
+//        return Transactions.table_name;
+//    }
 
-    public int getID() {
-        return ID;
-    }
+//    @Override
+//    public void setByResultSet(ResultSet resultSet)
+//    {
+//        super.setByResultSet(resultSet);
+//    }
 
-    public void setID(int ID) {
-        this.ID = ID;
-    }
-
-    public int getUserId() {
-        return user_id;
-    }
-
-    public void setUserId(int user_id) {
-        this.user_id = user_id;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public float getAmount() {
-        return amount;
-    }
-
-    public void setAmount(float amount) {
-        this.amount = amount;
-    }
-
-    public String getInOrOut() {
-        return in_or_out;
-    }
-
-    public void setInOrOut(String in_or_out) {
-        this.in_or_out = in_or_out;
-    }
-
-    public LocalDateTime getTransactionTime() {
-        return Transaction_time;
-    }
-
-    public void setTransactionTime(LocalDateTime Transaction_time) {
-        this.Transaction_time = Transaction_time;
-    }
-
-    public String getNote() {
-        return note;
-    }
-
-    public void setNote(String note) {
-        this.note = note;
-    }
 
     @Override
     public String toString() {
@@ -106,12 +92,11 @@ public class Transactions //收支记录表实体类
                 '}';
     }
 
-    public String getSqlValues() {
-        return "values(" +
-                user_id + "," +
-                "'" + type + "'" + "," + amount + "," + "'" + in_or_out + "'" + "," +
-                "'" + Transaction_time.toLocalDate() + "'" + "," +
-                (note.equals("") ? "null" : "'" + note + "'") +
-                ")";
-    }
+//    @Override
+//    public String getSqlValues()
+//    {
+//        return super.getSqlValues();
+//    }
+
+
 }

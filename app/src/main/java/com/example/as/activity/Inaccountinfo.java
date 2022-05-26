@@ -29,18 +29,18 @@ public class Inaccountinfo extends Activity {
 
 		ShowInfo(R.id.btnininfo);// 调用自定义方法显示收入信息
 
-		lvinfo.setOnItemClickListener(new OnItemClickListener(){// 为ListView添加项单击事件
-			// 重写onItemClick方法
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-				String strInfo = String.valueOf(((TextView) view).getText());// 记录收入信息
-				String strid = strInfo.substring(0, strInfo.indexOf('|'));// 从收入信息中截取收入编号
-				Intent intent = new Intent(Inaccountinfo.this, InfoManage.class);// 创建Intent对象
-				intent.putExtra(FLAG, new String[] { strid, strType });// 设置传递数据
-				startActivity(intent);// 执行Intent操作
-			}
-		});
+//		lvinfo.setOnItemClickListener(new OnItemClickListener(){// 为ListView添加项单击事件
+//			// 重写onItemClick方法
+//			@Override
+//			public void onItemClick(AdapterView<?> parent, View view,
+//					int position, long id) {
+//				String strInfo = String.valueOf(((TextView) view).getText());// 记录收入信息
+//				String strid = strInfo.substring(0, strInfo.indexOf('|'));// 从收入信息中截取收入编号
+//				Intent intent = new Intent(Inaccountinfo.this, InfoManage.class);// 创建Intent对象
+//				intent.putExtra(FLAG, new String[] { strid, strType });// 设置传递数据
+//				startActivity(intent);// 执行Intent操作
+//			}
+//		});
 	}
 
 	private void ShowInfo(int intType) {// 用来根据传入的管理类型，显示相应的信息

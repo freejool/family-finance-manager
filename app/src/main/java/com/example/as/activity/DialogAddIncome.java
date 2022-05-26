@@ -59,29 +59,29 @@ public class DialogAddIncome extends DialogFragment {
 
 
 
-        saveButton.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                if(money.getText().toString().equals("")
-                        || userId.getText().toString().equals("")){
-                    Toast.makeText(getContext(),
-                            "用户ID和金额是必填项！", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                newTransaction.setUserId(Integer.parseInt(userId.getText().toString()));
-                newTransaction.setType(spinType.getSelectedItem().toString());
-                newTransaction.setInOrOut("收入");
-                newTransaction.setAmount(Integer.parseInt(money.getText().toString()));
-                newTransaction.setTransactionTime(LocalDateTime.now());
-                newTransaction.setNote(note.getText().toString());
-                try {
-                    addincomeDAO.addIncome(newTransaction);
-                    Toast.makeText(getContext(), "保存成功", Toast.LENGTH_LONG).show();
-                    dismiss();
-                } catch (SQLException e) {
-                    Toast.makeText(getContext(), Arrays.toString(e.getStackTrace()), Toast.LENGTH_LONG).show();
-                }
-            }
-        } );
+//        saveButton.setOnClickListener(new View.OnClickListener(){
+//            public void onClick(View v){
+//                if(money.getText().toString().equals("")
+//                        || userId.getText().toString().equals("")){
+//                    Toast.makeText(getContext(),
+//                            "用户ID和金额是必填项！", Toast.LENGTH_SHORT).show();
+//                    return;
+//                }
+//                newTransaction.setUserId(Integer.parseInt(userId.getText().toString()));
+//                newTransaction.setType(spinType.getSelectedItem().toString());
+//                newTransaction.setInOrOut("收入");
+//                newTransaction.setAmount(Integer.parseInt(money.getText().toString()));
+//                newTransaction.setTransactionTime(LocalDateTime.now());
+//                newTransaction.setNote(note.getText().toString());
+//                try {
+//                    addincomeDAO.addIncome(newTransaction);
+//                    Toast.makeText(getContext(), "保存成功", Toast.LENGTH_LONG).show();
+//                    dismiss();
+//                } catch (SQLException e) {
+//                    Toast.makeText(getContext(), Arrays.toString(e.getStackTrace()), Toast.LENGTH_LONG).show();
+//                }
+//            }
+//        } );
 
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
