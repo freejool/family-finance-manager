@@ -15,6 +15,21 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Vector;
 
+/**
+ * 该类通过反射和注解来建立 字符串到特定成员对象的字典 和 特定成员对象到字符串的字典
+ * 以及 包含顺序的特定成员对应列名称字符串列表。
+ *
+ * <p>上文的特定成员指使用了{@link Col}注解的成员，它们必须是public的，否则上述字典和列表会忽略它们。</p>
+ * <p>由于Java的多数数据类型不可改，因此通常这些成员是{@link CanBeRef}的实例，该类型还提供两个功能，详情查看此类型的说明。
+ * <p>使用方法：要声明一个与数据库表对接的类型A时，继承此类型，在表示数据库列的成员上使用{@link Col}注解。然后按照如下步骤：
+ * (1)在新的类型中使用静态初始化块并且调用{@link Row#initRow(Class)}方法，参数为A.class。
+ * (2)在撰写构造函数时，先为{@link Row#table_name}赋表名的值，然后
+ * 初始化表示数据库列的成员变量并为其设置抓取器和转换器。最终使用{@link Row#Bind()}方法进行绑定。</p>
+ *
+ * <p>此类已实现基本的从{@link ResultSet}抓取到A的方法{@link Row#setByResultSet(ResultSet)}。
+ * 以及从实例转换为数据库所需的values(...)字符串的方法{@link Row#getSqlValues()}。其它功能等待被实现或继承后实现。</p>
+ *
+ */
 public class Row implements IRow
 {
     //进行数据库更新时会更新的字段
@@ -33,7 +48,10 @@ public class Row implements IRow
         //initRow(Row.class);
     }
 
-    //初始化行，将成员变量按照注解加入相应字典和列表
+    /**
+     * 静态初始化流程，需要继承者手动调用，类型{@link Row}本身不会调用（对类型的解析似乎无法被继承）
+     * @param clazz 需要被解析的类型
+     */
     protected static void initRow(Class<?> clazz)
     {
         str2fld_dict=new HashMap<>();

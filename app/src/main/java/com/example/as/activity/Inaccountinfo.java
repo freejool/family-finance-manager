@@ -69,7 +69,7 @@ public class Inaccountinfo extends Activity {
 				tr_str_list.add(transaction_row.toString());
 				rs.next();
 			}
-			rs.close();
+			transaction_dao.close();
 		}catch (SQLException e)
 		{
 			Log.e("SQL","没能获取收入或支出信息"+e.getSQLState());
