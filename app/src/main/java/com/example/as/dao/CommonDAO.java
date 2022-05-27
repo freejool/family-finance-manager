@@ -5,17 +5,22 @@ import android.util.Log;
 import com.example.as.database.DatabaseQuery;
 import com.example.as.database.IRow;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
 
 //提供基础的增删改查
+
 public class CommonDAO<T extends IRow>
 {
     private DatabaseQuery db;
+    private String last_sql_executed;
 
     public CommonDAO() throws NullPointerException
     {
     }
+
+    public String getLastSQLExecuted(){return last_sql_executed;}
 
     public void insert(T row)throws SQLException
     {
@@ -30,6 +35,7 @@ public class CommonDAO<T extends IRow>
                     );
 
             db = new DatabaseQuery(sql_to_execute);
+            last_sql_executed=sql_to_execute;
             db.start();
             db.join();
             if (db.getException() != null)
@@ -49,12 +55,13 @@ public class CommonDAO<T extends IRow>
             Log.i("SQL", row.getSqlValues());
             String sql_to_execute=String.format
                     (
-                            "delete from %s where %s",
+                            "delete from %s %s",
                             row.getTableName(),
                             condition
                     );
 
             db = new DatabaseQuery(sql_to_execute);
+            last_sql_executed=sql_to_execute;
             db.start();
             db.join();
             if (db.getException() != null)
@@ -92,29 +99,30 @@ public class CommonDAO<T extends IRow>
 //        }
 //    }
 
-    public T find(T row,String condition)
+    public ResultSet find(T row,String top_condition, String end_condition)
     {
         try
         {
             String sql_to_execute=String.format
                     (
-                            "select * from %s where %s",
+                            "select %s * from %s %s;",
+                            top_condition,
                             row.getTableName(),
-                            condition
+                            end_condition
                     );
-
             db = new DatabaseQuery(sql_to_execute);
+            last_sql_executed=sql_to_execute;
             db.start();
             db.join();
             if (db.getException() != null)
             {
                 throw db.getException();
             }
-            row.setByResultSet(db.getResultSet());
+            return db.getResultSet();
         } catch (InterruptedException | SQLException e)
         {
             Log.e("ThreadError", Arrays.toString(e.getStackTrace()));
         }
-        return row;
+        return null;
     }
 }

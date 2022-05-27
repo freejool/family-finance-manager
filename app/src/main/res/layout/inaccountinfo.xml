@@ -25,10 +25,12 @@
 			android:layout_width="match_parent"
 			android:orientation="vertical" 
 			android:layout_weight="0.94">
-		<ListView android:id="@+id/lvinaccountinfo" 
-			android:layout_width="match_parent" 
-			android:layout_height="match_parent"
-			android:scrollbarAlwaysDrawVerticalTrack="true"
-			/>
+
+			<ListView
+				android:id="@+id/lvinaccountinfo"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:background="#292929"
+				android:scrollbarAlwaysDrawVerticalTrack="true" />
 	</LinearLayout>
 </LinearLayout>

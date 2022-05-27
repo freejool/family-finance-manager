@@ -1,9 +1,13 @@
 package com.example.as.activity;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.Vector;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -11,7 +15,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.as.Entity.Transactions;
 import com.example.as.R;
+import com.example.as.dao.CommonDAO;
 import com.example.as.dao.InaccountDAO;
 import com.example.as.model.Tb_inaccount;
 
@@ -47,22 +53,45 @@ public class Inaccountinfo extends Activity {
 		String[] strInfos = null;// 定义字符串数组，用来存储收入信息
 		ArrayAdapter<String> arrayAdapter = null;// 创建ArrayAdapter对象
 		strType = "btnininfo";// 为strType变量赋值
-		InaccountDAO inaccountinfo = new InaccountDAO(Inaccountinfo.this);// 创建InaccountDAO对象
-		// 获取所有收入信息，并存储到List泛型集合中
-		List<Tb_inaccount> listinfos = inaccountinfo.getScrollData(0,
-				(int) inaccountinfo.getCount());
-		strInfos = new String[listinfos.size()];// 设置字符串数组的长度
-		int m = 0;// 定义一个开始标识
-		for (Tb_inaccount tb_inaccount : listinfos) {// 遍历List泛型集合
-			// 将收入相关信息组合成一个字符串，存储到字符串数组的相应位置
-			strInfos[m] = tb_inaccount.getid() + "|" + tb_inaccount.getType()
-					+ " " + tb_inaccount.getMoney() + "元     "
-					+ tb_inaccount.getTime();
-			m++;// 标识加1
+
+		Transactions transaction_row=new Transactions();
+		CommonDAO<Transactions> transaction_dao=new CommonDAO<>();
+		ResultSet rs=transaction_dao.find(transaction_row,"","");
+		Log.i("SQL",transaction_dao.getLastSQLExecuted());
+		Vector<String> tr_str_list=new Vector<>();
+		try
+		{
+			//rs.first();
+			rs.next();
+			for(;!rs.isAfterLast();)
+			{
+				transaction_row.setByResultSet(rs);
+				tr_str_list.add(transaction_row.toString());
+				rs.next();
+			}
+			rs.close();
+		}catch (SQLException e)
+		{
+			Log.e("SQL","没能获取收入或支出信息"+e.getSQLState());
 		}
+
+
+//		InaccountDAO inaccountinfo = new InaccountDAO(Inaccountinfo.this);// 创建InaccountDAO对象
+//		// 获取所有收入信息，并存储到List泛型集合中
+//		List<Tb_inaccount> listinfos = inaccountinfo.getScrollData(0,
+//				(int) inaccountinfo.getCount());
+//		strInfos = new String[listinfos.size()];// 设置字符串数组的长度
+//		int m = 0;// 定义一个开始标识
+//		for (Tb_inaccount tb_inaccount : listinfos) {// 遍历List泛型集合
+//			// 将收入相关信息组合成一个字符串，存储到字符串数组的相应位置
+//			strInfos[m] = tb_inaccount.getid() + "|" + tb_inaccount.getType()
+//					+ " " + tb_inaccount.getMoney() + "元     "
+//					+ tb_inaccount.getTime();
+//			m++;// 标识加1
+//		}
 		// 使用字符串数组初始化ArrayAdapter对象
 		arrayAdapter = new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1, strInfos);
+				android.R.layout.simple_list_item_1, tr_str_list);
 		lvinfo.setAdapter(arrayAdapter);// 为ListView列表设置数据源
 	}
 

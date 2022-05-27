@@ -1,11 +1,15 @@
 package com.example.as.database;
 
 
+import android.os.Debug;
 import android.util.Log;
+
+import androidx.annotation.NonNull;
 
 import java.lang.reflect.Field;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -56,6 +60,20 @@ public class Row implements IRow
                 }
             }
         }
+
+        column_name_list.sort(Comparator.comparingInt(
+                m ->
+                {
+                    try
+                    {
+                        return str2fld_dict.get(m).getAnnotation(Col.class).order();
+                    }catch (NullPointerException e)
+                    {
+                        Log.e("Row","对列名排序时出现问题");
+                    }
+                    return -1;
+                }
+        ));
     }
 
     public Row()
@@ -71,7 +89,7 @@ public class Row implements IRow
         {
             try
             {
-                System.out.println("加入了一个对象"+entry.getKey()+entry.getValue().getType());
+                //Log.e("SQL","加入了一个对象"+entry.getKey()+entry.getValue().getType());
                 str2obj_dict.put(entry.getKey(),(CanBeRef<?>)entry.getValue().get(this));
                 obj2str_dict.put((CanBeRef<?>)entry.getValue().get(this),entry.getKey());
             }
@@ -92,6 +110,22 @@ public class Row implements IRow
         return table_name;
     }
 
+    @Override
+    public String toString()
+    {
+        StringBuilder builder=new StringBuilder();
+        builder.append(table_name).append('{');
+        for(String column_name: column_name_list)
+        {
+            builder.append(column_name).append('=')
+                    .append(Objects.requireNonNull(str2obj_dict.get(column_name)))
+                    .append(',');
+        }
+        builder.deleteCharAt(builder.length()-1);
+        builder.append('}');
+        return  builder.toString();
+    }
+
     //将结果集的内容设置到此类实例上
     @Override
     public void setByResultSet(ResultSet resultSet)
@@ -110,7 +144,7 @@ public class Row implements IRow
         for(String column_name: column_name_list)
         {
             builder.append(Objects.requireNonNull(str2obj_dict.get(column_name)).
-                            how_to_convert_to_db_data_version)
+                            getSqlValues())
                     .append(',');
         }
         builder.deleteCharAt(builder.length()-1);
@@ -134,7 +168,7 @@ public class Row implements IRow
                 {return rs.getInt(col_name);}
                 catch (SQLException e)
                 {
-                    Log.e("SQLError","未能获取对应列");return -1;}
+                    Log.e("SQLError","未能获取对应列"+e);return -1;}
             };
 
             float_catcher=(rs, col_name) ->
@@ -142,7 +176,7 @@ public class Row implements IRow
                 try
                 {return rs.getFloat(col_name);}
                 catch (SQLException e)
-                {Log.e("SQLError","未能获取对应列");return -1f;}
+                {Log.e("SQLError","未能获取对应列"+e);return -1f;}
             };
 
             string_catcher=(rs, col_name) ->
@@ -150,7 +184,7 @@ public class Row implements IRow
                 try
                 {return rs.getString(col_name);}
                 catch (SQLException e)
-                {Log.e("SQLError","未能获取对应列");return "";}
+                {Log.e("SQLError","未能获取对应列"+e);return "";}
             };
 
             double_catcher=(rs, col_name) ->
@@ -158,13 +192,13 @@ public class Row implements IRow
                 try
                 {return rs.getDouble(col_name);}
                 catch (SQLException e)
-                {Log.e("SQLError","未能获取对应列");return -1d;}
+                {Log.e("SQLError","未能获取对应列"+e);return -1d;}
             };
         }
 
     }
 
-    //这表示了一般的整型给值器，整型向数据库值要求的字符串转换的实现
+    //这表示了通用的给值器，表示了对象向数据库值要求的字符串转换的实现
     public static class DBTranser
     {
         public static IToDatabaseValue<Integer,String> int_transer;
@@ -176,7 +210,7 @@ public class Row implements IRow
         {
             int_transer= Object::toString;
             float_transer= Object::toString;
-            string_transer= local_value -> {return "'"+local_value.toString()+"'";};
+            string_transer= local_value -> "'"+local_value+"'";
             double_transer=Objects::toString;
         }
 

@@ -10,6 +10,7 @@ import java.lang.annotation.Target;
 public @interface Col
 {
     public String col_name() default "";
+    public int order();
 }
 
 

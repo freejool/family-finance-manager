@@ -16,26 +16,31 @@ import java.time.ZoneId;
 
 public class Transactions extends Row //收支记录表实体类
 {
-    @Col
+    @Col(order = 0)
     public CanBeRef<Integer> ID;
-    @Col
-    private CanBeRef<Integer> user_id;
-    @Col
-    private CanBeRef<String> type;
-    @Col
-    private CanBeRef<Float> amount;
-    @Col
-    private CanBeRef<String> in_or_out;
-    @Col(col_name = "transaction_time")
-    private CanBeRef<LocalDateTime> Transaction_time;
-    @Col
-    private CanBeRef<String> note;
+    @Col(order = 1)
+    public CanBeRef<Integer> user_id;
+    @Col(order = 2)
+    public CanBeRef<String> type;
+    @Col(order = 3)
+    public CanBeRef<Float> amount;
+    @Col(order = 4)
+    public CanBeRef<String> in_or_out;
+    @Col(order = 5,col_name = "transaction_time")
+    public CanBeRef<LocalDateTime> Transaction_time;
+    @Col(order = 6)
+    public CanBeRef<String> note;
 
     //进行数据库更新时会更新的字段
 //    public Vector<Object> update_list;
 
+    static
+    {
+        initRow(Transactions.class);
+    }
     public Transactions()
     {
+        super();
         table_name="transactions";
         ID=new CanBeRef<>(DBCatcher.int_catcher, DBTranser.int_transer);
         user_id=new CanBeRef<>(DBCatcher.int_catcher, DBTranser.int_transer);
@@ -79,18 +84,18 @@ public class Transactions extends Row //收支记录表实体类
 //    }
 
 
-    @Override
-    public String toString() {
-        return "Transactions{" +
-                "ID=" + ID +
-                ", user_id=" + user_id +
-                ", type='" + type + '\'' +
-                ", amount=" + amount +
-                ", in_or_out='" + in_or_out + '\'' +
-                ", Transaction_time=" + Transaction_time +
-                ", note='" + note + '\'' +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Transactions{" +
+//                "ID=" + ID +
+//                ", user_id=" + user_id +
+//                ", type='" + type + '\'' +
+//                ", amount=" + amount +
+//                ", in_or_out='" + in_or_out + '\'' +
+//                ", Transaction_time=" + Transaction_time +
+//                ", note='" + note + '\'' +
+//                '}';
+//    }
 
 //    @Override
 //    public String getSqlValues()
