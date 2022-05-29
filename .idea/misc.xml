@@ -4,16 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Sxing/Develop/family-finance-manager/app/src/main/res/layout/login.xml" value="0.5" />
-        <entry key="..\:/pubProj/Dt/family-finance-manager/app/src/main/res/layout/accountflag.xml" value="0.20969202898550723" />
-        <entry key="..\:/pubProj/Dt/family-finance-manager/app/src/main/res/layout/addinaccount.xml" value="0.17864583333333334" />
-        <entry key="..\:/pubProj/Dt/family-finance-manager/app/src/main/res/layout/chart.xml" value="0.1796875" />
-        <entry key="..\:/pubProj/Dt/family-finance-manager/app/src/main/res/layout/gvitem.xml" value="0.1796875" />
-        <entry key="..\:/pubProj/Dt/family-finance-manager/app/src/main/res/layout/inaccountinfo.xml" value="0.264" />
-        <entry key="..\:/pubProj/Dt/family-finance-manager/app/src/main/res/layout/login.xml" value="0.20969202898550723" />
         <entry key="app/src/main/res/layout/gvitem.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/inaccountinfo.xml" value="0.23184356689453117" />
         <entry key="app/src/main/res/layout/login.xml" value="0.22271270751953132" />
         <entry key="app/src/main/res/layout/main.xml" value="0.29386291503906253" />
         <entry key="app/src/main/res/layout/register_dialog.xml" value="0.295440673828125" />
+        <entry key="app/src/main/res/layout/showinfo.xml" value="0.16394927536231885" />
+        <entry key="app/src/main/res/layout/trans_type_modify.xml" value="0.18597666422526044" />
       </map>
     </option>
   </component>

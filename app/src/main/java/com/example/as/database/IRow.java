@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 
 public interface IRow
 {
-    public String getTableName();
-    public void setByResultSet(ResultSet resultSet);
-    public String getSqlValues();
+    String getTableName();
+    void setByResultSet(ResultSet resultSet);
+    String getSqlValues();
 }

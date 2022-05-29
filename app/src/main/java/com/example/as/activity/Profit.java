@@ -11,7 +11,7 @@ import com.example.as.R;
 import com.example.as.dao.FlagDAO;
 import com.example.as.model.Tb_flag;
 
-public class Accountflag extends Activity {
+public class Profit extends Activity {
 	EditText txtFlag;// 创建EditText组件对象
 	Button btnflagSaveButton;// 创建Button组件对象
 	Button btnflagCancelButton;// 创建Button组件对象
@@ -31,15 +31,15 @@ public class Accountflag extends Activity {
 						// TODO Auto-generated method stub
 						String strFlag = txtFlag.getText().toString();// 获取便签文本框的值
 						if (!strFlag.isEmpty()) {// 判断获取的值不为空
-							FlagDAO flagDAO = new FlagDAO(Accountflag.this);// 创建FlagDAO对象
+							FlagDAO flagDAO = new FlagDAO(Profit.this);// 创建FlagDAO对象
 							Tb_flag tb_flag = new Tb_flag(
 									flagDAO.getMaxId() + 1, strFlag);// 创建Tb_flag对象
 							flagDAO.add(tb_flag);// 添加便签信息
 							// 弹出信息提示
-							Toast.makeText(Accountflag.this, "〖新增便签〗数据添加成功！",
+							Toast.makeText(Profit.this, "〖新增便签〗数据添加成功！",
 									Toast.LENGTH_SHORT).show();
 						} else {
-							Toast.makeText(Accountflag.this, "请输入便签！",
+							Toast.makeText(Profit.this, "请输入便签！",
 									Toast.LENGTH_SHORT).show();
 						}
 					}
