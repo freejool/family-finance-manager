@@ -37,7 +37,8 @@ public class DialogAddIncome extends DialogFragment {
     private Button cancelButton;
 
     List<String> typeList = new ArrayList<>();
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
+
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.addincome_dialog, container, true);
         money = view.findViewById(R.id.income_money_edittext);
         userId = view.findViewById(R.id.income_user_id_edittext);
@@ -54,9 +55,8 @@ public class DialogAddIncome extends DialogFragment {
         }
 
         ArrayAdapter<String> typeAdapter = new ArrayAdapter<String>
-                (this.getContext(),android.R.layout.simple_list_item_1, typeList);
+                (this.getContext(), android.R.layout.simple_list_item_1, typeList);
         spinType.setAdapter(typeAdapter);
-
 
 
 //        saveButton.setOnClickListener(new View.OnClickListener(){

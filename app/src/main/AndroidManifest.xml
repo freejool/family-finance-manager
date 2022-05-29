@@ -27,13 +27,10 @@
             android:name="com.example.as.activity.AddOutaccount"
             android:label="@string/addoutaccount" />
         <activity
-            android:name="com.example.as.activity.AddInaccount"
-            android:label="@string/addinaccount" />
-        <activity
             android:name="com.example.as.activity.Outaccountinfo"
             android:label="@string/outaccountinfo" />
         <activity
-            android:name="com.example.as.activity.Inaccountinfo"
+            android:name="com.example.as.activity.InAccountInfo"
             android:label="@string/inaccountinfo" />
         <activity
             android:name="com.example.as.activity.Showinfo"

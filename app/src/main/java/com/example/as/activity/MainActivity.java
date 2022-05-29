@@ -10,7 +10,6 @@ import android.widget.ListView;
 
 import androidx.fragment.app.FragmentActivity;
 
-import com.example.as.Entity.TransType;
 import com.example.as.R;
 
 
@@ -23,7 +22,6 @@ public class MainActivity extends FragmentActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
 
         gvInfo = findViewById(R.id.gv_info);// 获取布局文件中的gvInfo组件
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, titles);// 创建pictureAdapter对象
@@ -46,7 +44,7 @@ public class MainActivity extends FragmentActivity {
                         startActivity(intent);// 打开Outaccountinfo
                         break;
                     case 3:
-                        intent = new Intent(MainActivity.this, Inaccountinfo.class);// 使用Inaccountinfo窗口初始化Intent
+                        intent = new Intent(MainActivity.this, InAccountInfo.class);// 使用Inaccountinfo窗口初始化Intent
                         startActivity(intent);// 打开Inaccountinfo
                         break;
                     case 4:

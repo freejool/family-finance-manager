@@ -4,6 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Sxing/Develop/family-finance-manager/app/src/main/res/layout/login.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/accountflag.xml" value="0.10778985507246377" />
+        <entry key="app/src/main/res/layout/addinaccount.xml" value="0.30138421542402627" />
+        <entry key="app/src/main/res/layout/addincome_dialog.xml" value="0.20888214111328127" />
         <entry key="app/src/main/res/layout/gvitem.xml" value="0.1" />
         <entry key="app/src/main/res/layout/inaccountinfo.xml" value="0.23184356689453117" />
         <entry key="app/src/main/res/layout/login.xml" value="0.22271270751953132" />
