@@ -13,7 +13,9 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 
-
+/**
+ * 表示转账表的数据库模型
+ */
 public class Transactions extends Row //收支记录表实体类
 {
     @Col(order = 0)
@@ -40,7 +42,6 @@ public class Transactions extends Row //收支记录表实体类
     }
     public Transactions()
     {
-        super();
         table_name="transactions";
         ID=new CanBeRef<>(DBCatcher.int_catcher, DBTranser.int_transer);
         user_id=new CanBeRef<>(DBCatcher.int_catcher, DBTranser.int_transer);

@@ -25,8 +25,21 @@ public class Inaccountinfo extends Activity {
         setContentView(R.layout.inaccountinfo);// 设置布局文件
         lvinfo = findViewById(R.id.in_come_info_listview);// 获取布局文件中的ListView组件
 
-        ShowInfo();// 调用自定义方法显示收入信息
-    }
+		ShowInfo();// 调用自定义方法显示收入信息
+
+//		lvinfo.setOnItemClickListener(new OnItemClickListener(){// 为ListView添加项单击事件
+//			// 重写onItemClick方法
+//			@Override
+//			public void onItemClick(AdapterView<?> parent, View view,
+//					int position, long id) {
+//				String strInfo = String.valueOf(((TextView) view).getText());// 记录收入信息
+//				String strid = strInfo.substring(0, strInfo.indexOf('|'));// 从收入信息中截取收入编号
+//				Intent intent = new Intent(Inaccountinfo.this, InfoManage.class);// 创建Intent对象
+//				intent.putExtra(FLAG, new String[] { strid, strType });// 设置传递数据
+//				startActivity(intent);// 执行Intent操作
+//			}
+//		});
+	}
 
     private void ShowInfo() {// 用来根据传入的管理类型，显示相应的信息
 

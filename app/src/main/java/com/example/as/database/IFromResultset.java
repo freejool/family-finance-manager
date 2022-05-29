@@ -2,7 +2,10 @@ package com.example.as.database;
 
 import java.sql.ResultSet;
 
-//怎样从一个Resultset中获取数据
+/**
+ * 表示怎样从{@link ResultSet}中抓取数据到{@link Row}的子类成员。即从结果集转换为成员变量的实现。
+ * @param <T>
+ */
 public interface IFromResultset<T>
 {
     T run(ResultSet rs, String col_name);

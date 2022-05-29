@@ -125,4 +125,9 @@ public class CommonDAO<T extends IRow>
         }
         return null;
     }
+
+    public void close()
+    {
+        db.close();
+    }
 }
