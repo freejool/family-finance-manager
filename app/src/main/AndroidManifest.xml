@@ -43,7 +43,7 @@
             android:name="com.example.as.activity.Sysset"
             android:label="@string/sysset" />
         <activity
-            android:name="com.example.as.activity.Accountflag"
+            android:name="com.example.as.activity.Profit"
             android:label="@string/accountflag" />
         <activity
             android:name="com.example.as.activity.InfoManage"
@@ -57,6 +57,8 @@
         <activity
             android:name="com.example.as.activity.TotalChart"
             android:label="@string/chart" />
+        <activity android:name=".activity.TransTypeModify"
+            android:label="收支类型"/>
     </application>
 
 </manifest>

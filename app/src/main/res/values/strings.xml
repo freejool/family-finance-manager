@@ -36,4 +36,6 @@
     <string name="value">金额：</string>
     <string name="userId">用户：</string>
     <string name="cancel">取消</string>
+    <string name="my_income">我的收入</string>
+    <string name="modity_trans_type">修改收支类型</string>
 </resources>
