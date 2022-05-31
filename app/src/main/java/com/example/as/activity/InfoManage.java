@@ -54,7 +54,6 @@ public class InfoManage extends Activity {
 		inaccountDAO = new InaccountDAO(InfoManage.this);// 创建InaccountDAO对象
 
 
-		setContentView(R.layout.infomanage);// 设置布局文件
 		tvtitle = findViewById(R.id.inouttitle);// 获取标题标签对象
 		textView = findViewById(R.id.tvInOut);// 获取地点/付款方标签对象
 		txtMoney = findViewById(R.id.txtInOutMoney);// 获取金额文本框
