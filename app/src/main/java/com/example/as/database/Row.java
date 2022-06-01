@@ -155,12 +155,12 @@ public class Row implements IRow {
     @Override
     public HashMap<String, Object> genDictData()
     {
-        HashMap<String,Object> gened_dict=new HashMap<>();
-        for(Map.Entry<String,CanBeRef<?>> entry:str2obj_dict.entrySet())
+        HashMap<String,Object> genedDict=new HashMap<>();
+        for(Map.Entry<String,CanBeRef<?>> entry:str2ObjDict.entrySet())
         {
-            gened_dict.put(entry.getKey(),entry.getValue().value);
+            genedDict.put(entry.getKey(),entry.getValue().value);
         }
-        return gened_dict;
+        return genedDict;
     }
 
     //这表示了一般的获取器,这将仅对部分适合的类型生效
