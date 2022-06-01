@@ -98,13 +98,18 @@ public class Login extends FragmentActivity {
                     ResultSet rs;
                     try {
                         rs = dao.find(new UserInfo(), "*",
-                                "where username=" + usernameEdittext.getText() + " and password=" + passwordExittext.getText());
+                                "where name='" + usernameEdittext.getText() + "' and password='" + passwordExittext.getText()+"'");
                     } catch (SQLException e) {
                         Toast.makeText(getApplicationContext(),
                                 Arrays.toString(e.getStackTrace()), Toast.LENGTH_LONG).show();
                         return;
                     }
                     UserInfo user = new UserInfo();
+                    try {
+                        rs.next();
+                    } catch (SQLException e) {
+                        Toast.makeText(getApplicationContext(),Arrays.toString(e.getStackTrace()),Toast.LENGTH_LONG).show();
+                    }
                     user.setByResultSet(rs);
 
                     if (user.ID.value != null) {
