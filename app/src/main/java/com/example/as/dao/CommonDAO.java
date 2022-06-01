@@ -97,7 +97,7 @@ public class CommonDAO<T extends IRow> {
         try {
             String sql_to_execute = String.format
                     (
-                            "select %s from %s %s;",
+                            "select %s from %s %s",
                             top_condition,
                             row.getTableName(),
                             end_condition
@@ -121,7 +121,7 @@ public class CommonDAO<T extends IRow> {
         try {
             String sql_to_execute = String.format
                     (
-                            "select count(*) from %s",
+                            "select count(*) as count from %s",
                             row.getTableName()
                     );
             db = new DatabaseQuery(sql_to_execute);
@@ -131,7 +131,9 @@ public class CommonDAO<T extends IRow> {
             if (db.getException() != null) {
                 throw db.getException();
             }
-            return db.getResultSet().getInt(0);
+            ResultSet rs = db.getResultSet();
+            rs.next();
+            return rs.getInt(1);
         } catch (InterruptedException e) {
             Log.e("ThreadError", Arrays.toString(e.getStackTrace()));
         }
