@@ -2,6 +2,7 @@ package com.example.as.activity;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.Vector;
 
 import android.app.Activity;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.as.Entity.Transactions;
 import com.example.as.R;
@@ -33,7 +35,13 @@ public class InAccountInfo extends Activity {
         ArrayAdapter<String> arrayAdapter;// 创建ArrayAdapter对象
         Transactions transaction_row = new Transactions();
         CommonDAO<Transactions> transaction_dao = new CommonDAO<>();
-        ResultSet rs = transaction_dao.find(transaction_row, "", "");
+        ResultSet rs;
+        try {
+            rs = transaction_dao.find(transaction_row, "*", "");
+        } catch (SQLException e) {
+            Toast.makeText(getApplicationContext(), Arrays.toString(e.getStackTrace()), Toast.LENGTH_LONG).show();
+            return;
+        }
         Log.i("SQL", transaction_dao.getLastSQLExecuted());
         Vector<String> tr_str_list = new Vector<>();
         try {
