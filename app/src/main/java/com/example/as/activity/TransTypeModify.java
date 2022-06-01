@@ -51,7 +51,12 @@ public class TransTypeModify extends Activity {
         transTypeListview.findViewById(R.id.trans_type_listview);
 
         CommonDAO<TransType> transTypeDao = new CommonDAO<>();
-        ResultSet rs = transTypeDao.find(new TransType(), "", "");
+        ResultSet rs = null;
+        try {
+            rs = transTypeDao.find(new TransType(), "", "");
+        } catch (SQLException e) {
+            Toast.makeText(getApplicationContext(), Arrays.toString(e.getStackTrace()), Toast.LENGTH_LONG).show();
+        }
         Log.i("SQL", transTypeDao.getLastSQLExecuted());
         List<String> transTypes = null;
         try {
