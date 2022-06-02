@@ -11,4 +11,10 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="transaction_in_bk">#FF225340</color>
+    <color name="transaction_in_char">#C5FFE4</color>
+    <color name="transaction_out_bk">#532222</color>
+    <color name="transaction_out_char">#FFD1D1</color>
+    <color name="transaction_ud_bk">#223F53</color>
+    <color name="transaction_ud_char">#AEF8FF</color>
 </resources>

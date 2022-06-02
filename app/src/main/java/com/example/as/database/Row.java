@@ -318,7 +318,7 @@ public class Row implements IRow {
             timeCatcher = (rs, col_name) ->
             {
                 try {
-                    return rs.getTimestamp("Transaction_time").toInstant().atZone(ZoneId.of("CST")).toLocalDateTime();
+                    return rs.getTimestamp(col_name).toInstant().atZone(ZoneId.of("CST")).toLocalDateTime();
                 } catch (SQLException e) {
                     Log.e("SQL", Arrays.toString(e.getStackTrace()));
                     return null;
