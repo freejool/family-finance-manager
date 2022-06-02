@@ -33,7 +33,7 @@
             android:name="com.example.as.activity.Outaccountinfo"
             android:label="@string/outaccountinfo" />
         <activity
-            android:name="com.example.as.activity.Inaccountinfo"
+            android:name="com.example.as.activity.InAccountinfo"
             android:label="@string/inaccountinfo" />
         <activity
             android:name="com.example.as.activity.Showinfo"

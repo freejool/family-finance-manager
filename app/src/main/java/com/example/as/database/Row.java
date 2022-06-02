@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Vector;
@@ -154,20 +155,121 @@ public class Row implements IRow
         }
     }
 
+
+    public String getSqlColumnNames(boolean include_or_exclude,Vector<CanBeRef<?>> col_params)
+    {
+        StringBuilder builder=new StringBuilder();
+        builder.append("(");
+        boolean any_append=false;
+        if(include_or_exclude)
+        {
+            if(col_params!=null)
+            {
+                for(CanBeRef<?> obj: col_params)
+                {
+                    if(!obj2str_dict.containsKey(obj))
+                    {
+                        continue;
+                    }
+                    builder.append(obj2str_dict.get(obj))
+                            .append(',');
+                    any_append=true;
+                }
+            }
+        }
+        else
+        {
+
+            HashSet<CanBeRef<?>> obj_set;
+            if(col_params!=null)
+            {
+                obj_set=new HashSet<>(col_params);
+            }
+            else
+            {
+                obj_set=new HashSet<>();
+            }
+            for(String column_name: column_name_list)
+            {
+                CanBeRef<?> obj=Objects.requireNonNull(str2obj_dict.get(column_name));
+                if(obj_set.contains(obj))
+                    continue;
+                builder.append(column_name)
+                        .append(',');
+                any_append=true;
+            }
+        }
+        if(any_append)
+            builder.deleteCharAt(builder.length()-1);
+        builder.append(')');
+        return  builder.toString();
+    }
+
+
+    /**
+     * 获取数据库列的值组成的形如"values(2,4,...)"的字符串
+     * @param include_or_exclude 包含或排除，此值为true时表示包含，
+     *                           则该函数会尝试将参数列表的参数按列表顺序生成此字符串，忽略参数中不属于此实例成员的对象。
+     *                           此值为false时表示排除，
+     *                           该函数会按成员的注解中顺序生成字符串，忽略参数列表中提到的此实例的成员。
+     * @param col_params 参数列表
+     * @return 形如"values(2,4,...)"的字符串
+     */
     @Override
-    public String getSqlValues()
+    public String getSqlValues(boolean include_or_exclude,Vector<CanBeRef<?>> col_params)
     {
         StringBuilder builder=new StringBuilder();
         builder.append("values(");
-        for(String column_name: column_name_list)
+        boolean any_append=false;
+        if(include_or_exclude)
         {
-            builder.append(Objects.requireNonNull(str2obj_dict.get(column_name)).
-                            getSqlValues())
-                    .append(',');
+            if(col_params!=null)
+            {
+                for(CanBeRef<?> obj: col_params)
+                {
+                    if(!obj2str_dict.containsKey(obj))
+                    {
+                        continue;
+                    }
+                    builder.append(obj.getSqlValues())
+                            .append(',');
+                    any_append=true;
+                }
+            }
         }
-        builder.deleteCharAt(builder.length()-1);
+        else
+        {
+
+            HashSet<CanBeRef<?>> obj_set;
+            if(col_params!=null)
+            {
+                obj_set=new HashSet<>(col_params);
+            }
+            else
+            {
+                obj_set=new HashSet<>();
+            }
+            for(String column_name: column_name_list)
+            {
+                CanBeRef<?> obj=Objects.requireNonNull(str2obj_dict.get(column_name));
+                if(obj_set.contains(obj))
+                    continue;
+                builder.append(Objects.requireNonNull(str2obj_dict.get(column_name)).
+                                getSqlValues())
+                        .append(',');
+                any_append=true;
+            }
+        }
+        if(any_append)
+            builder.deleteCharAt(builder.length()-1);
         builder.append(')');
         return  builder.toString();
+    }
+
+    @Override
+    public String getSqlValues()
+    {
+        return getSqlValues(false,null);
     }
 
     //这表示了一般的获取器,这将仅对部分适合的类型生效

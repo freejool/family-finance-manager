@@ -22,7 +22,7 @@ public class CommonDAO<T extends IRow>
 
     public String getLastSQLExecuted(){return last_sql_executed;}
 
-    public void insert(T row)throws SQLException
+    public void insert(T row,boolean include_or_exclude,Object... col_params)throws SQLException
     {
         try
         {

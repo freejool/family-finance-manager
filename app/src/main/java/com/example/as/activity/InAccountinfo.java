@@ -21,7 +21,7 @@ import com.example.as.dao.CommonDAO;
 import com.example.as.dao.InaccountDAO;
 import com.example.as.model.Tb_inaccount;
 
-public class Inaccountinfo extends Activity {
+public class InAccountinfo extends Activity {
 	public static final String FLAG = "id";// 定义一个常量，用来作为请求码
 	ListView lvinfo;// 创建ListView对象
 	String strType = "";// 创建字符串，记录管理类型
