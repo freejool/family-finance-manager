@@ -139,7 +139,7 @@ public class Row implements IRow {
         }
     }
 
-
+    @Override
     public String getSqlColumnNames(boolean include_or_exclude,Vector<CanBeRef<?>> col_params)
     {
         StringBuilder builder=new StringBuilder();
@@ -151,11 +151,11 @@ public class Row implements IRow {
             {
                 for(CanBeRef<?> obj: col_params)
                 {
-                    if(!obj2str_dict.containsKey(obj))
+                    if(!obj2StrDict.containsKey(obj))
                     {
                         continue;
                     }
-                    builder.append(obj2str_dict.get(obj))
+                    builder.append(obj2StrDict.get(obj))
                             .append(',');
                     any_append=true;
                 }
@@ -173,9 +173,9 @@ public class Row implements IRow {
             {
                 obj_set=new HashSet<>();
             }
-            for(String column_name: column_name_list)
+            for(String column_name: columnNameList)
             {
-                CanBeRef<?> obj=Objects.requireNonNull(str2obj_dict.get(column_name));
+                CanBeRef<?> obj=Objects.requireNonNull(str2ObjDict.get(column_name));
                 if(obj_set.contains(obj))
                     continue;
                 builder.append(column_name)
@@ -211,7 +211,7 @@ public class Row implements IRow {
             {
                 for(CanBeRef<?> obj: col_params)
                 {
-                    if(!obj2str_dict.containsKey(obj))
+                    if(!obj2StrDict.containsKey(obj))
                     {
                         continue;
                     }
@@ -233,12 +233,12 @@ public class Row implements IRow {
             {
                 obj_set=new HashSet<>();
             }
-            for(String column_name: column_name_list)
+            for(String column_name: columnNameList)
             {
-                CanBeRef<?> obj=Objects.requireNonNull(str2obj_dict.get(column_name));
+                CanBeRef<?> obj=Objects.requireNonNull(str2ObjDict.get(column_name));
                 if(obj_set.contains(obj))
                     continue;
-                builder.append(Objects.requireNonNull(str2obj_dict.get(column_name)).
+                builder.append(Objects.requireNonNull(str2ObjDict.get(column_name)).
                                 getSqlValues())
                         .append(',');
                 any_append=true;

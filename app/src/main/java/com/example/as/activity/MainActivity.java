@@ -45,7 +45,7 @@ public class MainActivity extends FragmentActivity {
                         startActivity(intent);// 打开Outaccountinfo
                         break;
                     case 3:
-                        intent = new Intent(MainActivity.this, InAccountinfo.class);// 使用Inaccountinfo窗口初始化Intent
+                        intent = new Intent(MainActivity.this, InAccountInfo.class);// 使用Inaccountinfo窗口初始化Intent
                         startActivity(intent);// 打开Inaccountinfo
                         break;
                     case 4:

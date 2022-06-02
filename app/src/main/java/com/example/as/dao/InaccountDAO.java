@@ -57,23 +57,23 @@ public class InaccountDAO {
 	 * @return
 	 */
 	public Tb_inaccount find(int id) {
-//		db = helper.getWritableDatabase();// 初始化SQLiteDatabase对象
-		Cursor cursor = db
-				.rawQuery(
-						"select _id,money,time,type,handler,mark from tb_inaccount"
-						+ " where _id = ?",
-						new String[] { String.valueOf(id) });// 根据编号查找收入信息，并存储到Cursor类中
-		if (cursor.moveToNext()){// 遍历查找到的收入信息
-			// 将遍历到的收入信息存储到Tb_inaccount类中
-			return new Tb_inaccount(
-					cursor.getInt(cursor.getColumnIndex("_id")),
-					cursor.getDouble(cursor.getColumnIndex("money")),
-					cursor.getString(cursor.getColumnIndex("time")),
-					cursor.getString(cursor.getColumnIndex("type")),
-					cursor.getString(cursor.getColumnIndex("handler")),
-					cursor.getString(cursor.getColumnIndex("mark")));
-		}
-		cursor.close();// 关闭游标
+////		db = helper.getWritableDatabase();// 初始化SQLiteDatabase对象
+//		Cursor cursor = db
+//				.rawQuery(
+//						"select _id,money,time,type,handler,mark from tb_inaccount"
+//						+ " where _id = ?",
+//						new String[] { String.valueOf(id) });// 根据编号查找收入信息，并存储到Cursor类中
+//		if (cursor.moveToNext()){// 遍历查找到的收入信息
+//			// 将遍历到的收入信息存储到Tb_inaccount类中
+//			return new Tb_inaccount(
+//					cursor.getInt(cursor.getColumnIndex("_id")),
+//					cursor.getDouble(cursor.getColumnIndex("money")),
+//					cursor.getString(cursor.getColumnIndex("time")),
+//					cursor.getString(cursor.getColumnIndex("type")),
+//					cursor.getString(cursor.getColumnIndex("handler")),
+//					cursor.getString(cursor.getColumnIndex("mark")));
+//		}
+//		cursor.close();// 关闭游标
 		return null;// 如果没有信息，则返回null
 	}
 	/**
@@ -129,23 +129,24 @@ public class InaccountDAO {
 	 * @return
 	 */
 	public List<Tb_inaccount> getScrollData(int start, int count) {
-		List<Tb_inaccount> tb_inaccount = new ArrayList<Tb_inaccount>();// 创建集合对象
-//		db = helper.getWritableDatabase();// 初始化SQLiteDatabase对象
-		// 获取所有收入信息
-		Cursor cursor = db.rawQuery("select * from tb_inaccount limit ?,?",
-				new String[] { String.valueOf(start), String.valueOf(count) });
-		while (cursor.moveToNext()){// 遍历所有的收入信息
-			// 将遍历到的收入信息添加到集合中
-			tb_inaccount.add(new Tb_inaccount(cursor.getInt(cursor
-					.getColumnIndex("_id")), cursor.getDouble(cursor
-					.getColumnIndex("money")), cursor.getString(cursor
-					.getColumnIndex("time")), cursor.getString(cursor
-					.getColumnIndex("type")), cursor.getString(cursor
-					.getColumnIndex("handler")), cursor.getString(cursor
-					.getColumnIndex("mark"))));
-		}
-		cursor.close();// 关闭游标
-		return tb_inaccount;// 返回集合
+//		List<Tb_inaccount> tb_inaccount = new ArrayList<Tb_inaccount>();// 创建集合对象
+////		db = helper.getWritableDatabase();// 初始化SQLiteDatabase对象
+//		// 获取所有收入信息
+//		Cursor cursor = db.rawQuery("select * from tb_inaccount limit ?,?",
+//				new String[] { String.valueOf(start), String.valueOf(count) });
+//		while (cursor.moveToNext()){// 遍历所有的收入信息
+//			// 将遍历到的收入信息添加到集合中
+//			tb_inaccount.add(new Tb_inaccount(cursor.getInt(cursor
+//					.getColumnIndex("_id")), cursor.getDouble(cursor
+//					.getColumnIndex("money")), cursor.getString(cursor
+//					.getColumnIndex("time")), cursor.getString(cursor
+//					.getColumnIndex("type")), cursor.getString(cursor
+//					.getColumnIndex("handler")), cursor.getString(cursor
+//					.getColumnIndex("mark"))));
+//		}
+//		cursor.close();// 关闭游标
+//		return tb_inaccount;// 返回集合
+		return null;
 	}
 
 	/**

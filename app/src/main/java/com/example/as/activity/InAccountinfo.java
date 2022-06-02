@@ -3,14 +3,22 @@ package com.example.as.activity;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Vector;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.example.as.Entity.Transactions;
 import com.example.as.R;
@@ -52,7 +60,7 @@ public class InAccountInfo extends Activity {
                 tr_str_list.add(transaction_row.toString());
                 rs.next();
             }
-            rs.close();
+            transaction_dao.close();
         } catch (SQLException e) {
             Log.e("SQL", "没能获取收入或支出信息" + e.getSQLState());
         }

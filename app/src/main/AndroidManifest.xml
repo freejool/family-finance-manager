@@ -29,11 +29,7 @@
             android:name="com.example.as.activity.Outaccountinfo"
             android:label="@string/outaccountinfo" />
         <activity
-<<<<<<< HEAD
-            android:name="com.example.as.activity.InAccountinfo"
-=======
             android:name="com.example.as.activity.InAccountInfo"
->>>>>>> master
             android:label="@string/inaccountinfo" />
         <activity
             android:name="com.example.as.activity.Showinfo"
