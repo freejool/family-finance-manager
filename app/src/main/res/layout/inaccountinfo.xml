@@ -1,36 +1,32 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:id="@+id/iteminfo" android:orientation="vertical"
-	android:layout_width="wrap_content" android:layout_height="wrap_content"
-	android:layout_marginTop="5dp"
-	android:background="@color/backgroundColor"
-	android:weightSum="1">
-	<LinearLayout android:id="@+id/linearLayout1"
-			android:layout_height="wrap_content" 
-			android:layout_width="match_parent"
-			android:orientation="vertical" 
-			android:layout_weight="0.06">
-		<RelativeLayout android:layout_height="wrap_content" 
-			android:layout_width="match_parent">
-		<TextView android:text="我的收入" 
-			android:layout_width="fill_parent"
-			android:layout_height="wrap_content"
-			android:gravity="center"
-			android:textSize="20sp"
-			android:textColor="#8C6931"
-		/>
-		</RelativeLayout>
-		</LinearLayout>
-		<LinearLayout android:id="@+id/linearLayout2"
-			android:layout_height="wrap_content" 
-			android:layout_width="match_parent"
-			android:orientation="vertical" 
-			android:layout_weight="0.94">
+    android:id="@+id/iteminfo"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/margin_s"
+    android:orientation="vertical">
+    <!--	android:background="@color/backgroundColor"-->
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-			<ListView
-				android:id="@+id/lvinaccountinfo"
-				android:layout_width="match_parent"
-				android:layout_height="match_parent"
-				android:background="#292929"
-				android:scrollbarAlwaysDrawVerticalTrack="true" />
-	</LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/my_income"
+            android:textSize="@dimen/text_m" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ListView
+                android:id="@+id/in_come_info_listview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </ScrollView>
+    </LinearLayout>
 </LinearLayout>

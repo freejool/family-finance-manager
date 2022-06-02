@@ -10,5 +10,5 @@ import java.sql.ResultSet;
  */
 public interface IToDatabaseValue<T,C>
 {
-    public C run(T local_value);
+    C run(T local_value);
 }

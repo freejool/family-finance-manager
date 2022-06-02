@@ -21,19 +21,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.as.activity.MainActivity"
-            android:label="@string/app_name" />
+            android:name="com.example.as.activity.MainActivity" />
         <activity
             android:name="com.example.as.activity.AddOutaccount"
             android:label="@string/addoutaccount" />
         <activity
-            android:name="com.example.as.activity.AddInaccount"
-            android:label="@string/addinaccount" />
-        <activity
             android:name="com.example.as.activity.Outaccountinfo"
             android:label="@string/outaccountinfo" />
         <activity
+<<<<<<< HEAD
             android:name="com.example.as.activity.InAccountinfo"
+=======
+            android:name="com.example.as.activity.InAccountInfo"
+>>>>>>> master
             android:label="@string/inaccountinfo" />
         <activity
             android:name="com.example.as.activity.Showinfo"
@@ -43,7 +43,7 @@
             android:name="com.example.as.activity.Sysset"
             android:label="@string/sysset" />
         <activity
-            android:name="com.example.as.activity.Accountflag"
+            android:name="com.example.as.activity.Profit"
             android:label="@string/accountflag" />
         <activity
             android:name="com.example.as.activity.InfoManage"
@@ -57,6 +57,8 @@
         <activity
             android:name="com.example.as.activity.TotalChart"
             android:label="@string/chart" />
+        <activity android:name=".activity.TransTypeModify"
+            android:label="收支类型"/>
     </application>
 
 </manifest>

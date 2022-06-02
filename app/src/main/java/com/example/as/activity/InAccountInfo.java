@@ -68,21 +68,3 @@ public class InAccountInfo extends Activity {
         ShowInfo();// 显示收入信息
     }
 }
-
-class TransactionInAdapter extends ArrayAdapter<HashMap<String,Object>>
-{
-	private int resourceId;
-	public TransactionInAdapter(@NonNull Context context, int resource, @NonNull List<HashMap<String, Object>> objects)
-	{
-		super(context, resource, objects);
-		resourceId=resource;
-	}
-
-	@NonNull
-	@Override
-	public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent)
-	{
-		HashMap<String,Object> str2value_dict=getItem(position);
-		return super.getView(position, convertView, parent);
-	}
-}

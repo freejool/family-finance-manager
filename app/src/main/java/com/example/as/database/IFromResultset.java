@@ -8,5 +8,5 @@ import java.sql.ResultSet;
  */
 public interface IFromResultset<T>
 {
-    public T run(ResultSet rs,String col_name);
+    T run(ResultSet rs, String col_name);
 }

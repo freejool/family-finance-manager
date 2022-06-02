@@ -1,8 +1,43 @@
 package com.example.as.Entity;
 
-public class TransType
-{
-    private int ID;
-    private String type;
-    private int user_id;
+import androidx.annotation.NonNull;
+
+import com.example.as.database.CanBeRef;
+import com.example.as.database.Col;
+import com.example.as.database.Row;
+
+import java.sql.ResultSet;
+
+public class TransType extends Row {
+    @Col(order = 0)
+    private final CanBeRef<Integer> ID;
+    @Col(order = 1)
+    private final CanBeRef<String> type;
+    @Col(order = 2)
+    private final CanBeRef<Integer> user_id;
+
+    static {
+        initRow(TransType.class);
+    }
+
+    public TransType() {
+        super();
+        tableName = "trans_type";
+        ID = new CanBeRef<>(DBCatcher.intCatcher, DBTranser.intTransfer);
+        type = new CanBeRef<>(DBCatcher.stringCatcher, DBTranser.stringTransfer);
+        user_id = new CanBeRef<>(DBCatcher.intCatcher, DBTranser.intTransfer);
+
+        Bind();
+    }
+
+    public TransType(ResultSet resultSet) {
+        this();
+        setByResultSet(resultSet);
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return this.user_id + " | " + this.type;
+    }
 }
