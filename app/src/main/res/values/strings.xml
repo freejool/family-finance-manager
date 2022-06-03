@@ -16,7 +16,7 @@
     <string name="inaccountinfo">我的收入</string>
     <string name="showinfo">数据管理</string>
     <string name="sysset">系统设置</string>
-    <string name="accountflag">收支便签</string>
+    <string name="profit">投资收益</string>
     <string name="infomanage">收支管理</string>
     <string name="flagmanage">便签管理</string>
     <string name="help">帮助</string>
@@ -42,4 +42,6 @@
     <string name="trans_in_button_hint">只看收入</string>
     <string name="trans_out_button_hint">只看支出</string>
     <string name="is_in_or_out_drop_down">收支：</string>
+    <string name="profit_title">投资收益</string>
+    <string name="investment_advice">显示投资建议</string>
 </resources>

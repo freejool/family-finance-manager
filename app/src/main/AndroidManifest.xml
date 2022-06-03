@@ -40,7 +40,7 @@
             android:label="@string/sysset" />
         <activity
             android:name="com.example.as.activity.Profit"
-            android:label="@string/accountflag" />
+            android:label="@string/profit" />
         <activity
             android:name="com.example.as.activity.InfoManage"
             android:label="@string/infomanage" />
