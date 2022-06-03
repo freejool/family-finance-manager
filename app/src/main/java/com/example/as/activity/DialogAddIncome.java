@@ -1,6 +1,8 @@
 package com.example.as.activity;
 
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -28,21 +30,22 @@ import java.util.Arrays;
 import java.util.List;
 
 public class DialogAddIncome extends DialogFragment {
-    private final Transactions newTransaction = new Transactions();
+    private final Transactions transcToCommit = new Transactions();
 
     private EditText money;
-    private EditText userId;
+    private Spinner spinnerIO;
     private Spinner spinType;
     private EditText note;
     private Button saveButton;
     private Button cancelButton;
 
     List<String> typeList = new ArrayList<>();
+    static final String[] ioTypeList =new String[]{"收入","支出"};
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.addincome_dialog, container, true);
         money = view.findViewById(R.id.income_money_edittext);
-        userId = view.findViewById(R.id.income_user_id_edittext);
+        spinnerIO = view.findViewById(R.id.income_in_or_out_spinner);
         note = view.findViewById(R.id.income_note_edittext);
         spinType = view.findViewById(R.id.income_type_spinner);
         saveButton = view.findViewById(R.id.income_save_button);
@@ -58,29 +61,37 @@ public class DialogAddIncome extends DialogFragment {
         ArrayAdapter<String> typeAdapter = new ArrayAdapter<String>
                 (this.getContext(), android.R.layout.simple_list_item_1, typeList);
         spinType.setAdapter(typeAdapter);
+        ArrayAdapter<String> ioAdapter=new ArrayAdapter<>
+                (this.getContext(),android.R.layout.simple_list_item_1, ioTypeList);
+        spinnerIO.setAdapter(ioAdapter);
 
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if (money.getText().toString().equals("")
-                        || userId.getText().toString().equals("")) {
+                if (money.getText().toString().equals("")) {
                     Toast.makeText(getContext(),
-                            "用户ID和金额是必填项！", Toast.LENGTH_SHORT).show();
+                            "金额是必填项！", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                newTransaction.user_id.value = Integer.parseInt(userId.getText().toString());
-                newTransaction.type.value = spinType.getSelectedItem().toString();
-                newTransaction.in_or_out.value = "收入";
-                newTransaction.amount.value = Float.valueOf(money.getText().toString());
-                newTransaction.Transaction_time.value = (LocalDateTime.now());
-                newTransaction.note.value = note.getText().toString();
+                SharedPreferences shd=getContext().getSharedPreferences("user_info", Context.MODE_PRIVATE);
+                int user_id=shd.getInt("id",-1);
+                transcToCommit.user_id.value = user_id;
+                transcToCommit.type.value = spinType.getSelectedItem().toString();
+                transcToCommit.in_or_out.value = spinnerIO.getSelectedItem().toString();
+                transcToCommit.amount.value = Float.valueOf(money.getText().toString());
+                transcToCommit.Transaction_time.value = (LocalDateTime.now());
+                transcToCommit.note.value = note.getText().toString();
+                Log.i("SQL",transcToCommit.toString());
+                CommonDAO<Transactions> dao=new CommonDAO<>();
                 try {
-                    CommonDAO<Transactions> dao=new CommonDAO<>();
-                    dao.insert(newTransaction);
+                    dao.insert(transcToCommit,false,transcToCommit.ID);
+                    Log.i("SQL",dao.getLastSQLExecuted());
                     Toast.makeText(getContext(), "保存成功", Toast.LENGTH_LONG).show();
+                    dao.close();
                     dismiss();
                 } catch (SQLException e) {
                     Toast.makeText(getContext(), Arrays.toString(e.getStackTrace()), Toast.LENGTH_LONG).show();
+                    dao.close();
                 }
             }
         });

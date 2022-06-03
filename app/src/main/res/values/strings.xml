@@ -38,4 +38,8 @@
     <string name="cancel">取消</string>
     <string name="my_income">我的收入</string>
     <string name="modity_trans_type">修改收支类型</string>
+    <string name="trans_inout_button_hint">查看收支</string>
+    <string name="trans_in_button_hint">只看收入</string>
+    <string name="trans_out_button_hint">只看支出</string>
+    <string name="is_in_or_out_drop_down">收支：</string>
 </resources>

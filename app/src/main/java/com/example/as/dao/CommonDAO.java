@@ -54,7 +54,7 @@ public class CommonDAO<T extends IRow> {
     {
         try
         {
-            Log.i("SQL", row.getSqlValues());
+            Log.i("SQL", row.getSqlValues(include_or_exclude,new Vector<>(Arrays.asList(col_params))));
             String sql_to_execute = String.format
                     (
                             "insert into %s %s %s",

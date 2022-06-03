@@ -58,6 +58,31 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/income_user_label"
+            android:layout_width="@dimen/input_label_width"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_s"
+            android:padding="@dimen/padding_s"
+            android:text="@string/is_in_or_out_drop_down"
+            android:textSize="@dimen/text_s" />
+
+        <Spinner
+            android:id="@+id/income_in_or_out_spinner"
+            android:layout_width="@dimen/input_box_width"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_s"
+            android:padding="@dimen/padding_s" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/padding_s"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
             android:id="@+id/income_type_label"
             android:layout_width="@dimen/input_label_width"
             android:layout_height="wrap_content"
@@ -74,32 +99,6 @@
 
 
             android:padding="@dimen/padding_s" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/padding_s"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/income_user_label"
-            android:layout_width="@dimen/input_label_width"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_s"
-            android:padding="@dimen/padding_s"
-            android:text="@string/userId"
-            android:textSize="@dimen/text_s" />
-
-        <EditText
-            android:id="@+id/income_user_id_edittext"
-            android:layout_width="@dimen/input_box_width"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_s"
-            android:hint="用户ID"
-            android:padding="@dimen/padding_s" />
-
     </LinearLayout>
 
     <LinearLayout

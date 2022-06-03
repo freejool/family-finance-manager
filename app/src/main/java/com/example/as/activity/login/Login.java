@@ -1,6 +1,8 @@
 package com.example.as.activity.login;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -114,6 +116,11 @@ public class Login extends FragmentActivity {
 
                     if (user.ID.value != null) {
                         intent.putExtra("user_id", user.ID.value);
+                        SharedPreferences shd=getSharedPreferences("user_info", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor=shd.edit();
+                        editor.putInt("id",user.ID.value);
+                        editor.putString("name",user.name.value);
+                        editor.apply();
                         startActivity(intent);// 启动主Activity
                     } else {
                         // 弹出信息提示

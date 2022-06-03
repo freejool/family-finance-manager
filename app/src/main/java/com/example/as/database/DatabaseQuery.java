@@ -47,8 +47,10 @@ public class DatabaseQuery extends Thread {
     {
         try
         {
-            statement.close();
-            resultSet.close();
+            if(statement!=null)
+                statement.close();
+            if(resultSet!=null)
+                resultSet.close();
         }catch (SQLException e)
         {
             Log.e("SQL","语句和结果集关闭失败");
