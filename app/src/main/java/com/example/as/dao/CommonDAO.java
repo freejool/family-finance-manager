@@ -26,10 +26,8 @@ public class CommonDAO<T extends IRow> {
         return last_sql_executed;
     }
 
-    public void insert(T row)throws SQLException
-    {
-        try
-        {
+    public void insert(T row) throws SQLException {
+        try {
             Log.i("SQL", row.getSqlValues());
             String sql_to_execute = String.format
                     (
@@ -50,17 +48,15 @@ public class CommonDAO<T extends IRow> {
         }
     }
 
-    public void insert(T row,boolean include_or_exclude,CanBeRef<?>... col_params)throws SQLException
-    {
-        try
-        {
-            Log.i("SQL", row.getSqlValues(include_or_exclude,new Vector<>(Arrays.asList(col_params))));
+    public void insert(T row, boolean include_or_exclude, CanBeRef<?>... col_params) throws SQLException {
+        try {
+            Log.i("SQL", row.getSqlValues(include_or_exclude, new Vector<>(Arrays.asList(col_params))));
             String sql_to_execute = String.format
                     (
                             "insert into %s %s %s",
                             row.getTableName(),
-                            row.getSqlColumnNames(include_or_exclude,new Vector<>(Arrays.asList(col_params))),
-                            row.getSqlValues(include_or_exclude,new Vector<>(Arrays.asList(col_params)))
+                            row.getSqlColumnNames(include_or_exclude, new Vector<>(Arrays.asList(col_params))),
+                            row.getSqlValues(include_or_exclude, new Vector<>(Arrays.asList(col_params)))
                     );
 
             db = new DatabaseQuery(sql_to_execute);
@@ -68,6 +64,7 @@ public class CommonDAO<T extends IRow> {
             db.start();
             db.join();
             if (db.getException() != null) {
+                Log.e("SQL", last_sql_executed);
                 throw db.getException();
             }
         } catch (InterruptedException e) {

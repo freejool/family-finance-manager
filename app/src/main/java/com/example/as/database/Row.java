@@ -140,128 +140,103 @@ public class Row implements IRow {
     }
 
     @Override
-    public String getSqlColumnNames(boolean include_or_exclude,Vector<CanBeRef<?>> col_params)
-    {
-        StringBuilder builder=new StringBuilder();
+    public String getSqlColumnNames(boolean include_or_exclude, Vector<CanBeRef<?>> col_params) {
+        StringBuilder builder = new StringBuilder();
         builder.append("(");
-        boolean any_append=false;
-        if(include_or_exclude)
-        {
-            if(col_params!=null)
-            {
-                for(CanBeRef<?> obj: col_params)
-                {
-                    if(!obj2StrDict.containsKey(obj))
-                    {
+        boolean any_append = false;
+        if (include_or_exclude) {
+            if (col_params != null) {
+                for (CanBeRef<?> obj : col_params) {
+                    if (!obj2StrDict.containsKey(obj)) {
                         continue;
                     }
                     builder.append(obj2StrDict.get(obj))
                             .append(',');
-                    any_append=true;
+                    any_append = true;
                 }
             }
-        }
-        else
-        {
-
+        } else {
             HashSet<CanBeRef<?>> obj_set;
-            if(col_params!=null)
-            {
-                obj_set=new HashSet<>(col_params);
+            if (col_params != null) {
+                obj_set = new HashSet<>(col_params);
+            } else {
+                obj_set = new HashSet<>();
             }
-            else
-            {
-                obj_set=new HashSet<>();
-            }
-            for(String column_name: columnNameList)
-            {
-                CanBeRef<?> obj=Objects.requireNonNull(str2ObjDict.get(column_name));
-                if(obj_set.contains(obj))
+            for (String column_name : columnNameList) {
+                CanBeRef<?> obj = Objects.requireNonNull(str2ObjDict.get(column_name));
+                if (obj_set.contains(obj))
                     continue;
                 builder.append(column_name)
                         .append(',');
-                any_append=true;
+                any_append = true;
             }
         }
-        if(any_append)
-            builder.deleteCharAt(builder.length()-1);
+        if (any_append)
+            builder.deleteCharAt(builder.length() - 1);
         builder.append(')');
-        return  builder.toString();
+        return builder.toString();
     }
 
 
     /**
      * 获取数据库列的值组成的形如"values(2,4,...)"的字符串
+     *
      * @param include_or_exclude 包含或排除，此值为true时表示包含，
      *                           则该函数会尝试将参数列表的参数按列表顺序生成此字符串，忽略参数中不属于此实例成员的对象。
      *                           此值为false时表示排除，
      *                           该函数会按成员的注解中顺序生成字符串，忽略参数列表中提到的此实例的成员。
-     * @param col_params 参数列表
+     * @param col_params         参数列表
      * @return 形如"values(2,4,...)"的字符串
      */
     @Override
-    public String getSqlValues(boolean include_or_exclude,Vector<CanBeRef<?>> col_params)
-    {
-        StringBuilder builder=new StringBuilder();
+    public String getSqlValues(boolean include_or_exclude, Vector<CanBeRef<?>> col_params) {
+        StringBuilder builder = new StringBuilder();
         builder.append("values(");
-        boolean any_append=false;
-        if(include_or_exclude)
-        {
-            if(col_params!=null)
-            {
-                for(CanBeRef<?> obj: col_params)
-                {
-                    if(!obj2StrDict.containsKey(obj))
-                    {
+        boolean any_append = false;
+        if (include_or_exclude) {
+            if (col_params != null) {
+                for (CanBeRef<?> obj : col_params) {
+                    if (!obj2StrDict.containsKey(obj)) {
                         continue;
                     }
                     builder.append(obj.getSqlValues())
                             .append(',');
-                    any_append=true;
+                    any_append = true;
                 }
             }
-        }
-        else
-        {
+        } else {
 
             HashSet<CanBeRef<?>> obj_set;
-            if(col_params!=null)
-            {
-                obj_set=new HashSet<>(col_params);
+            if (col_params != null) {
+                obj_set = new HashSet<>(col_params);
+            } else {
+                obj_set = new HashSet<>();
             }
-            else
-            {
-                obj_set=new HashSet<>();
-            }
-            for(String column_name: columnNameList)
-            {
-                CanBeRef<?> obj=Objects.requireNonNull(str2ObjDict.get(column_name));
-                if(obj_set.contains(obj))
+            for (String column_name : columnNameList) {
+                CanBeRef<?> obj = Objects.requireNonNull(str2ObjDict.get(column_name));
+                if (obj_set.contains(obj))
                     continue;
                 builder.append(Objects.requireNonNull(str2ObjDict.get(column_name)).
-                                getSqlValues())
+                        getSqlValues())
                         .append(',');
-                any_append=true;
+                any_append = true;
             }
         }
-        if(any_append)
-            builder.deleteCharAt(builder.length()-1);
+        if (any_append)
+            builder.deleteCharAt(builder.length() - 1);
         builder.append(')');
         return builder.toString();
     }
 
     @Override
-    public String getSqlValues()
-    {
-        return getSqlValues(false,null);
+    public String getSqlValues() {
+        return getSqlValues(false, null);
     }
 
-    public HashMap<String, Object> genDictData()
-    {
-        HashMap<String,Object> genedDict=new HashMap<>();
-        for(Map.Entry<String,CanBeRef<?>> entry:str2ObjDict.entrySet())
-        {
-            genedDict.put(entry.getKey(),entry.getValue().value);
+    public HashMap<String, Object> genDictData() {
+        HashMap<String, Object> genedDict = new HashMap<>();
+        for (Map.Entry<String, CanBeRef<?>> entry : str2ObjDict.entrySet()) {
+            genedDict.put(entry.getKey(), entry.getValue().value);
         }
         return genedDict;
     }

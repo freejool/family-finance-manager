@@ -19,6 +19,7 @@ import androidx.fragment.app.DialogFragment;
 
 import com.example.as.Entity.UserInfo;
 import com.example.as.R;
+import com.example.as.dao.CommonDAO;
 import com.example.as.dao.LoginDAO;
 
 import java.sql.SQLException;
@@ -92,9 +93,9 @@ public class DialogRegister extends DialogFragment {
                 newUser.create_date.value = LocalDateTime.now();
                 newUser.isAdmin.value = isAdminCheckbox.isChecked() ? 1 : 0;
 
-                LoginDAO loginDAO = new LoginDAO();
+                CommonDAO<UserInfo> dao = new CommonDAO<>();
                 try {
-                    loginDAO.addUser(newUser);
+                    dao.insert(newUser, false, newUser.ID);
                     Toast.makeText(getContext(), "注册成功", Toast.LENGTH_LONG).show();
                     dismiss();
                 } catch (SQLException e) {
