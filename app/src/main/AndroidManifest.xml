@@ -23,7 +23,7 @@
         <activity
             android:name="com.example.as.activity.MainActivity" />
         <activity
-            android:name="com.example.as.activity.AddOutaccount"
+            android:name="com.example.as.activity.AddOutcome"
             android:label="@string/addoutaccount" />
         <activity
             android:name="com.example.as.activity.Outaccountinfo"

@@ -34,7 +34,7 @@ public class MainActivity extends FragmentActivity {
                 Intent intent = null;// 创建Intent对象
                 switch (position) {
                     case 0:
-                        intent = new Intent(MainActivity.this, AddOutaccount.class);// 使用AddOutaccount窗口初始化Intent
+                        intent = new Intent(MainActivity.this, AddOutcome.class);// 使用AddOutaccount窗口初始化Intent
                         startActivity(intent);// 打开AddOutaccount
                         break;
                     case 1:

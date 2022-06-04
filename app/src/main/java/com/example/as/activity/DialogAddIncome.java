@@ -43,7 +43,7 @@ public class DialogAddIncome extends DialogFragment {
     static final String[] ioTypeList =new String[]{"收入","支出"};
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.addincome_dialog, container, true);
+        View view = inflater.inflate(R.layout.add_income_dialog, container, true);
         money = view.findViewById(R.id.income_money_edittext);
         spinnerIO = view.findViewById(R.id.income_in_or_out_spinner);
         note = view.findViewById(R.id.income_note_edittext);
