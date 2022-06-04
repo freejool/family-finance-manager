@@ -1,0 +1,77 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:id="@+id/initem"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="top"
+    android:minWidth="500dp"
+    android:minHeight="700dp"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/margin_s"
+        android:gravity="center_horizontal"
+        android:paddingBottom="@dimen/padding_s"
+        android:text="@string/investment_advise"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_l" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/padding_s"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_s"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:padding="@dimen/padding_s"
+                android:text="投资回报率："
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_s" />
+
+            <TextView
+                android:id="@+id/roi_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_s"
+                android:layout_weight="1"
+                android:maxLength="9"
+                android:padding="@dimen/padding_s"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_s"
+            android:gravity="end"
+            android:padding="@dimen/padding_s">
+
+
+            <Button
+                android:id="@+id/confirm_button"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_s"
+                android:padding="@dimen/padding_s"
+                android:text="@string/confirm" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

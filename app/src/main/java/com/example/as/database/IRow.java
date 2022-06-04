@@ -10,15 +10,15 @@ import java.util.HashMap;
  */
 public interface IRow
 {
-    public String getTableName();
-    public void setByResultSet(ResultSet resultSet);
-    public String getSqlValues();
-    public String getSqlValues(boolean include_or_exclude, Vector<CanBeRef<?>> col_params);
-    public String getSqlColumnNames(boolean include_or_exclude,Vector<CanBeRef<?>> col_params);
+    String getTableName();
+    void setByResultSet(ResultSet resultSet);
+    String getSqlValues();
+    String getSqlValues(boolean include_or_exclude, Vector<CanBeRef<?>> col_params);
+    String getSqlColumnNames(boolean include_or_exclude, Vector<CanBeRef<?>> col_params);
 
     /**
      * 生成数据的字典
      * @return 返回生成的数据的字典，它是一份原始数据的拷贝，因此和原始数据没有修改上的关系
      */
-    public HashMap<String,?> genDictData();
+    HashMap<String,?> genDictData();
 }

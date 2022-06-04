@@ -44,4 +44,5 @@
     <string name="is_in_or_out_drop_down">收支：</string>
     <string name="profit_title">投资收益</string>
     <string name="investment_advice">显示投资建议</string>
+    <string name="investment_advise">投资建议</string>
 </resources>
