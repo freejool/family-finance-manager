@@ -36,13 +36,13 @@ public class Transactions extends Row //收支记录表实体类
 
     public Transactions() {
         tableName = "transactions";
-        ID = new CanBeRef<>(DBCatcher.intCatcher, DBTranser.intTransfer);
-        user_id = new CanBeRef<>(DBCatcher.intCatcher, DBTranser.intTransfer);
-        type = new CanBeRef<>(DBCatcher.stringCatcher, DBTranser.stringTransfer);
-        amount = new CanBeRef<>(DBCatcher.floatCatcher, DBTranser.floatTransfer);
-        in_or_out = new CanBeRef<>(DBCatcher.stringCatcher, DBTranser.stringTransfer);
-        Transaction_time = new CanBeRef<>(DBCatcher.timeCatcher, DBTranser.timeTransfer);
-        note = new CanBeRef<>(DBCatcher.stringCatcher, DBTranser.stringTransfer);
+        ID = new CanBeRef<>(DBCatcher.intCatcher, DBTransfer.intTransfer);
+        user_id = new CanBeRef<>(DBCatcher.intCatcher, DBTransfer.intTransfer);
+        type = new CanBeRef<>(DBCatcher.stringCatcher, DBTransfer.stringTransfer);
+        amount = new CanBeRef<>(DBCatcher.floatCatcher, DBTransfer.floatTransfer);
+        in_or_out = new CanBeRef<>(DBCatcher.stringCatcher, DBTransfer.stringTransfer);
+        Transaction_time = new CanBeRef<>(DBCatcher.timeCatcher, DBTransfer.timeTransfer);
+        note = new CanBeRef<>(DBCatcher.stringCatcher, DBTransfer.stringTransfer);
 
         Bind();
     }

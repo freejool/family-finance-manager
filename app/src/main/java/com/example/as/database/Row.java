@@ -304,7 +304,7 @@ public class Row implements IRow {
     }
 
     //这表示了通用的给值器，表示了对象向数据库值要求的字符串转换的实现
-    public static class DBTranser {
+    public static class DBTransfer {
         public static IToDatabaseValue<Integer, String> intTransfer;
         public static IToDatabaseValue<Float, String> floatTransfer;
         public static IToDatabaseValue<String, String> stringTransfer;

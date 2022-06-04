@@ -1,20 +1,11 @@
 package com.example.as.Entity;
 
-import android.util.Log;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import com.example.as.database.CanBeRef;
 import com.example.as.database.Col;
 import com.example.as.database.Row;
 
 import java.sql.ResultSet;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.temporal.TemporalAccessor;
-import java.util.Arrays;
 
 public class UserInfo extends Row// 密码数据表实体类
 {
@@ -48,14 +39,14 @@ public class UserInfo extends Row// 密码数据表实体类
 
     public UserInfo() {
         tableName = "user_info";
-        ID = new CanBeRef<>(DBCatcher.intCatcher, DBTranser.intTransfer);
-        name = new CanBeRef<>(DBCatcher.stringCatcher, DBTranser.stringTransfer);
-        password = new CanBeRef<>(DBCatcher.stringCatcher, DBTranser.stringTransfer);
-        sex = new CanBeRef<>(DBCatcher.stringCatcher, DBTranser.stringTransfer);
-        birthday = new CanBeRef<>(DBCatcher.timeCatcher, DBTranser.timeTransfer);
-        email = new CanBeRef<>(DBCatcher.stringCatcher, DBTranser.stringTransfer);
-        create_date = new CanBeRef<>(DBCatcher.timeCatcher, DBTranser.timeTransfer);
-        isAdmin = new CanBeRef<>(DBCatcher.intCatcher, DBTranser.intTransfer);
+        ID = new CanBeRef<>(DBCatcher.intCatcher, DBTransfer.intTransfer);
+        name = new CanBeRef<>(DBCatcher.stringCatcher, DBTransfer.stringTransfer);
+        password = new CanBeRef<>(DBCatcher.stringCatcher, DBTransfer.stringTransfer);
+        sex = new CanBeRef<>(DBCatcher.stringCatcher, DBTransfer.stringTransfer);
+        birthday = new CanBeRef<>(DBCatcher.timeCatcher, DBTransfer.timeTransfer);
+        email = new CanBeRef<>(DBCatcher.stringCatcher, DBTransfer.stringTransfer);
+        create_date = new CanBeRef<>(DBCatcher.timeCatcher, DBTransfer.timeTransfer);
+        isAdmin = new CanBeRef<>(DBCatcher.intCatcher, DBTransfer.intTransfer);
 
         Bind();
     }

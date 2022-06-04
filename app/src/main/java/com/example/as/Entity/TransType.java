@@ -23,9 +23,9 @@ public class TransType extends Row {
     public TransType() {
         super();
         tableName = "trans_type";
-        ID = new CanBeRef<>(DBCatcher.intCatcher, DBTranser.intTransfer);
-        type = new CanBeRef<>(DBCatcher.stringCatcher, DBTranser.stringTransfer);
-        user_id = new CanBeRef<>(DBCatcher.intCatcher, DBTranser.intTransfer);
+        ID = new CanBeRef<>(DBCatcher.intCatcher, DBTransfer.intTransfer);
+        type = new CanBeRef<>(DBCatcher.stringCatcher, DBTransfer.stringTransfer);
+        user_id = new CanBeRef<>(DBCatcher.intCatcher, DBTransfer.intTransfer);
 
         Bind();
     }

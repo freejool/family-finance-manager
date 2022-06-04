@@ -28,11 +28,11 @@ public class Account extends Row {
 
     public Account() {
         tableName = "account";
-        id = new CanBeRef<>(DBCatcher.intCatcher, DBTranser.intTransfer);
-        type = new CanBeRef<>(DBCatcher.stringCatcher, DBTranser.stringTransfer);
-        user_id = new CanBeRef<>(DBCatcher.intCatcher, DBTranser.intTransfer);
-        balance = new CanBeRef<>(DBCatcher.doubleCatcher, DBTranser.doubleTransfer);
-        note = new CanBeRef<>(DBCatcher.stringCatcher, DBTranser.stringTransfer);
+        id = new CanBeRef<>(DBCatcher.intCatcher, DBTransfer.intTransfer);
+        type = new CanBeRef<>(DBCatcher.stringCatcher, DBTransfer.stringTransfer);
+        user_id = new CanBeRef<>(DBCatcher.intCatcher, DBTransfer.intTransfer);
+        balance = new CanBeRef<>(DBCatcher.doubleCatcher, DBTransfer.doubleTransfer);
+        note = new CanBeRef<>(DBCatcher.stringCatcher, DBTransfer.stringTransfer);
         Bind();
     }
 
