@@ -62,7 +62,6 @@ public class Login extends FragmentActivity {
             public void onClick(View v) {
                 DialogRegister dialogRegister = new DialogRegister();
                 dialogRegister.show(Login.this.getSupportFragmentManager(), "register");
-
             }
         });
 

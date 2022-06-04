@@ -59,7 +59,7 @@ public class InAccountInfo extends Activity {
         in_out_button.setOnClickListener(v -> ShowInfo(String.format(in_out_condition, user_id)));
         only_in_button.setOnClickListener(v -> ShowInfo(String.format(only_in_condition,user_id)));
         only_out_button.setOnClickListener(v -> ShowInfo(String.format(only_out_condition,user_id)));
-        ;// 调用自定义方法显示收入信息
+        // 调用自定义方法显示收入信息
         ShowInfo(String.format(in_out_condition, user_id));
     }
 
@@ -103,7 +103,7 @@ public class InAccountInfo extends Activity {
 
 class TransactionInAdapter extends ArrayAdapter<HashMap<String,Object>>
 {
-	private int resourceId;
+	private final int resourceId;
     static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy年MM月dd日\nHH时mm:ss");
     static String note_hint="备注:%s";
     static String null_hint="无";

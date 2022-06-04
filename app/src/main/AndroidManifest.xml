@@ -39,7 +39,7 @@
             android:name="com.example.as.activity.Sysset"
             android:label="@string/sysset" />
         <activity
-            android:name="com.example.as.activity.Profit"
+            android:name="com.example.as.activity.profit.Profit"
             android:label="@string/profit" />
         <activity
             android:name="com.example.as.activity.InfoManage"
