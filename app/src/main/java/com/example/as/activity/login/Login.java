@@ -1,6 +1,8 @@
 package com.example.as.activity.login;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -15,12 +17,17 @@ import androidx.fragment.app.FragmentActivity;
 
 import com.example.as.R;
 import com.example.as.activity.MainActivity;
+import com.example.as.dao.CommonDAO;
 import com.example.as.dao.LoginDAO;
 import com.example.as.Entity.UserInfo;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Arrays;
+
 public class Login extends FragmentActivity {
-    EditText edittextPasswd; // 密码编辑框
-    EditText edittextUsername; // 用户名编辑框
+    EditText passwordExittext; // 密码编辑框
+    EditText usernameEdittext; // 用户名编辑框
 
     Button buttonLogin, buttonClose, buttonRegister;
 
@@ -29,8 +36,8 @@ public class Login extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);// 设置布局文件
 
-        edittextUsername = findViewById(R.id.login_user_id);// 获取密码文本框
-        edittextPasswd = findViewById(R.id.login_passwd);// 获取密码文本框
+        usernameEdittext = findViewById(R.id.login_user_id);// 获取密码文本框
+        passwordExittext = findViewById(R.id.login_passwd);// 获取密码文本框
 
         buttonLogin = findViewById(R.id.button_login);
         buttonClose = findViewById(R.id.button_close);
@@ -46,8 +53,8 @@ public class Login extends FragmentActivity {
                 return false;
             }
         };
-        edittextUsername.setOnEditorActionListener(onEnterClicked);
-        edittextPasswd.setOnEditorActionListener(onEnterClicked);
+        usernameEdittext.setOnEditorActionListener(onEnterClicked);
+        passwordExittext.setOnEditorActionListener(onEnterClicked);
 
 
         buttonRegister.setOnClickListener(new OnClickListener() {
@@ -55,7 +62,6 @@ public class Login extends FragmentActivity {
             public void onClick(View v) {
                 DialogRegister dialogRegister = new DialogRegister();
                 dialogRegister.show(Login.this.getSupportFragmentManager(), "register");
-
             }
         });
 
@@ -63,13 +69,19 @@ public class Login extends FragmentActivity {
             @Override
             public void onClick(View arg0) {
                 Intent intent = new Intent(Login.this, MainActivity.class);// 创建Intent对象
-                LoginDAO loginDAO = new LoginDAO();// 创建PwdDAO对象
+                CommonDAO<UserInfo> dao = new CommonDAO<>();// 创建PwdDAO对象
                 // 判断是否有密码及是否输入了密码
                 long passwordCnt = 0;
-                passwordCnt = loginDAO.getPasswordCount();
+                try {
+                    passwordCnt = dao.count(new UserInfo());
+                } catch (SQLException e) {
+                    Toast.makeText(getApplicationContext(),
+                            Arrays.toString(e.getStackTrace()), Toast.LENGTH_LONG).show();
+                    return;
+                }
 
                 if (passwordCnt == 0) {
-                    if (edittextPasswd.getText().toString().isEmpty()) {
+                    if (passwordExittext.getText().toString().isEmpty()) {
                         startActivity(intent);// 启动主Activity
                     } else {
                         Toast.makeText(Login.this, "请不要输入任何密码登录系统！",
@@ -77,16 +89,37 @@ public class Login extends FragmentActivity {
                     }
                 } else {
                     // 判断输入的密码是否与数据库中的密码一致
-                    String username = edittextUsername.getText().toString();
-                    String passwd = edittextPasswd.getText().toString();
+                    String username = usernameEdittext.getText().toString();
+                    String passwd = passwordExittext.getText().toString();
                     if (username.equals("") || passwd.equals("")) {
                         Toast.makeText(Login.this, "用户或密码为空！",
                                 Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    UserInfo user = loginDAO.findUser(username, passwd);
-                    if (user != null) {
-                        intent.putExtra("user_id", user.getID());
+                    ResultSet rs;
+                    try {
+                        rs = dao.find(new UserInfo(), "*",
+                                "where name='" + usernameEdittext.getText() + "' and password='" + passwordExittext.getText()+"'");
+                    } catch (SQLException e) {
+                        Toast.makeText(getApplicationContext(),
+                                Arrays.toString(e.getStackTrace()), Toast.LENGTH_LONG).show();
+                        return;
+                    }
+                    UserInfo user = new UserInfo();
+                    try {
+                        rs.next();
+                    } catch (SQLException e) {
+                        Toast.makeText(getApplicationContext(),Arrays.toString(e.getStackTrace()),Toast.LENGTH_LONG).show();
+                    }
+                    user.setByResultSet(rs);
+
+                    if (user.ID.value != null) {
+                        intent.putExtra("user_id", user.ID.value);
+                        SharedPreferences shd=getSharedPreferences("user_info", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor=shd.edit();
+                        editor.putInt("id",user.ID.value);
+                        editor.putString("name",user.name.value);
+                        editor.apply();
                         startActivity(intent);// 启动主Activity
                     } else {
                         // 弹出信息提示

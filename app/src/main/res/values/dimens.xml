@@ -13,5 +13,5 @@
     <dimen name="login_text_size">32pt</dimen>
     <dimen name="input_box_width">240dp</dimen>
     <dimen name="input_label_width">80dp</dimen>
-
+    <dimen name="收支列表高">100dp</dimen>
 </resources>

@@ -1,32 +1,66 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/iteminfo"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:layout_marginTop="@dimen/margin_s"
     android:orientation="vertical">
     <!--	android:background="@color/backgroundColor"-->
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
 
-        <TextView
+        <ListView
+            android:id="@+id/in_come_info_listview"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/my_income"
-            android:textSize="@dimen/text_m" />
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            tools:layout_conversion_absoluteHeight="691dp"
+            tools:layout_conversion_absoluteWidth="411dp"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="32dp" />
 
-        <ScrollView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="60dp"
+            android:orientation="horizontal">
 
-            <ListView
-                android:id="@+id/in_come_info_listview"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </ScrollView>
+            <Button
+                android:id="@+id/tran_inout_button"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/transaction_ud_bk"
+                android:text="@string/trans_inout_button_hint"
+                android:textColor="@color/transaction_ud_char"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/tran_in_button"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/transaction_in_bk"
+                android:text="@string/trans_in_button_hint"
+                android:textColor="@color/transaction_in_char"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/tran_out_button"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/transaction_out_bk"
+                android:text="@string/trans_out_button_hint"
+                android:textColor="@color/transaction_out_char"
+                android:textSize="24sp" />
+        </LinearLayout>
+
     </LinearLayout>
 </LinearLayout>

@@ -19,6 +19,7 @@ import androidx.fragment.app.DialogFragment;
 
 import com.example.as.Entity.UserInfo;
 import com.example.as.R;
+import com.example.as.dao.CommonDAO;
 import com.example.as.dao.LoginDAO;
 
 import java.sql.SQLException;
@@ -31,12 +32,12 @@ public class DialogRegister extends DialogFragment {
     private EditText password;
     private EditText repassword;
     private EditText email;
-    private Button button_birthday;
-    private TextView view_birthday;
+    private Button birthdayButton;
+    private TextView birthdayView;
     private RadioGroup gender;
-    private Button confirm_button;
-    private Button cancel_button;
-    private CheckBox is_admin;
+    private Button confirmButton;
+    private Button cancelButton;
+    private CheckBox isAdminCheckbox;
 
     private DatePickerDialog datePicker;
 
@@ -51,14 +52,14 @@ public class DialogRegister extends DialogFragment {
         password = view.findViewById(R.id.passwd);
         repassword = view.findViewById(R.id.confirm_passwd);
         email = view.findViewById(R.id.email);
-        button_birthday = view.findViewById(R.id.birthday_button);
-        view_birthday = view.findViewById(R.id.birthday_textview);
+        birthdayButton = view.findViewById(R.id.birthday_button);
+        birthdayView = view.findViewById(R.id.birthday_textview);
         gender = view.findViewById(R.id.gender_radio_group);
-        confirm_button = view.findViewById(R.id.confirm_button);
-        cancel_button = view.findViewById(R.id.cancel_button);
-        is_admin = view.findViewById(R.id.is_admin);
+        confirmButton = view.findViewById(R.id.confirm_button);
+        cancelButton = view.findViewById(R.id.cancel_button);
+        isAdminCheckbox = view.findViewById(R.id.is_admin);
 
-        button_birthday.setOnClickListener(new View.OnClickListener() {
+        birthdayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DialogFragment pickTimeFragment = new PickTimeFragment();
@@ -66,7 +67,7 @@ public class DialogRegister extends DialogFragment {
             }
         });
 
-        confirm_button.setOnClickListener(new View.OnClickListener() {
+        confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (username.getText().toString().equals("")
@@ -82,19 +83,19 @@ public class DialogRegister extends DialogFragment {
                             "两次输入的密码不一致", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                newUser.setName(username.getText().toString());
-                newUser.setPassword(password.getText().toString());
-                newUser.setEmail(email.getText().toString());
-                newUser.setBirthday(birthday);
-                RadioButton selected = getView().findViewById(gender.getCheckedRadioButtonId());
-                newUser.setSex(selected.getText().toString());
-                newUser.setCreate_date(LocalDateTime.now());
-                int isadmin = is_admin.isChecked() ? 1 : 0;
-                newUser.setIsAdmin(isadmin);
 
-                LoginDAO loginDAO = new LoginDAO();
+                newUser.name.value = username.getText().toString();
+                newUser.password.value = password.getText().toString();
+                newUser.email.value = email.getText().toString();
+                newUser.birthday.value = birthday;
+                RadioButton selected = getView().findViewById(gender.getCheckedRadioButtonId());
+                newUser.sex.value = selected.getText().toString();
+                newUser.create_date.value = LocalDateTime.now();
+                newUser.isAdmin.value = isAdminCheckbox.isChecked() ? 1 : 0;
+
+                CommonDAO<UserInfo> dao = new CommonDAO<>();
                 try {
-                    loginDAO.addUser(newUser);
+                    dao.insert(newUser, false, newUser.ID);
                     Toast.makeText(getContext(), "注册成功", Toast.LENGTH_LONG).show();
                     dismiss();
                 } catch (SQLException e) {
@@ -103,7 +104,7 @@ public class DialogRegister extends DialogFragment {
             }
         });
 
-        cancel_button.setOnClickListener(new View.OnClickListener() {
+        cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dismiss();

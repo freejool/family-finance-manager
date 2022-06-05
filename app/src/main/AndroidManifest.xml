@@ -23,7 +23,7 @@
         <activity
             android:name="com.example.as.activity.MainActivity" />
         <activity
-            android:name="com.example.as.activity.AddOutaccount"
+            android:name="com.example.as.activity.AddOutcome"
             android:label="@string/addoutaccount" />
         <activity
             android:name="com.example.as.activity.Outaccountinfo"
@@ -47,8 +47,8 @@
             android:name="com.example.as.activity.Sysset"
             android:label="@string/sysset" />
         <activity
-            android:name="com.example.as.activity.Profit"
-            android:label="@string/accountflag" />
+            android:name="com.example.as.activity.profit.Profit"
+            android:label="@string/profit" />
         <activity
             android:name="com.example.as.activity.InfoManage"
             android:label="@string/infomanage" />

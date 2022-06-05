@@ -1,145 +1,58 @@
 package com.example.as.Entity;
 
-import android.util.Log;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import com.example.as.database.CanBeRef;
+import com.example.as.database.Col;
+import com.example.as.database.Row;
 
 import java.sql.ResultSet;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.temporal.TemporalAccessor;
-import java.util.Arrays;
 
-public class UserInfo// 密码数据表实体类
+public class UserInfo extends Row// 密码数据表实体类
 {
-    private int ID;
-    private String name;
-    private String password;// 定义字符串，表示用户密码
-    private String sex;
-    private LocalDateTime birthday;
-    private String email;
-    private LocalDateTime create_date;
-    private int isAdmin;
+    @Col(order = 0)
+    public CanBeRef<Integer> ID;
+
+    @Col(order = 1)
+    public CanBeRef<String> name;
+
+    @Col(order = 2)
+    public CanBeRef<String> password;// 定义字符串，表示用户密码
+
+    @Col(order = 3)
+    public CanBeRef<String> sex;
+
+    @Col(order = 4)
+    public CanBeRef<LocalDateTime> birthday;
+
+    @Col(order = 5)
+    public CanBeRef<String> email;
+
+    @Col(order = 6)
+    public CanBeRef<LocalDateTime> create_date;
+
+    @Col(order = 7)
+    public CanBeRef<Integer> isAdmin;
+
+    static {
+        initRow(UserInfo.class);
+    }
 
     public UserInfo() {
+        tableName = "user_info";
+        ID = new CanBeRef<>(DBCatcher.intCatcher, DBTransfer.intTransfer);
+        name = new CanBeRef<>(DBCatcher.stringCatcher, DBTransfer.stringTransfer);
+        password = new CanBeRef<>(DBCatcher.stringCatcher, DBTransfer.stringTransfer);
+        sex = new CanBeRef<>(DBCatcher.stringCatcher, DBTransfer.stringTransfer);
+        birthday = new CanBeRef<>(DBCatcher.timeCatcher, DBTransfer.timeTransfer);
+        email = new CanBeRef<>(DBCatcher.stringCatcher, DBTransfer.stringTransfer);
+        create_date = new CanBeRef<>(DBCatcher.timeCatcher, DBTransfer.timeTransfer);
+        isAdmin = new CanBeRef<>(DBCatcher.intCatcher, DBTransfer.intTransfer);
+
+        Bind();
     }
 
     public UserInfo(ResultSet rs) {
-        try {
-            this.ID = rs.getInt("ID");
-            this.name = rs.getString("name");
-            this.password = rs.getString("password");
-            this.sex = rs.getString(4);
-            this.birthday = rs.getTimestamp("birthday").toInstant().atZone(ZoneId.of("CST")).toLocalDateTime();
-            this.email = rs.getString("email");
-            this.create_date = rs.getTimestamp("create_date").toInstant().atZone(ZoneId.of("CST")).toLocalDateTime();
-            this.isAdmin = rs.getInt("isAdmin");
-        } catch (Exception e) {
-            Log.e("SqlError", Arrays.toString(e.getStackTrace()));
-        }
-    }
-
-
-    public UserInfo(int ID, String name, String password, String sex, LocalDateTime birthday, @Nullable String email, LocalDateTime create_date, int isAdmin) {
-        this.ID = ID;
-        this.name = name;
-        this.password = password;
-        this.sex = sex;
-        this.birthday = birthday;
-        this.email = email;
-        this.create_date = create_date;
-        this.isAdmin = isAdmin;
-    }
-
-
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getSex() {
-        return sex;
-    }
-
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
-
-    public LocalDateTime getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(LocalDateTime birthday) {
-        this.birthday = birthday;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public LocalDateTime getCreate_date() {
-        return create_date;
-    }
-
-    public void setCreate_date(LocalDateTime create_date) {
-        this.create_date = create_date;
-    }
-
-    public int getIsAdmin() {
-        return isAdmin;
-    }
-
-    public void setIsAdmin(int isAdmin) {
-        this.isAdmin = isAdmin;
-    }
-
-    @NonNull
-    @Override
-    public String toString() {
-        return "" +
-                name +
-                password +
-                sex +
-                birthday +
-                email +
-                create_date +
-                isAdmin;
-    }
-
-    public String getSqlValues() {
-        return "values(" +
-                (name.equals("") ? "null" : "'" + name + "'") + "," +
-                "'" + password + "'" + "," +
-                (sex.equals("") ? "null" : "'" + sex + "'") + "," +
-                (birthday == null ? "null" : "'" + birthday.toLocalDate() + "'") + "," +
-                (email.equals("") ? "null" : "'" + email + "'") + "," +
-                (create_date == null ? "null" : "'" + create_date.toLocalDate() + "'") + "," +
-                (isAdmin == 0 ? "0" : "1") +
-                ")";
+        this();
+        setByResultSet(rs);
     }
 }

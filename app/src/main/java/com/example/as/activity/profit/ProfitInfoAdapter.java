@@ -1,4 +1,4 @@
-package com.example.as.activity;
+package com.example.as.activity.profit;
 
 import android.content.Context;
 import android.os.Build;
@@ -15,25 +15,11 @@ import androidx.annotation.RequiresApi;
 
 import com.example.as.R;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Locale;
 
-class UserProfit {
-    public Double origin;
-    public Double bonus;
-    public Integer duration;
 
-    UserProfit(ResultSet rs) throws SQLException {
-        this.origin = rs.getDouble("origin");
-        this.bonus = rs.getDouble("bonus");
-        this.duration = rs.getInt("duration");
-    }
-
-}
-
-class ProfitInfoAdapter extends ArrayAdapter<UserProfit> {
+public class ProfitInfoAdapter extends ArrayAdapter<UserProfit> {
 
     private final int resource;
 
@@ -60,11 +46,11 @@ class ProfitInfoAdapter extends ArrayAdapter<UserProfit> {
         TextView durationTextview = linearView.findViewById(R.id.duration_textview);
 
         originTextview.setText(String.format(Locale.getDefault(),
-                "%.2f",userProfit.origin));
+                "%.2f", userProfit.origin));
         bonusTextview.setText(String.format(Locale.getDefault(),
-                "%.2f",userProfit.bonus));
+                "%.2f", userProfit.bonus));
         durationTextview.setText(String.format(Locale.getDefault(),
-                "%d",userProfit.duration));
+                "%d", userProfit.duration));
 
         return linearView;
     }

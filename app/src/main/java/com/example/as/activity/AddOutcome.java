@@ -18,7 +18,7 @@ import com.example.as.R;
 import com.example.as.dao.OutaccountDAO;
 import com.example.as.model.Tb_outaccount;
 
-public class AddOutaccount extends Activity {
+public class AddOutcome extends Activity {
     protected static final int DATE_DIALOG_ID = 0;// 创建日期对话框常量
     EditText txtMoney, txtTime, txtAddress, txtMark;// 创建4个EditText对象
     Spinner spType;// 创建Spinner对象
@@ -32,7 +32,7 @@ public class AddOutaccount extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.addoutaccount);// 设置布局文件
+        setContentView(R.layout.add_outcome);// 设置布局文件
         txtMoney = findViewById(R.id.txtMoney);// 获取金额文本框
         txtTime = findViewById(R.id.txtTime);// 获取时间文本框
         txtAddress = findViewById(R.id.txtAddress);// 获取地点文本框
@@ -45,7 +45,6 @@ public class AddOutaccount extends Activity {
 
             @Override
             public void onClick(View arg0) {
-                // TODO Auto-generated method stub
                 showDialog(DATE_DIALOG_ID);// 显示日期选择对话框
             }
         });
@@ -59,7 +58,7 @@ public class AddOutaccount extends Activity {
                 if (!strMoney.isEmpty()) {// 判断金额不为空
                     // 创建OutaccountDAO对象
                     OutaccountDAO outaccountDAO = new OutaccountDAO(
-                            AddOutaccount.this);
+                            AddOutcome.this);
                     // 创建Tb_outaccount对象
                     Tb_outaccount tb_outaccount = new Tb_outaccount(
                             outaccountDAO.getMaxId() + 1, Double
@@ -70,10 +69,10 @@ public class AddOutaccount extends Activity {
                             .getText().toString());
                     outaccountDAO.add(tb_outaccount);// 添加支出信息
                     // 弹出信息提示
-                    Toast.makeText(AddOutaccount.this, "〖新增支出〗数据添加成功！",
+                    Toast.makeText(AddOutcome.this, "〖新增支出〗数据添加成功！",
                             Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(AddOutaccount.this, "请输入支出金额！",
+                    Toast.makeText(AddOutcome.this, "请输入支出金额！",
                             Toast.LENGTH_SHORT).show();
                 }
             }
@@ -83,14 +82,7 @@ public class AddOutaccount extends Activity {
 
             @Override
             public void onClick(View arg0) {
-                // TODO Auto-generated method stub
-                txtMoney.setText("");// 设置金额文本框为空
-                txtMoney.setHint("0.00");// 为金额文本框设置提示
-                txtTime.setText("");// 设置时间文本框为空
-                txtTime.setHint("2011-01-01");// 为时间文本框设置提示
-                txtAddress.setText("");// 设置地点文本框为空
-                txtMark.setText("");// 设置备注文本框为空
-                spType.setSelection(0);// 设置类别下拉列表默认选择第一项
+                finish();
             }
         });
 

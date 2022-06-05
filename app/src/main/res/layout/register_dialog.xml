@@ -109,14 +109,6 @@
         android:orientation="horizontal">
 
 
-        <Button
-            android:id="@+id/confirm_button"
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:minWidth="64dp"
-            android:text="@string/confirm" />
 
         <Button
             android:id="@+id/cancel_button"
@@ -126,5 +118,14 @@
             android:layout_marginHorizontal="8dp"
             android:minWidth="64dp"
             android:text="@string/cancel" />
+
+        <Button
+            android:id="@+id/confirm_button"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:minWidth="64dp"
+            android:text="@string/confirm" />
     </LinearLayout>
 </LinearLayout>

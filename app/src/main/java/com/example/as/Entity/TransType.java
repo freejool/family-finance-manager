@@ -1,19 +1,12 @@
 package com.example.as.Entity;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 
 import com.example.as.database.CanBeRef;
 import com.example.as.database.Col;
-import com.example.as.database.IFromResultset;
-import com.example.as.database.IToDatabaseValue;
 import com.example.as.database.Row;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 
 public class TransType extends Row {
     @Col(order = 0)
@@ -29,10 +22,10 @@ public class TransType extends Row {
 
     public TransType() {
         super();
-        table_name = "trans_type";
-        ID = new CanBeRef<>(DBCatcher.int_catcher, DBTranser.int_transer);
-        type = new CanBeRef<>(DBCatcher.string_catcher, DBTranser.string_transer);
-        user_id = new CanBeRef<>(DBCatcher.int_catcher, DBTranser.int_transer);
+        tableName = "trans_type";
+        ID = new CanBeRef<>(DBCatcher.intCatcher, DBTransfer.intTransfer);
+        type = new CanBeRef<>(DBCatcher.stringCatcher, DBTransfer.stringTransfer);
+        user_id = new CanBeRef<>(DBCatcher.intCatcher, DBTransfer.intTransfer);
 
         Bind();
     }
