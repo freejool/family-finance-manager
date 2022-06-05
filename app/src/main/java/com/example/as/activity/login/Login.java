@@ -119,6 +119,7 @@ public class Login extends FragmentActivity {
                         SharedPreferences.Editor editor=shd.edit();
                         editor.putInt("id",user.ID.value);
                         editor.putString("name",user.name.value);
+                        editor.putInt("isAdmin",user.isAdmin.value);
                         editor.apply();
                         startActivity(intent);// 启动主Activity
                     } else {

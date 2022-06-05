@@ -67,7 +67,7 @@
         <activity
             android:name="com.example.as.activity.TotalChartspan"
             android:label="@string/chart" />
-        <activity android:name=".activity.TransTypeModify"
+        <activity android:name=".activity.modify_trans_type.TransTypeModify"
             android:label="收支类型"/>
 
     </application>

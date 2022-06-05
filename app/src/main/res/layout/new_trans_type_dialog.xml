@@ -1,0 +1,116 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:id="@+id/initem"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="top"
+    android:minWidth="500dp"
+    android:minHeight="700dp"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/margin_s"
+        android:gravity="center_horizontal"
+        android:paddingBottom="@dimen/padding_s"
+        android:text="添加收支类型"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_l" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/padding_s"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_s"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:padding="@dimen/padding_s"
+                android:text="名称："
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_s" />
+
+            <EditText
+                android:id="@+id/type_edittext"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_s"
+                android:layout_weight="1"
+                android:maxLength="9"
+                android:minWidth="80dp"
+                android:padding="@dimen/padding_s"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_s" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/padding_s"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_s"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:padding="@dimen/padding_s"
+                android:text="收入 or 支出："
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_s" />
+
+            <Spinner
+                android:id="@+id/in_or_out_spinner"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_s"
+                android:layout_weight="1"
+                android:padding="@dimen/padding_s"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_s" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_s"
+            android:gravity="end">
+
+            <Button
+                android:id="@+id/cancel_button"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_s"
+                android:padding="@dimen/padding_s"
+                android:text="@string/cancel" />
+
+            <Button
+                android:id="@+id/confirm_button"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_s"
+                android:padding="@dimen/padding_s"
+                android:text="@string/confirm" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

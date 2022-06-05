@@ -10,11 +10,13 @@ import java.sql.ResultSet;
 
 public class TransType extends Row {
     @Col(order = 0)
-    private final CanBeRef<Integer> ID;
+    public CanBeRef<Integer> ID;
     @Col(order = 1)
-    private final CanBeRef<String> type;
+    public CanBeRef<String> type;
     @Col(order = 2)
-    private final CanBeRef<Integer> user_id;
+    public CanBeRef<String> in_or_out;
+    @Col(order = 3)
+    public CanBeRef<Integer> user_id;
 
     static {
         initRow(TransType.class);
@@ -25,6 +27,7 @@ public class TransType extends Row {
         tableName = "trans_type";
         ID = new CanBeRef<>(DBCatcher.intCatcher, DBTransfer.intTransfer);
         type = new CanBeRef<>(DBCatcher.stringCatcher, DBTransfer.stringTransfer);
+        in_or_out = new CanBeRef<>(DBCatcher.stringCatcher, DBTransfer.stringTransfer);
         user_id = new CanBeRef<>(DBCatcher.intCatcher, DBTransfer.intTransfer);
 
         Bind();

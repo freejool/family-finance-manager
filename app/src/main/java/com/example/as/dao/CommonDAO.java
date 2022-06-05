@@ -74,7 +74,7 @@ public class CommonDAO<T extends IRow> {
 
     public void delete(T row, String condition) throws SQLException {
         try {
-            Log.i("SQL", row.getSqlValues());
+//            Log.i("SQL", row.getSqlValues());
             String sql_to_execute = String.format
                     (
                             "delete from %s %s",

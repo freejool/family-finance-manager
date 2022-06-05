@@ -50,4 +50,8 @@
     <string name="investment_advice">显示投资建议</string>
     <string name="investment_advise">投资建议</string>
     <string name="new_pay">新增支出</string>
+    <string-array name="in_or_out">
+        <item>收入</item>
+        <item>支出</item>
+    </string-array>
 </resources>

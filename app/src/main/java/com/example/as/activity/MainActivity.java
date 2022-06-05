@@ -11,6 +11,7 @@ import android.widget.ListView;
 import androidx.fragment.app.FragmentActivity;
 
 import com.example.as.R;
+import com.example.as.activity.modify_trans_type.TransTypeModify;
 import com.example.as.activity.profit.Profit;
 
 
@@ -58,20 +59,19 @@ public class MainActivity extends FragmentActivity {
                         startActivity(intent);// 打开Sysset
                         break;
                     case 6:
-                        // todo 主界面"投资收益"，进入后上方显示当前股票基金收益列表，下方一个按钮，通向投资建议。
                         intent = new Intent(MainActivity.this, Profit.class);// 使用Profit窗口初始化Intent
                         startActivity(intent);// 打开Profit
                         break;
                     case 7:
+                        intent = new Intent(MainActivity.this, TransTypeModify.class);
+                        startActivity(intent);
+                        break;
+                    case 8:
                         intent = new Intent(MainActivity.this, Help.class);// 使用Help窗口初始化Intent
                         startActivity(intent);// 打开Help
                         break;
-                    case 8:
-                        finish();// 关闭当前Activity
-                        break;
                     case 9:
-                        intent = new Intent(MainActivity.this, TransTypeModify.class);// 使用Help窗口初始化Intent
-                        startActivity(intent);// 打开Help
+                        finish();// 关闭当前Activity
                         break;
                 }
             }

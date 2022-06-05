@@ -1,30 +1,35 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="@dimen/margin_s">
+    android:layout_marginTop="@dimen/margin_s"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <Button
+        android:id="@+id/new_trans_type"
+        style="?android:attr/buttonBarButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_margin="@dimen/margin_s"
+        android:text="新增"
+        android:textSize="@dimen/text_s" />
+
+    <ListView
+        android:id="@+id/trans_type_listview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_s"
+        android:padding="@dimen/padding_s">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/modity_trans_type"
-            android:textSize="@dimen/text_m" />
+    </ListView>
 
-        <ListView
-            android:id="@+id/trans_type_listview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_s">
+    <Button
+        android:id="@+id/goback"
+        style="?android:attr/buttonBarButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_margin="@dimen/margin_s"
+        android:text="返回" />
+</LinearLayout>
 
-        </ListView>
-
-    </LinearLayout>
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
