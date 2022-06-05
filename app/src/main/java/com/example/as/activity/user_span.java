@@ -57,16 +57,16 @@ public class user_span extends Activity {
             public void onClick(View v) {
                 if (username.getText().toString().equals("")
                         || starttime.getText().toString().equals("")
-                        ||overtime.getText().toString().equals("")) {
+                        || overtime.getText().toString().equals("")) {
                     Toast.makeText(user_span.this,
                             "用户名以及起始终止时间是必填项！", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                Intent intent = new Intent(user_span.this,TotalChartspan.class);
+                Intent intent = new Intent(user_span.this, TotalChartspan.class);
                 intent.putExtra("username", username.getText().toString());
                 intent.putExtra("starttime", starttime.getText().toString());
                 intent.putExtra("overtime", overtime.getText().toString());
-                intent.putExtra("in_or_out",in_or_out.getSelectedItem().toString());
+                intent.putExtra("in_or_out", in_or_out.getSelectedItem().toString());
                 startActivity(intent);
                 // TODO: 2022/6/3  写一个intent打包这些信息传入到画图
 //                newTransaction.setUserId(Integer.parseInt(userId.getText().toString()));
@@ -90,6 +90,6 @@ public class user_span extends Activity {
                 finish();
             }
         });
-        return ;
+        return;
     }
 }
