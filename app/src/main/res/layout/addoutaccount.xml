@@ -69,15 +69,16 @@
 		    android:inputType="datetime"
 		    android:hint="2015-01-01"
 		    />
-		    <TextView android:layout_width="90dp" 
-		    android:id="@+id/tvType" 
-		    android:textSize="20sp" 
-		    android:text="类  别：" 
-		    android:layout_height="wrap_content" 
-		    android:layout_alignBaseline="@+id/spType" 
-		    android:layout_alignBottom="@+id/spType" 
-		    android:layout_alignLeft="@+id/tvTime">
-		    </TextView>
+
+			<TextView
+				android:id="@+id/tvType"
+				android:layout_width="90dp"
+				android:layout_height="wrap_content"
+				android:layout_alignBaseline="@+id/spType"
+				android:layout_alignLeft="@+id/tvTime"
+				android:layout_alignBottom="@+id/spType"
+				android:text="类  别："
+				android:textSize="20sp"></TextView>
 		    <Spinner android:id="@+id/spType"
 		    android:layout_width="210dp"
 		    android:layout_height="wrap_content"

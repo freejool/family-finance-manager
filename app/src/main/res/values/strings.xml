@@ -23,7 +23,7 @@
     <string name="chart">统计图表</string>
     <string name="action_settings">Settings</string>
     <string name="register">注册</string>
-    <string name="username">用户名</string>
+    <string name="username">用户名:</string>
     <string name="passwd">密码</string>
     <string name="confirm_passwd">确认密码</string>
     <string name="gender_male">男</string>
@@ -33,9 +33,14 @@
     <string name="admin">管理员</string>
     <string name="input_username">请输入用户名:</string>
     <string name="new_income">新增收入</string>
+    <string name="new_pay">新增支出</string>
     <string name="value">金额：</string>
     <string name="userId">用户：</string>
     <string name="cancel">取消</string>
     <string name="my_income">我的收入</string>
     <string name="modity_trans_type">修改收支类型</string>
+    <string name="statistics_transactions">收支分析</string>
+    <string name="InOrOut">选择支出或者收入</string>
+    <string name="TotalChart">统计图表</string>
+    <string name="user_span">输入指定用户及时间段</string>
 </resources>

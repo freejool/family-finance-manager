@@ -14,13 +14,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class AddIncomeDAO {
+public class AddPayDAO {
     private DatabaseQuery db;
 
-    public AddIncomeDAO() {
+    public AddPayDAO() {
     }
 
-    public void addIncome(Transactions transactions) throws SQLException {
+    public void addPay(Transactions transactions) throws SQLException {
         try {
             Log.i("SQL", transactions.getSqlValues());
             db = new DatabaseQuery(
@@ -65,38 +65,7 @@ public class AddIncomeDAO {
         try {
 
             db = new DatabaseQuery(
-                    "select distinct type from transactions  where in_or_out = '收入'");
-            db.start();
-            db.join();
-            res = db.getResultSet();
-            while (res.next()) {
-                type = res.getString("type");
-                returnList.add(type);
-            }
-            res.close();
-        } catch (SQLException e) {
-            Log.e("SqlError", Arrays.toString(e.getStackTrace()));
-        } catch (InterruptedException e) {
-            Log.e("ThreadError", Arrays.toString(e.getStackTrace()));
-        }
-        return returnList;
-    }
-    public List<String> findTypefromtransactionsspan(String UserName, String starttime,String overtime) throws SQLException {
-        List<String> returnList = new ArrayList<>();
-        ResultSet res;
-        String type;
-        try {
-
-            db = new DatabaseQuery(
-                    "select distinct type " +
-                            "from transactions,user_info  " +
-                            "where in_or_out = '收入' and name='" +
-                            UserName +
-                            "' and transaction_time between '" +
-                            starttime +
-                            "' and '" +
-                            overtime +
-                            "'");
+                    "select distinct type from transactions  where in_or_out = '支出'");
             db.start();
             db.join();
             res = db.getResultSet();
@@ -121,7 +90,7 @@ public class AddIncomeDAO {
         try {
 
             db = new DatabaseQuery(
-                    "select type,sum(amount) as amount from transactions where in_or_out ='收入' group by type");
+                    "select type,sum(amount) as amount from transactions where in_or_out ='支出' group by type");
             db.start();
             db.join();
             res = db.getResultSet();
@@ -145,13 +114,44 @@ public class AddIncomeDAO {
         try {
 
             db = new DatabaseQuery(
-                    "select distinct name from transactions,user_info  where in_or_out = '收入' and user_info.ID=transactions.user_id");
+                    "select distinct name from transactions,user_info  where in_or_out = '支出' and user_info.ID=transactions.user_id");
             db.start();
             db.join();
             res = db.getResultSet();
             while (res.next()) {
                 username = res.getString("name");
                 returnList.add(username);
+            }
+            res.close();
+        } catch (SQLException e) {
+            Log.e("SqlError", Arrays.toString(e.getStackTrace()));
+        } catch (InterruptedException e) {
+            Log.e("ThreadError", Arrays.toString(e.getStackTrace()));
+        }
+        return returnList;
+    }
+    public List<String> findTypefromtransactionsspan(String UserName, String starttime,String overtime) throws SQLException {
+        List<String> returnList = new ArrayList<>();
+        ResultSet res;
+        String type;
+        try {
+
+            db = new DatabaseQuery(
+                    "select distinct type " +
+                            "from transactions,user_info  " +
+                            "where in_or_out = '支出' and name='" +
+                            UserName +
+                            "' and transaction_time between '" +
+                            starttime +
+                            "' and '" +
+                            overtime +
+                            "'");
+            db.start();
+            db.join();
+            res = db.getResultSet();
+            while (res.next()) {
+                type = res.getString("type");
+                returnList.add(type);
             }
             res.close();
         } catch (SQLException e) {
@@ -170,7 +170,7 @@ public class AddIncomeDAO {
         try {
 
             db = new DatabaseQuery(
-                    "select name,sum(amount) as amount from transactions,user_info where in_or_out ='收入' and transactions.user_id=user_info.ID  group by name");
+                    "select name,sum(amount) as amount from transactions,user_info where in_or_out ='支出' and transactions.user_id=user_info.ID  group by name");
             db.start();
             db.join();
             res = db.getResultSet();
@@ -187,7 +187,7 @@ public class AddIncomeDAO {
         }
         return map;
     }
-    public Map<String,Float> FindSpanTypeMoney(String UserName, String starttime,String overtime) throws SQLException {
+    public Map<String,Float> FindSpanTypeMoney(String UserName, String starttime, String overtime) throws SQLException {
 //        List<String> returnList = new ArrayList<>();
         ResultSet res;
         String type;
@@ -198,12 +198,12 @@ public class AddIncomeDAO {
             db = new DatabaseQuery(
                     "select type,sum(amount) as amount " +
                             "from transactions,user_info " +
-                            "where in_or_out ='收入' and name='" +UserName+
+                            "where in_or_out ='支出' and name='" +UserName+
                             "' and transaction_time between '" +
                             starttime +
                             "' " +
                             "and '" +
-                            overtime +
+                             overtime +
                             "' group by type");
             db.start();
             db.join();

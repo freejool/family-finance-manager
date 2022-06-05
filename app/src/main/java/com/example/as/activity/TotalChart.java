@@ -1,4 +1,8 @@
 package com.example.as.activity;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import android.app.Activity;
@@ -10,10 +14,13 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 
 import com.example.as.R;
+import com.example.as.dao.AddIncomeDAO;
+import com.example.as.dao.AddPayDAO;
 import com.example.as.dao.InaccountDAO;
 import com.example.as.dao.OutaccountDAO;
 
@@ -24,9 +31,12 @@ public class TotalChart extends Activity {
 	private final int OFFSET = 15;	//间距
 	private final int x =70;	//起点x
 	private final int y=329;	//终点y
-	private final int height=5200;	//高度
+	private final int height=200;	//高度
 	String[] type=null;		//金额的类型
 	private String passType="";	//记录是收入信息还是支出信息
+	List<String> typeList = new ArrayList<>();//记录收入类型或者支出类型
+	AddIncomeDAO addincomeDAO = new AddIncomeDAO();
+	AddPayDAO addPayDAO =new AddPayDAO();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -34,12 +44,23 @@ public class TotalChart extends Activity {
 		Intent intent=getIntent();		//获取Intent对象
 		Bundle bundle=intent.getExtras();		//获取传递的数据包
 		passType=bundle.getString("passType");
-		Resources res=getResources();	//获取Resources对象
+
+//		Resources res=getResources();	//获取Resources对象
+
 		if("outinfo".equals(passType)){
-			type=res.getStringArray(R.array.outtype);	//获取支出类型数组
-			
+			try {
+				typeList = addPayDAO.findTypefromtransactions();
+			} catch (SQLException e) {
+				Log.e("SQL error", Arrays.toString(e.getStackTrace()));
+			}
+			type = typeList.toArray(new String[typeList.size()]);
 		}else if("ininfo".equals(passType)){
-			type=res.getStringArray(R.array.intype);	//获取收入类型数组
+			try {
+				typeList = addincomeDAO.findTypefromtransactions() ;
+			} catch (SQLException e) {
+				Log.e("SQL error", Arrays.toString(e.getStackTrace()));
+			}
+			type = typeList.toArray(new String[typeList.size()]);
 		}
 		
 		
@@ -94,9 +115,9 @@ public class TotalChart extends Activity {
 			paint.setTextSize(21);	//设置字体大小
 			/******************绘制标题*********************************/
 			if("outinfo".equals(passType)){
-				canvas.drawText("个人理财通的支出统计图", 40,55, paint);	//绘制标题
+				canvas.drawText("家庭理财通的支出统计图", 40,55, paint);	//绘制标题
 			}else if("ininfo".equals(passType)){
-				canvas.drawText("个人理财通的收入统计图", 40,55, paint);	//绘制标题
+				canvas.drawText("家庭理财通的收入统计图", 40,55, paint);	//绘制标题
 			}	
 			/***********************************************************/
 			paint.setTextSize(16);	//设置字体大小
@@ -123,11 +144,22 @@ public class TotalChart extends Activity {
 		Map mapMoney=null;
 		System.out.println(flagType);
 		if("ininfo".equals(flagType)){
-			InaccountDAO inaccountinfo = new InaccountDAO(TotalChart.this);// 创建TotalChart对象
-			mapMoney=inaccountinfo.getTotal();  //获取收入汇总信息			
+//			InaccountDAO inaccountinfo = new InaccountDAO(TotalChart.this);// 创建TotalChart对象
+//			mapMoney=inaccountinfo.getTotal();  //获取收入汇总信息
+			try {
+				mapMoney = addincomeDAO.FindTypeMoney();
+			} catch (SQLException e) {
+				Log.e("SQL error", Arrays.toString(e.getStackTrace()));
+			}
+
 		}else if("outinfo".equals(flagType)){
-			OutaccountDAO outaccountinfo = new OutaccountDAO(TotalChart.this);// 创建TotalChart对象
-			mapMoney=outaccountinfo.getTotal();	//获取支出汇总信息
+//			OutaccountDAO outaccountinfo = new OutaccountDAO(TotalChart.this);// 创建TotalChart对象
+//			mapMoney=outaccountinfo.getTotal();	//获取支出汇总信息
+			try {
+				mapMoney = addPayDAO.FindTypeMoney();
+			} catch (SQLException e) {
+				Log.e("SQL error", Arrays.toString(e.getStackTrace()));
+			}
 		}	
 		int size=type.length;
 		float[] money1=new float[size];

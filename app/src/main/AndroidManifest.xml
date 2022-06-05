@@ -34,7 +34,15 @@
         <activity
             android:name="com.example.as.activity.Showinfo"
             android:label="@string/showinfo" />
-
+        <activity
+            android:name="com.example.as.activity.StatisticsTransactions"
+            android:label="@string/statistics_transactions" />
+        <activity
+            android:name="com.example.as.activity.InOrOut"
+            android:label="@string/InOrOut" />
+        <activity
+            android:name="com.example.as.activity.TotalChartTest"
+            android:label="@string/TotalChart" />
         <activity
             android:name="com.example.as.activity.Sysset"
             android:label="@string/sysset" />
@@ -53,8 +61,15 @@
         <activity
             android:name="com.example.as.activity.TotalChart"
             android:label="@string/chart" />
+        <activity
+            android:name="com.example.as.activity.user_span"
+            android:label="@string/user_span" />
+        <activity
+            android:name="com.example.as.activity.TotalChartspan"
+            android:label="@string/chart" />
         <activity android:name=".activity.TransTypeModify"
             android:label="收支类型"/>
+
     </application>
 
 </manifest>

@@ -11,13 +11,14 @@
 			android:layout_weight="0.06">
 		<RelativeLayout android:layout_height="wrap_content" 
 			android:layout_width="match_parent">
-		<Button android:text="支出汇总" 
-			android:id="@+id/btnoutinfo"
-			android:layout_width="wrap_content" 
-			android:layout_height="wrap_content"
-			android:textSize="20dp"
-			android:textColor="#8C6931"
-		/>
+
+			<Button
+				android:id="@+id/btnoutinfo"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="支出汇总"
+				android:textColor="#8C6931"
+				android:textSize="20dp" />
 		<Button android:text="收入汇总" 
 			android:id="@+id/btnininfo"
 			android:layout_width="wrap_content" 

@@ -1,0 +1,157 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:id="@+id/initem"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="top"
+    android:minWidth="500dp"
+    android:minHeight="700dp"
+    android:orientation="vertical">
+
+
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/padding_s"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/user_name_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_s"
+            android:width="@dimen/input_label_width"
+            android:padding="@dimen/padding_s"
+            android:text="@string/username"
+            android:textSize="@dimen/text_s" />
+
+        <EditText
+            android:text="Jack"
+            android:id="@+id/username_edittext"
+            android:layout_width="@dimen/input_box_width"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_s"
+            android:hint="Jack"
+            android:maxLength="9"
+            android:padding="@dimen/padding_s" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/padding_s"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/type_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_s"
+            android:padding="@dimen/padding_s"
+            android:text="收支类型："
+            android:textSize="@dimen/text_s" />
+
+        <Spinner
+            android:id="@+id/in_or_out_spinner"
+            android:layout_width="@dimen/input_box_width"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_s"
+
+            android:entries="@array/in_or_out"
+            android:padding="@dimen/padding_s" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/padding_s"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/start_time_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_s"
+            android:padding="@dimen/padding_s"
+            android:text="起始时间："
+            android:textSize="@dimen/text_s" />
+
+
+        <EditText
+            android:id="@+id/start_time"
+            android:layout_width="@dimen/input_box_width"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_s"
+            android:hint="2022-06-03 21:00:00"
+            android:text="2021-06-03 21:00:00"
+            android:padding="@dimen/padding_s" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/padding_s"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/over_time_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_s"
+            android:padding="@dimen/padding_s"
+            android:text="终止时间："
+            android:textSize="@dimen/text_s" />
+
+
+        <EditText
+            android:id="@+id/over_time"
+            android:layout_width="@dimen/input_box_width"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_s"
+            android:hint="2022-06-03 21:00:00"
+            android:text="2022-06-03 21:00:00"
+            android:padding="@dimen/padding_s" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="@dimen/margin_s"
+            android:gravity="end"
+            android:padding="@dimen/padding_s">
+
+
+            <Button
+                android:id="@+id/cancel_button"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_s"
+                android:padding="@dimen/padding_s"
+                android:text="@string/cancel" />
+
+            <Button
+                android:id="@+id/save_button"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_s"
+                android:padding="@dimen/padding_s"
+                android:text="@string/confirm" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

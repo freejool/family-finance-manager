@@ -33,8 +33,8 @@ public class MainActivity extends FragmentActivity {
                 Intent intent = null;// 创建Intent对象
                 switch (position) {
                     case 0:
-                        intent = new Intent(MainActivity.this, AddOutaccount.class);// 使用AddOutaccount窗口初始化Intent
-                        startActivity(intent);// 打开AddOutaccount
+                        DialogAddPay dialogaddpay = new DialogAddPay();
+                        dialogaddpay.show(MainActivity.this.getSupportFragmentManager(), "register");
                         break;
                     case 1:
                         DialogAddIncome dialogaddincome = new DialogAddIncome();
@@ -49,7 +49,7 @@ public class MainActivity extends FragmentActivity {
                         startActivity(intent);// 打开Inaccountinfo
                         break;
                     case 4:
-                        intent = new Intent(MainActivity.this, Showinfo.class);// 使用Showinfo窗口初始化Intent
+                        intent = new Intent(MainActivity.this, StatisticsTransactions.class);// 使用Showinfo窗口初始化Intent
                         startActivity(intent);// 打开Showinfo
                         break;
                     case 5:
