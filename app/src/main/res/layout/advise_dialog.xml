@@ -54,6 +54,44 @@
                 android:padding="@dimen/padding_s"
                 android:textColor="@color/white" />
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/padding_s"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_s"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:padding="@dimen/padding_s"
+                android:text="投资最高收益："
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_s" />
+
+            <TextView
+                android:id="@+id/max_bonus_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_s"
+                android:layout_weight="1"
+                android:maxLength="9"
+                android:padding="@dimen/padding_s"
+                android:textColor="@color/white" />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/advise_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:layout_margin="@dimen/margin_s"
+            android:textSize="@dimen/text_s"
+            android:padding="@dimen/padding_s"
+            android:gravity="center"
+            android:text="1"/>
 
 
         <LinearLayout

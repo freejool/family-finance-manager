@@ -17,7 +17,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:padding="@dimen/padding_s"
-            android:text="origin"
+            android:text="买入价格"
             android:textColor="@color/white"
             android:textSize="@dimen/text_s" />
 
@@ -29,7 +29,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:padding="@dimen/padding_s"
-            android:text="bonus"
+            android:text="收益"
             android:textColor="@color/white"
 
             android:textSize="@dimen/text_s" />
@@ -42,7 +42,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:padding="@dimen/padding_s"
-            android:text="duration"
+            android:text="持有时长(天)"
             android:textColor="@color/white"
             android:textSize="@dimen/text_s" />
     </LinearLayout>
@@ -53,13 +53,26 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/margin_s" />
 
-    <Button
-        android:id="@+id/investment_advice_button"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:layout_margin="@dimen/margin_s"
-        android:text="@string/investment_advice" />
+        android:gravity="end">
+
+        <Button
+            android:id="@+id/family_stats"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_s"
+            android:text="家庭投资收益" />
+
+        <Button
+            android:id="@+id/investment_advice_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_s"
+            android:text="@string/investment_advice" />
+
+    </LinearLayout>
 
 
 </LinearLayout>

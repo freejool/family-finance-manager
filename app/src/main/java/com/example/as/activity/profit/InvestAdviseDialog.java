@@ -35,7 +35,10 @@ public class InvestAdviseDialog extends DialogFragment {
 
     List<UserProfit> userProfits;
     TextView ROITextview;
+    TextView maxBonusTextview;
+    TextView adviseTextview;
     Button confirmButton;
+    double maxBonus;
 
     @Nullable
     @Override
@@ -44,6 +47,10 @@ public class InvestAdviseDialog extends DialogFragment {
 
         ROITextview = view.findViewById(R.id.roi_text);
         confirmButton = view.findViewById(R.id.confirm_button);
+        adviseTextview = view.findViewById(R.id.advise_textview);
+        maxBonus = ((Profit) getActivity()).maxBonus;
+        maxBonusTextview = view.findViewById(R.id.max_bonus_text);
+
 
         userProfits = ((Profit) getActivity()).getUserProfits();
         assert userProfits != null;
@@ -59,6 +66,21 @@ public class InvestAdviseDialog extends DialogFragment {
         ROI = bonusTotal / originTotal;
         ROITextview.setText(String.format(Locale.getDefault(), "%.2f", ROI));
 
+
+        maxBonusTextview.setText(String.valueOf(maxBonus));
+
+        String advise;
+        if (ROI > 0.5) {
+            advise = "你真牛，投资回报率超过了全国99.9%的韭菜";
+        } else if (ROI > 0) {
+            advise = "继续努力，投资回报率超过了全国99%的韭菜";
+        } else if (maxBonus > 0) {
+            advise = "已经很不错了，至少你还有正收益的股票";
+        } else {
+            advise = "收手吧阿祖，再这么下去迟早药丸";
+        }
+
+        adviseTextview.setText(advise);
 
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override

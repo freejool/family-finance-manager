@@ -2,17 +2,26 @@ package com.example.as.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.fragment.app.FragmentActivity;
 
 import com.example.as.R;
 import com.example.as.activity.modify_trans_type.TransTypeModify;
 import com.example.as.activity.profit.Profit;
+import com.example.as.activity.profit.UserProfit;
+import com.example.as.dao.CommonDAO;
+import com.example.as.database.DatabaseQuery;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Arrays;
 
 
 public class MainActivity extends FragmentActivity {
@@ -25,6 +34,8 @@ public class MainActivity extends FragmentActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);// 设置布局文件
+
+        init();
 
         gvInfo = findViewById(R.id.gv_info);// 获取布局文件中的gvInfo组件
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, titles);// 创建pictureAdapter对象
@@ -77,4 +88,21 @@ public class MainActivity extends FragmentActivity {
             }
         });
     }
+    private void init(){
+        DatabaseQuery db;
+        ResultSet rs;
+        try {
+            String sql = "exec p_gen_v_max_stock_bonus_of_all_users";
+            db = new DatabaseQuery(sql);
+            db.start();
+            db.join();
+//        } catch (SQLException e) {
+//            Log.e("SQL", Arrays.toString(e.getStackTrace()));
+//            Toast.makeText(getApplicationContext(), Arrays.toString(e.getStackTrace()), Toast.LENGTH_LONG).show();
+        } catch (InterruptedException e) {
+            Log.e("Thread", Arrays.toString(e.getStackTrace()));
+            Toast.makeText(getApplicationContext(), Arrays.toString(e.getStackTrace()), Toast.LENGTH_LONG).show();
+        }
+    }
+
 }

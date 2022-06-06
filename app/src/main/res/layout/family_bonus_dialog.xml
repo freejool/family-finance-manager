@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:minWidth="500dp"
+    android:minHeight="700dp"
+    android:orientation="vertical"
+    android:gravity="top">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_s"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="@dimen/padding_s"
+        android:text="家庭投资收益"
+        android:textSize="@dimen/text_l" />
+
+    <ListView
+        android:id="@+id/bonus_listview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_s"
+        android:layout_weight="1"
+        android:padding="@dimen/padding_s" />
+
+    <Button
+        android:id="@+id/go_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_margin="@dimen/margin_s"
+        android:text="返回" />
+</LinearLayout>
