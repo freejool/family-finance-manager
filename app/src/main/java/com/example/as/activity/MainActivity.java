@@ -15,12 +15,9 @@ import androidx.fragment.app.FragmentActivity;
 import com.example.as.R;
 import com.example.as.activity.modify_trans_type.TransTypeModify;
 import com.example.as.activity.profit.Profit;
-import com.example.as.activity.profit.UserProfit;
-import com.example.as.dao.CommonDAO;
 import com.example.as.database.DatabaseQuery;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Arrays;
 
 
@@ -28,7 +25,7 @@ public class MainActivity extends FragmentActivity {
     ListView gvInfo;// 创建GridView对象
     // 定义字符串数组，存储系统功能
     String[] titles = new String[]{"新增支出", "新增收入", "我的支出", "我的收入",
-            "收支分析", "系统设置", "投资收益", "帮助", "退出", "收支类型"};
+            "收支分析", "系统设置", "投资收益", "收支类型", "帮助", "退出"};
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,11 +43,11 @@ public class MainActivity extends FragmentActivity {
                 Intent intent = null;// 创建Intent对象
                 switch (position) {
                     case 0:
-                        DialogAddPay dialogaddpay = new DialogAddPay();
-                        dialogaddpay.show(MainActivity.this.getSupportFragmentManager(), "register");
+                        AddOutcomeDialog dialogaddpay = new AddOutcomeDialog();
+                        dialogaddpay.show(MainActivity.this.getSupportFragmentManager(), "addpay");
                         break;
                     case 1:
-                        DialogAddIncome dialogaddincome = new DialogAddIncome();
+                        AddIncomeDialog dialogaddincome = new AddIncomeDialog();
                         dialogaddincome.show(MainActivity.this.getSupportFragmentManager(), "register");
                         break;
                     case 2:
@@ -88,7 +85,8 @@ public class MainActivity extends FragmentActivity {
             }
         });
     }
-    private void init(){
+
+    private void init() {
         DatabaseQuery db;
         ResultSet rs;
         try {

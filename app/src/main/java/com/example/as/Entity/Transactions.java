@@ -19,7 +19,7 @@ public class Transactions extends Row //收支记录表实体类
     @Col(order = 2)
     public CanBeRef<String> type;
     @Col(order = 3)
-    public CanBeRef<Float> amount;
+    public CanBeRef<Double> amount;
     @Col(order = 4)
     public CanBeRef<String> in_or_out;
     @Col(order = 5, col_name = "transaction_time")
@@ -35,11 +35,12 @@ public class Transactions extends Row //收支记录表实体类
     }
 
     public Transactions() {
+        super();
         tableName = "transactions";
         ID = new CanBeRef<>(DBCatcher.intCatcher, DBTransfer.intTransfer);
         user_id = new CanBeRef<>(DBCatcher.intCatcher, DBTransfer.intTransfer);
         type = new CanBeRef<>(DBCatcher.stringCatcher, DBTransfer.stringTransfer);
-        amount = new CanBeRef<>(DBCatcher.floatCatcher, DBTransfer.floatTransfer);
+        amount = new CanBeRef<>(DBCatcher.doubleCatcher, DBTransfer.doubleTransfer);
         in_or_out = new CanBeRef<>(DBCatcher.stringCatcher, DBTransfer.stringTransfer);
         Transaction_time = new CanBeRef<>(DBCatcher.timeCatcher, DBTransfer.timeTransfer);
         note = new CanBeRef<>(DBCatcher.stringCatcher, DBTransfer.stringTransfer);
