@@ -28,14 +28,16 @@ public class FamilyBonusDialog extends DialogFragment {
         bonuses = view.findViewById(R.id.bonus_listview);
         List<FamilyBonus> familyBonuses = ((Profit) getActivity()).familyBonuses;
         List<String> strFamilyBonuses = new ArrayList<>();
+        int idx = 1;
         for (FamilyBonus f : familyBonuses) {
-            strFamilyBonuses.add(f.toString());
+            strFamilyBonuses.add(idx + "  " + f.toString());
+            idx += 1;
         }
 
         ArrayAdapter<String> familyBonusAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, strFamilyBonuses);
         bonuses.setAdapter(familyBonusAdapter);
 
-        goBack=view.findViewById(R.id.go_back);
+        goBack = view.findViewById(R.id.go_back);
         goBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

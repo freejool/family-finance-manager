@@ -123,7 +123,7 @@ public class Profit extends FragmentActivity {
 
         familyBonuses = new ArrayList<>();
         try {
-            String sql = "select * from family_bonus";
+            String sql = "select * from family_bonus order by bonus desc";
             db = new DatabaseQuery(sql);
             db.start();
             db.join();
@@ -165,7 +165,7 @@ public class Profit extends FragmentActivity {
         DatabaseQuery db;
         ResultSet rs;
         try {
-            String sql = "exec p_gen_v_max_stock_bonus_of_all_users";
+            String sql = "exec p_gen_v_max_invest_bonus_of_all_users";
             db = new DatabaseQuery(sql);
             db.start();
             db.join();
