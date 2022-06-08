@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.fragment.app.FragmentActivity;
 
 import com.example.as.R;
+import com.example.as.activity.debt.Debt;
 import com.example.as.activity.modify_trans_type.TransTypeModify;
 import com.example.as.activity.profit.Profit;
 import com.example.as.database.DatabaseQuery;
@@ -25,7 +26,7 @@ public class MainActivity extends FragmentActivity {
     ListView gvInfo;// 创建GridView对象
     // 定义字符串数组，存储系统功能
     String[] titles = new String[]{"新增支出", "新增收入", "我的支出", "我的收入",
-            "收支分析", "系统设置", "投资收益", "收支类型", "帮助", "退出"};
+            "收支分析", "系统设置", "投资收益", "收支类型","债务", "帮助", "退出"};
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -75,10 +76,14 @@ public class MainActivity extends FragmentActivity {
                         startActivity(intent);
                         break;
                     case 8:
+                        intent = new Intent(MainActivity.this, Debt.class); // 债务
+                        startActivity(intent);
+                        break;
+                    case 9:
                         intent = new Intent(MainActivity.this, Help.class);// 使用Help窗口初始化Intent
                         startActivity(intent);// 打开Help
                         break;
-                    case 9:
+                    case 10:
                         finish();// 关闭当前Activity
                         break;
                 }

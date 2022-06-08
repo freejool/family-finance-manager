@@ -47,6 +47,9 @@
             android:name="com.example.as.activity.profit.Profit"
             android:label="@string/profit" />
         <activity
+            android:name="com.example.as.activity.debt.Debt"
+            android:label="债务" />
+        <activity
             android:name="com.example.as.activity.InfoManage"
             android:label="@string/infomanage" />
         <activity
