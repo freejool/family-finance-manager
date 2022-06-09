@@ -8,19 +8,19 @@ import java.sql.ResultSet;
 
 public class Account extends Row {
     @Col(order = 0)
-    private final CanBeRef<Integer> id;
+    public CanBeRef<Integer> id;
 
     @Col(order = 1)
-    private final CanBeRef<String> type;
+    public CanBeRef<String> type;
 
     @Col(order = 2)
-    private final CanBeRef<Integer> user_id;
+    public CanBeRef<Integer> user_id;
 
     @Col(order = 3)
-    private final CanBeRef<Double> balance;
+    public CanBeRef<Double> balance;
 
     @Col(order = 4)
-    private final CanBeRef<String> note;
+    public CanBeRef<String> note;
 
     static {
         initRow(Account.class);
@@ -36,7 +36,7 @@ public class Account extends Row {
         Bind();
     }
 
-    public  Account(ResultSet resultSet){
+    public Account(ResultSet resultSet) {
         this();
         setByResultSet(resultSet);
     }

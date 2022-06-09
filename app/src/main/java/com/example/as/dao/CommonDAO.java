@@ -166,6 +166,20 @@ public class CommonDAO<T extends IRow> {
         return -1;
     }
 
+    public void exec(T row, String sql) throws SQLException {
+        try {
+            db = new DatabaseQuery(sql);
+            last_sql_executed = sql;
+            db.start();
+            db.join();
+            if (db.getException() != null) {
+                throw db.getException();
+            }
+        } catch (InterruptedException e) {
+            Log.e("ThreadError", Arrays.toString(e.getStackTrace()));
+        }
+    }
+
 
     public void close() {
         db.close();
