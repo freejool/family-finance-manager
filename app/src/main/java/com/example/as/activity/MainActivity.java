@@ -33,12 +33,10 @@ import java.util.Vector;
 
 
 public class MainActivity extends FragmentActivity {
+    ListView gvInfo;
     TextView balanceTextview;
-    ListView gvInfo;// 创建GridView对象
     Vector<StrFuncPair> name2FuncList;
-    // 定义字符串数组，存储系统功能
-    String[] titles = new String[]{"新增支出", "新增收入", "我的支出", "我的收入",
-            "收支分析", "系统设置", "投资收益", "收支类型", "债务", "用户信息"};
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,7 +45,6 @@ public class MainActivity extends FragmentActivity {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         init();
-
         balanceTextview = findViewById(R.id.balance_textview);
         CommonDAO<Account> dao = new CommonDAO<>();
         Account acc = new Account();
@@ -101,11 +98,6 @@ public class MainActivity extends FragmentActivity {
                     startActivity(intent);
                 }));
         name2FuncList.add
-                (new StrFuncPair("系统设置", () -> {
-                    Intent intent = new Intent(MainActivity.this, Sysset.class);// 使用Sysset窗口初始化Intent
-                    startActivity(intent);// 打开Sysset
-                }));
-        name2FuncList.add
                 (new StrFuncPair("投资收益", () -> {
                     Intent intent = new Intent(MainActivity.this, Profit.class);// 使用Profit窗口初始化Intent
                     startActivity(intent);// 打开Profit
@@ -124,11 +116,6 @@ public class MainActivity extends FragmentActivity {
                 (new StrFuncPair("用户信息", () -> {
                     Intent intent = new Intent(MainActivity.this, VSafeUserInfo.class); // 用户信息
                     startActivity(intent);
-                }));
-        name2FuncList.add
-                (new StrFuncPair("帮助", () -> {
-                    Intent intent = new Intent(MainActivity.this, Help.class);// 使用Help窗口初始化Intent
-                    startActivity(intent);// 打开Help
                 }));
         name2FuncList.add
                 (new StrFuncPair("退出", () -> {
@@ -156,9 +143,6 @@ public class MainActivity extends FragmentActivity {
             db = new DatabaseQuery(sql);
             db.start();
             db.join();
-//        } catch (SQLException e) {
-//            Log.e("SQL", Arrays.toString(e.getStackTrace()));
-//            Toast.makeText(getApplicationContext(), Arrays.toString(e.getStackTrace()), Toast.LENGTH_LONG).show();
         } catch (InterruptedException e) {
             Log.e("Thread", Arrays.toString(e.getStackTrace()));
             Toast.makeText(getApplicationContext(), Arrays.toString(e.getStackTrace()), Toast.LENGTH_LONG).show();
