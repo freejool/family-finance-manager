@@ -6,6 +6,7 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -27,7 +28,7 @@ import java.util.Vector;
  * <p>使用方法：要声明一个与数据库表对接的类型A时，继承此类型，在表示数据库列的成员上使用{@link Col}注解。然后按照如下步骤：
  * (1)在新的类型中使用静态初始化块并且调用{@link Row#initRow(Class)}方法，参数为A.class。
  * (2)在撰写构造函数时，先为{@link Row#tableName}赋表名的值，然后
- * 初始化表示数据库列的成员变量并为其设置抓取器和转换器。最终使用{@link Row#Bind()}方法进行绑定。</p>
+ * 初始化表示数据库列的成员变量并为其设置抓取器和转换器。最终使用{@link Row#Bind(Class<?>)}方法进行绑定。</p>
  *
  * <p>此类已实现基本的从{@link ResultSet}抓取到A的方法{@link Row#setByResultSet(ResultSet)}。
  * 以及从实例转换为数据库所需的values(...)字符串的方法{@link Row#getSqlValues()}。其它功能等待被实现或继承后实现。</p>
@@ -38,10 +39,11 @@ public class Row implements IRow {
 
     public HashMap<String, CanBeRef<?>> str2ObjDict;
     public HashMap<CanBeRef<?>, String> obj2StrDict;
+    public Vector<String> field_columnNameList=new Vector<>();
 
-    protected static HashMap<String, Field> str2FldDict;
-    protected static HashMap<Field, String> fld2StrDict;
-    protected static Vector<String> columnNameList;
+    protected static HashMap<String, Field> str2FldDict=new HashMap<>();
+    protected static HashMap<Field, String> fld2StrDict=new HashMap<>();
+    protected static Vector<String> columnNameList=new Vector<>();
     //表示表名，数据库表和Java类型匹配比较固定的情况下考虑使用反射获取最后一段类名作为表名
     protected static String tableName = "";
 
@@ -55,37 +57,89 @@ public class Row implements IRow {
      * @param clazz 需要被解析的类型
      */
     protected static void initRow(Class<?> clazz) {
-        str2FldDict = new HashMap<>();
-        fld2StrDict = new HashMap<>();
-        columnNameList = new Vector<>();
+//        str2FldDict = new HashMap<>();
+//        fld2StrDict = new HashMap<>();
+//        columnNameList = new Vector<>();
+        HashMap<String, Field> static_str2FldDict = new HashMap<>();
+        HashMap<Field, String> static_fld2StrDict = new HashMap<>();
+        Vector<String> static_columnNameList = new Vector<>();
 
         Field[] declared_fields = clazz.getDeclaredFields();
-        for (Field field : declared_fields) {
+//        try
+//        {
+//            for (Field field : declared_fields)
+//            {
+//                field.setAccessible(true);
+//                if(field.getName()=="str2FldDict"&& Modifier.isStatic(field.getModifiers()))
+//                {
+//                    static_str2FldDict= (HashMap<String, Field>) field.get(null);
+//                }
+//                if(field.getName()=="fld2StrDict"&& Modifier.isStatic(field.getModifiers()))
+//                {
+//                    static_fld2StrDict= (HashMap<Field, String>) field.get(null);
+//                }
+//                if(field.getName()=="columnNameList"&& Modifier.isStatic(field.getModifiers()))
+//                {
+//                    static_columnNameList= (Vector<String>) field.get(null);
+//                }
+//            }
+//        }
+//        catch (IllegalAccessException e)
+//        {
+//            Log.e("Row","寻找类型的静态变量失败");
+//        }
+
+        for (Field field : declared_fields)
+        {
             if (field.isAnnotationPresent(Col.class)) {
                 Col current_col = field.getAnnotation(Col.class);
                 if (current_col.col_name().isEmpty()) {
-                    str2FldDict.put(field.getName(), field);
-                    fld2StrDict.put(field, field.getName());
-                    columnNameList.add(field.getName());
+                    static_str2FldDict.put(field.getName(), field);
+                    static_fld2StrDict.put(field, field.getName());
+                    static_columnNameList.add(field.getName());
                 } else {
-                    str2FldDict.put(current_col.col_name(), field);
-                    fld2StrDict.put(field, current_col.col_name());
-                    columnNameList.add(current_col.col_name());
+                    static_str2FldDict.put(current_col.col_name(), field);
+                    static_fld2StrDict.put(field, current_col.col_name());
+                    static_columnNameList.add(current_col.col_name());
                 }
             }
         }
 
-        columnNameList.sort(Comparator.comparingInt(
+        static_columnNameList.sort(Comparator.comparingInt(
                 m ->
                 {
                     try {
-                        return str2FldDict.get(m).getAnnotation(Col.class).order();
+                        return static_str2FldDict.get(m).getAnnotation(Col.class).order();
                     } catch (NullPointerException e) {
                         Log.e("Row", "对列名排序时出现问题");
                     }
                     return -1;
                 }
         ));
+
+        try
+        {
+            for (Field field : declared_fields)
+            {
+                field.setAccessible(true);
+                if(field.getName()=="str2FldDict"&& Modifier.isStatic(field.getModifiers()))
+                {
+                    field.set(null,static_str2FldDict);
+                }
+                if(field.getName()=="fld2StrDict"&& Modifier.isStatic(field.getModifiers()))
+                {
+                    field.set(null,static_fld2StrDict);
+                }
+                if(field.getName()=="columnNameList"&& Modifier.isStatic(field.getModifiers()))
+                {
+                    Log.i("Row",static_columnNameList.toString());
+                    field.set(null,static_columnNameList);
+                }
+            }
+        } catch (IllegalAccessException e) {
+            Log.e("Row","设置类型的静态变量失败");
+            e.printStackTrace();
+        }
     }
 
     public Row() {
@@ -94,8 +148,38 @@ public class Row implements IRow {
     }
 
     //将变量名称与数据库列名称绑定
-    public void Bind() {
-        for (Map.Entry<String, Field> entry : str2FldDict.entrySet()) {
+    public void Bind(Class<?> clazz) {
+        HashMap<String, Field> static_str2FldDict = null;
+        HashMap<Field, String> static_fld2StrDict =null;
+        Vector<String> static_columnNameList =null;
+
+        Field[] declared_fields = clazz.getDeclaredFields();
+        try
+        {
+            for (Field field : declared_fields)
+            {
+                field.setAccessible(true);
+                if(field.getName()=="str2FldDict"&& Modifier.isStatic(field.getModifiers()))
+                {
+                    static_str2FldDict= (HashMap<String, Field>) field.get(null);
+                }
+                if(field.getName()=="fld2StrDict"&& Modifier.isStatic(field.getModifiers()))
+                {
+                    static_fld2StrDict= (HashMap<Field, String>) field.get(null);
+                }
+                if(field.getName()=="columnNameList"&& Modifier.isStatic(field.getModifiers()))
+                {
+                    static_columnNameList= (Vector<String>) field.get(null);
+                }
+            }
+        }
+        catch (IllegalAccessException e)
+        {
+            Log.e("Row","寻找类型的静态变量失败");
+        }
+
+
+        for (Map.Entry<String, Field> entry : static_str2FldDict.entrySet()) {
             try {
                 //Log.e("SQL","加入了一个对象"+entry.getKey()+entry.getValue().getType());
                 str2ObjDict.put(entry.getKey(), (CanBeRef<?>) entry.getValue().get(this));
@@ -103,6 +187,7 @@ public class Row implements IRow {
             } catch (IllegalAccessException e) {
             }
         }
+        field_columnNameList=static_columnNameList;
     }
 
     public Row(ResultSet resultSet) {
@@ -120,7 +205,7 @@ public class Row implements IRow {
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append(tableName).append('{');
-        for (String column_name : columnNameList) {
+        for (String column_name : field_columnNameList) {
             builder.append(column_name).append('=')
                     .append(Objects.requireNonNull(str2ObjDict.get(column_name)))
                     .append(',');
@@ -162,7 +247,7 @@ public class Row implements IRow {
             } else {
                 obj_set = new HashSet<>();
             }
-            for (String column_name : columnNameList) {
+            for (String column_name : field_columnNameList) {
                 CanBeRef<?> obj = Objects.requireNonNull(str2ObjDict.get(column_name));
                 if (obj_set.contains(obj))
                     continue;
@@ -174,6 +259,7 @@ public class Row implements IRow {
         if (any_append)
             builder.deleteCharAt(builder.length() - 1);
         builder.append(')');
+        Log.i("SQL",builder.toString());
         return builder.toString();
     }
 
@@ -212,7 +298,7 @@ public class Row implements IRow {
             } else {
                 obj_set = new HashSet<>();
             }
-            for (String column_name : columnNameList) {
+            for (String column_name : field_columnNameList) {
                 CanBeRef<?> obj = Objects.requireNonNull(str2ObjDict.get(column_name));
                 if (obj_set.contains(obj))
                     continue;
@@ -225,6 +311,7 @@ public class Row implements IRow {
         if (any_append)
             builder.deleteCharAt(builder.length() - 1);
         builder.append(')');
+        Log.i("SQL",builder.toString());
         return builder.toString();
     }
 

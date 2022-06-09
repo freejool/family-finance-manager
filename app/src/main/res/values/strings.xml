@@ -47,6 +47,11 @@
     <string name="trans_in_button_hint">只看收入</string>
     <string name="trans_out_button_hint">只看支出</string>
     <string name="is_in_or_out_drop_down">收支：</string>
+    <string name="trans_add">新增收支</string>
+    <string name="trans_add_money_hint">0.00</string>
+    <string name="trans_add_money_title">金额：</string>
+    <string name="trans_add_type_title">类别：</string>
+    <string name="trans_add_note_title">备注：</string>
     <string name="investment_advice">显示投资建议</string>
     <string name="investment_advise">投资建议</string>
     <string name="new_pay">新增支出</string>

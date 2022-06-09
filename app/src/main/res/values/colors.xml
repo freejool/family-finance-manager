@@ -17,4 +17,6 @@
     <color name="transaction_out_char">#FFD1D1</color>
     <color name="transaction_ud_bk">#223F53</color>
     <color name="transaction_ud_char">#AEF8FF</color>
+    <color name="common_alert">#FFF300</color>
+    <color name="stressed_text">#ABD3FF</color>
 </resources>

@@ -1,11 +1,16 @@
 package com.example.as.Entity;
 
+import android.util.Log;
+
 import com.example.as.database.CanBeRef;
 import com.example.as.database.Col;
 import com.example.as.database.Row;
 
+import java.lang.reflect.Field;
 import java.sql.ResultSet;
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Vector;
 
 public class UserInfo extends Row// 密码数据表实体类
 {
@@ -33,6 +38,16 @@ public class UserInfo extends Row// 密码数据表实体类
     @Col(order = 7)
     public CanBeRef<Integer> isAdmin;
 
+    protected static HashMap<String, Field> str2FldDict=new HashMap<>();
+    protected static HashMap<Field, String> fld2StrDict=new HashMap<>();
+    protected static Vector<String> columnNameList=new Vector<>();
+    //表示表名，数据库表和Java类型匹配比较固定的情况下考虑使用反射获取最后一段类名作为表名
+    protected static String tableName = "";
+    @Override
+    public String getTableName() {
+        return tableName;
+    }
+
     static {
         initRow(UserInfo.class);
     }
@@ -48,7 +63,8 @@ public class UserInfo extends Row// 密码数据表实体类
         create_date = new CanBeRef<>(DBCatcher.timeCatcher, DBTransfer.timeTransfer);
         isAdmin = new CanBeRef<>(DBCatcher.intCatcher, DBTransfer.intTransfer);
 
-        Bind();
+        Bind(UserInfo.class);
+        //Log.i("Sql",get)+"oooo");
     }
 
     public UserInfo(ResultSet rs) {

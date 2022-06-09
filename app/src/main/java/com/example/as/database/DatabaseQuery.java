@@ -31,6 +31,7 @@ public class DatabaseQuery extends Thread {
             //获取连接的全局实例
             connection = AppDatabase.getInstance();
             statement = connection.createStatement();
+            Log.i("SQL",sql);
             statement.execute(sql);
             this.resultSet = statement.getResultSet();
         } catch (SQLException e) {

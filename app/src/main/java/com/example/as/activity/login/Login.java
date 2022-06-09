@@ -75,6 +75,7 @@ public class Login extends FragmentActivity {
                 try {
                     passwordCnt = dao.count(new UserInfo());
                 } catch (SQLException e) {
+                    e.printStackTrace();
                     Toast.makeText(getApplicationContext(),
                             Arrays.toString(e.getStackTrace()), Toast.LENGTH_LONG).show();
                     return;
@@ -101,6 +102,7 @@ public class Login extends FragmentActivity {
                         rs = dao.find(new UserInfo(), "*",
                                 "where name='" + usernameEdittext.getText() + "' and password='" + passwordExittext.getText()+"'");
                     } catch (SQLException e) {
+                        e.printStackTrace();
                         Toast.makeText(getApplicationContext(),
                                 Arrays.toString(e.getStackTrace()), Toast.LENGTH_LONG).show();
                         return;
@@ -109,6 +111,7 @@ public class Login extends FragmentActivity {
                     try {
                         rs.next();
                     } catch (SQLException e) {
+                        e.printStackTrace();
                         Toast.makeText(getApplicationContext(),Arrays.toString(e.getStackTrace()),Toast.LENGTH_LONG).show();
                     }
                     user.setByResultSet(rs);

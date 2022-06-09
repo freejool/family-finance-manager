@@ -4,106 +4,146 @@
     android:id="@+id/initem"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/transaction_ud_bk"
     android:gravity="top"
     android:minWidth="500dp"
     android:minHeight="700dp"
     android:orientation="vertical">
 
 
-
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
         android:layout_gravity="center"
-        android:layout_margin="@dimen/margin_s"
+        android:autoSizeMaxTextSize="60sp"
+        android:autoSizeMinTextSize="10sp"
+        android:autoSizeTextType="uniform"
+        android:background="@color/common_alert"
         android:gravity="center_horizontal"
-        android:paddingBottom="@dimen/padding_s"
-        android:text="@string/new_income"
-        android:textSize="@dimen/text_l" />
+        android:paddingVertical="5dp"
+        android:text="@string/trans_add"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/trans_in_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:autoSizeTextType="uniform"
+            android:background="@color/transaction_in_bk"
+            android:text="+"
+            android:textColor="@color/transaction_in_char" />
+
+        <Button
+            android:id="@+id/trans_out_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:autoSizeTextType="uniform"
+            android:background="@color/transaction_out_bk"
+            android:text="-"
+            android:textColor="@color/transaction_out_char" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
         android:layout_margin="@dimen/padding_s"
         android:gravity="center"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/income_in_money_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_s"
-            android:width="@dimen/input_label_width"
-            android:padding="@dimen/padding_s"
-            android:text="@string/value"
-            android:textSize="@dimen/text_s" />
+            android:layout_width="125dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0"
+            android:gravity="center"
+            android:paddingStart="15dp"
+            android:paddingEnd="0dp"
+            android:text="@string/trans_add_money_title"
+            android:textSize="24sp" />
 
         <EditText
             android:id="@+id/income_money_edittext"
-            android:layout_width="@dimen/input_box_width"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_s"
-            android:hint="0.00"
+            android:layout_weight="1"
+            android:hint="@string/trans_add_money_hint"
             android:inputType="numberDecimal"
             android:maxLength="9"
             android:minHeight="48dp"
-            android:padding="@dimen/padding_s" />
+            android:textSize="24sp" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:layout_margin="@dimen/padding_s"
         android:gravity="center"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/income_type_label"
-            android:layout_width="@dimen/input_label_width"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_s"
-            android:padding="@dimen/padding_s"
-            android:text="类别："
-            android:textSize="@dimen/text_s" />
+            android:layout_width="125dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0"
+            android:gravity="center"
+            android:paddingStart="15dp"
+            android:paddingEnd="0dp"
+            android:text="@string/trans_add_type_title"
+            android:textSize="24sp" />
 
         <Spinner
             android:id="@+id/income_type_spinner"
-            android:layout_width="@dimen/input_box_width"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_s"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
 
 
-            android:minHeight="48dp"
-            android:padding="@dimen/padding_s" />
+            android:layout_marginEnd="20dp"
+            android:layout_weight="1" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:layout_margin="@dimen/padding_s"
         android:gravity="center"
         android:orientation="horizontal">
 
         <TextView
             android:id="@+id/income_note"
-            android:layout_width="@dimen/input_label_width"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_s"
-            android:padding="@dimen/padding_s"
-            android:text="备注："
-            android:textSize="@dimen/text_s" />
+            android:layout_width="125dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0"
+            android:gravity="center"
+            android:paddingStart="15dp"
+            android:paddingEnd="0dp"
+            android:text="@string/trans_add_note_title"
+            android:textSize="24sp" />
 
         <EditText
             android:id="@+id/income_note_edittext"
-            android:layout_width="@dimen/input_box_width"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_s"
-            android:gravity="top"
+            android:layout_weight="1"
+            android:inputType="text"
             android:minHeight="48dp"
-            android:padding="@dimen/padding_s"
-            android:singleLine="false" />
+            android:singleLine="false"
+            android:textSize="24sp" />
     </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -1,5 +1,6 @@
 package com.example.as.database;
 
+import java.lang.reflect.Field;
 import java.sql.ResultSet;
 import java.util.Vector;
 import java.util.HashMap;
@@ -9,6 +10,9 @@ import java.util.HashMap;
  * 它还要实现一些基本的功能
  */
 public interface IRow {
+
+    static HashMap<String, Field> getStr2FldDict(){return null;}
+
     String getTableName();
 
     void setByResultSet(ResultSet resultSet);
