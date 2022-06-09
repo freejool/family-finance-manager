@@ -26,7 +26,7 @@ public class MainActivity extends FragmentActivity {
     ListView gvInfo;// 创建GridView对象
     // 定义字符串数组，存储系统功能
     String[] titles = new String[]{"新增支出", "新增收入", "我的支出", "我的收入",
-            "收支分析", "系统设置", "投资收益", "收支类型","债务", "帮助", "退出"};
+            "收支分析", "系统设置", "投资收益", "收支类型", "债务", "用户信息"};
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -60,8 +60,8 @@ public class MainActivity extends FragmentActivity {
                         startActivity(intent);// 打开Inaccountinfo
                         break;
                     case 4:
-                        intent = new Intent(MainActivity.this, StatisticsTransactions.class);// 使用Showinfo窗口初始化Intent
-                        startActivity(intent);// 打开Showinfo
+                        intent = new Intent(MainActivity.this, StatisticsTransactions.class);// 收支分析
+                        startActivity(intent);
                         break;
                     case 5:
                         intent = new Intent(MainActivity.this, Sysset.class);// 使用Sysset窗口初始化Intent
@@ -80,12 +80,10 @@ public class MainActivity extends FragmentActivity {
                         startActivity(intent);
                         break;
                     case 9:
-                        intent = new Intent(MainActivity.this, Help.class);// 使用Help窗口初始化Intent
-                        startActivity(intent);// 打开Help
+                        intent = new Intent(MainActivity.this, VSafeUserInfo.class); // 用户信息
+                        startActivity(intent);
                         break;
-                    case 10:
-                        finish();// 关闭当前Activity
-                        break;
+
                 }
             }
         });

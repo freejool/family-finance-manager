@@ -1,16 +1,21 @@
 package com.example.as.activity;
 
 import android.content.Intent;
-        import android.os.Bundle;
-        import android.view.View;
-        import android.widget.AdapterView;
-        import android.widget.AdapterView.OnItemClickListener;
-        import android.widget.ArrayAdapter;
-        import android.widget.ListView;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
-        import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentActivity;
 
-        import com.example.as.R;
+import com.example.as.R;
+import com.example.as.dao.CommonDAO;
+import com.example.as.database.DatabaseQuery;
+
+import java.util.Arrays;
 
 
 public class StatisticsTransactions extends FragmentActivity {
@@ -18,6 +23,7 @@ public class StatisticsTransactions extends FragmentActivity {
     // 定义字符串数组，存储系统功能
     String[] titles = new String[]{"分类型统计", "分用户统计", "指定用户和时间段"};
     String strType = "";// 创建字符串，记录是分类型还是分用户
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +36,8 @@ public class StatisticsTransactions extends FragmentActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = null;// 创建Intent对象
+                DatabaseQuery db;
+
                 switch (position) {
                     case 0:
                         strType = "type";// 为strType变量赋值
@@ -44,8 +52,7 @@ public class StatisticsTransactions extends FragmentActivity {
                         startActivity(intent);// 执行Intent，打开相应的Activity
                         break;
                     case 2:
-//                        intent = new Intent(MainActivity.this, Outaccountinfo.class);// 使用Outaccountinfo窗口初始化Intent
-//                        startActivity(intent);// 打开Outaccountinfo
+
                         intent = new Intent(StatisticsTransactions.this, user_span.class);
                         startActivity(intent);// 执行Intent，打开相应的Activity
                         break;

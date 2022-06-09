@@ -20,8 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="com.example.as.activity.MainActivity" />
+        <activity android:name="com.example.as.activity.MainActivity" />
         <activity
             android:name="com.example.as.activity.Outaccountinfo"
             android:label="@string/outaccountinfo" />
@@ -67,9 +66,13 @@
         <activity
             android:name="com.example.as.activity.TotalChartspan"
             android:label="@string/chart" />
-        <activity android:name=".activity.modify_trans_type.TransTypeModify"
-            android:label="收支类型"/>
+        <activity
+            android:name=".activity.modify_trans_type.TransTypeModify"
+            android:label="收支类型" />
 
+        <activity
+            android:name=".activity.VSafeUserInfo"
+            android:label="用户信息" />
     </application>
 
 </manifest>
