@@ -1,6 +1,8 @@
 package com.example.as.activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -8,17 +10,22 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.core.util.Pair;
 import androidx.fragment.app.FragmentActivity;
 
+import com.example.as.Entity.Account;
 import com.example.as.R;
+import com.example.as.activity.debt.Debt;
 import com.example.as.activity.modify_trans_type.TransTypeModify;
 import com.example.as.activity.profit.Profit;
+import com.example.as.dao.CommonDAO;
 import com.example.as.database.DatabaseQuery;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Vector;
 
@@ -28,7 +35,7 @@ public class MainActivity extends FragmentActivity {
     Vector<StrFuncPair> name2FuncList;
     // 定义字符串数组，存储系统功能
     String[] titles = new String[]{"新增支出", "新增收入", "我的支出", "我的收入",
-            "收支分析", "系统设置", "投资收益", "收支类型", "帮助", "退出"};
+            "收支分析", "系统设置", "投资收益", "收支类型", "债务", "用户信息"};
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,6 +44,28 @@ public class MainActivity extends FragmentActivity {
 
         init();
         //TODO:检测转账
+
+        balanceTextview = findViewById(R.id.balance_textview);
+        CommonDAO<Account> dao = new CommonDAO<>();
+        Account acc = new Account();
+        SharedPreferences shd = getApplicationContext().getSharedPreferences("user_info", Context.MODE_PRIVATE);
+        int user_id = shd.getInt("id", -1);
+        assert user_id != -1;
+
+        acc.user_id.value = user_id;
+        acc.type.value = "默认";
+        double balance = 0;
+        try {
+            ResultSet rs;
+            rs = dao.find(acc, "balance", "where type='" + acc.type + "' and user_id=" + acc.user_id);
+            while (rs.next()) {
+                balance = rs.getDouble(1);
+            }
+            balanceTextview.setText(String.format(Locale.getDefault(), "   余额：%.2f", balance));
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
 
         gvInfo = findViewById(R.id.gv_info);// 获取布局文件中的gvInfo组件
         name2FuncList =new Vector<>();
@@ -76,6 +105,16 @@ public class MainActivity extends FragmentActivity {
         name2FuncList.add
                 (new StrFuncPair("收支类型", () -> {
                     Intent intent = new Intent(MainActivity.this, TransTypeModify.class);
+                    startActivity(intent);
+                }));
+        name2FuncList.add
+                (new StrFuncPair("债务", () -> {
+                    Intent intent = new Intent(MainActivity.this, Debt.class); // 债务;
+                    startActivity(intent);
+                }));
+        name2FuncList.add
+                (new StrFuncPair("用户信息", () -> {
+                    intent = new Intent(MainActivity.this, VSafeUserInfo.class); // 用户信息
                     startActivity(intent);
                 }));
         name2FuncList.add

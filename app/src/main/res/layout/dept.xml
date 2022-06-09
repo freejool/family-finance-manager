@@ -1,0 +1,50 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dept_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_s"
+        android:gravity="center"
+        android:padding="@dimen/padding_s"
+        android:text="债务情况"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_l" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_s"
+        android:gravity="center"
+        android:padding="@dimen/padding_s"
+        android:text="类型｜数额｜已还｜到期时间｜状态"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_s" />
+
+    <ListView
+        android:id="@+id/dept_info_listview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_s"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end">
+
+        <Button
+            android:id="@+id/confirm_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_s"
+            android:text="@string/confirm" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

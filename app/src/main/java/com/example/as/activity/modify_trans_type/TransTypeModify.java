@@ -8,30 +8,22 @@ import java.util.List;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupMenu;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.fragment.app.FragmentActivity;
 
 import com.example.as.Entity.TransType;
 import com.example.as.R;
 import com.example.as.dao.CommonDAO;
+import com.example.as.activity.modify_trans_type.NewTransTypeDialog;
 
 public class TransTypeModify extends FragmentActivity {
 
@@ -80,20 +72,32 @@ public class TransTypeModify extends FragmentActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 PopupMenu popupMenu = new PopupMenu(getApplicationContext(), view);
-                popupMenu.getMenuInflater().inflate(R.menu.delete_menu, popupMenu.getMenu());
+                popupMenu.getMenuInflater().inflate(R.menu.modify_delete_menu, popupMenu.getMenu());
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
+
                         if (isAdmin != 1) {
                             Toast.makeText(getApplicationContext(),
                                     "你不是管理员，无法修改收支类型！", Toast.LENGTH_LONG).show();
                         } else {
-                            NameType record = (NameType) parent.getItemAtPosition(position);
-                            try {
-                                transTypeDao.delete(new TransType(), "where ID=" + record.ID);
-                            } catch (SQLException e) {
-                                Log.e("SQL", Arrays.toString(e.getStackTrace()));
-                                Toast.makeText(getApplicationContext(), Arrays.toString(e.getStackTrace()), Toast.LENGTH_LONG).show();
+                            switch (position) {
+                                case 0: //编辑
+                                    ModifyTransTypeDialog modifyTransTypeDialog = new ModifyTransTypeDialog();
+                                    Bundle args = new Bundle();
+                                    args.putInt("ID", transTypes.get(position).ID);
+                                    modifyTransTypeDialog.setArguments(args);
+                                    modifyTransTypeDialog.show(getSupportFragmentManager(), "modifyTransTypeDialog");
+                                    break;
+                                case 1: //删除
+                                    NameType record = (NameType) parent.getItemAtPosition(position);
+                                    try {
+                                        transTypeDao.delete(new TransType(), "where ID=" + record.ID);
+                                    } catch (SQLException e) {
+                                        Log.e("SQL", Arrays.toString(e.getStackTrace()));
+                                        Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_LONG).show();
+                                    }
+                                    break;
                             }
                         }
                         return false;

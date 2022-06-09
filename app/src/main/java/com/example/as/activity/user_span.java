@@ -1,7 +1,9 @@
 package com.example.as.activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,7 +22,9 @@ import androidx.fragment.app.DialogFragment;
 import com.example.as.Entity.Transactions;
 import com.example.as.R;
 import com.example.as.dao.AddIncomeDAO;
+import com.example.as.database.DatabaseQuery;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -55,6 +59,7 @@ public class user_span extends Activity {
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+
                 if (username.getText().toString().equals("")
                         || starttime.getText().toString().equals("")
                         || overtime.getText().toString().equals("")) {
@@ -62,26 +67,53 @@ public class user_span extends Activity {
                             "用户名以及起始终止时间是必填项！", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                DatabaseQuery db;
+                SharedPreferences shd = getSharedPreferences("user_info", Context.MODE_PRIVATE);
+                int user_id = shd.getInt("id", -1);
+
+                try {
+                    String sql = "exec p_income_stats_between_time " +
+                            "@user_id= " + user_id + ", " +
+                            "@timemin='" + starttime.getText().toString() + "', " +
+                            "@timemax='" + overtime.getText().toString() + "' ";
+                    db = new DatabaseQuery(sql);
+                    db.start();
+                    db.join();
+                    if (db.getException() != null) {
+                        Toast.makeText(getApplicationContext(), db.getException().toString(), Toast.LENGTH_LONG).show();
+                    }
+                } catch (InterruptedException e) {
+                    Log.e("ThreadError", Arrays.toString(e.getStackTrace()));
+                }
+                String warning = "";
+                try {
+                    String sql = "select top 1 warn from transaction_warn order by ID desc";
+                    db = new DatabaseQuery(sql);
+                    db.start();
+                    db.join();
+                    if (db.getException() != null) {
+                        Toast.makeText(getApplicationContext(), db.getException().toString(), Toast.LENGTH_LONG).show();
+                    }
+                    ResultSet rs = db.getResultSet();
+                    while (rs.next()) {
+                        warning = rs.getString(1);
+                    }
+
+                } catch (InterruptedException e) {
+                    Log.e("ThreadError", Arrays.toString(e.getStackTrace()));
+                } catch (SQLException e) {
+                    Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_LONG).show();
+                    Log.e("SQL", e.toString());
+                }
+                Toast.makeText(getApplicationContext(), warning, Toast.LENGTH_LONG).show();
+
                 Intent intent = new Intent(user_span.this, TotalChartspan.class);
                 intent.putExtra("username", username.getText().toString());
                 intent.putExtra("starttime", starttime.getText().toString());
                 intent.putExtra("overtime", overtime.getText().toString());
                 intent.putExtra("in_or_out", in_or_out.getSelectedItem().toString());
                 startActivity(intent);
-                // TODO: 2022/6/3  写一个intent打包这些信息传入到画图
-//                newTransaction.setUserId(Integer.parseInt(userId.getText().toString()));
-//                newTransaction.setType(spinType.getSelectedItem().toString());
-//                newTransaction.setInOrOut("收入");
-//                newTransaction.setAmount(Integer.parseInt(money.getText().toString()));
-//                newTransaction.setTransactionTime(LocalDateTime.now());
-//                newTransaction.setNote(note.getText().toString());
-//                try {
-//                    addincomeDAO.addIncome(newTransaction);
-//                    Toast.makeText(getContext(), "保存成功", Toast.LENGTH_LONG).show();
-//                    dismiss();
-//                } catch (SQLException e) {
-//                    Toast.makeText(getContext(), Arrays.toString(e.getStackTrace()), Toast.LENGTH_LONG).show();
-//                }
+
             }
         });
         cancelButton.setOnClickListener(new View.OnClickListener() {

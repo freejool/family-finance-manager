@@ -35,8 +35,6 @@ public class TotalChartTest extends Activity {
     String[] type=null;		//金额的类型
     private String passType="";	//记录是收入信息还是支出信息
     private String[] statistic = new String[2];//创建字符串数组记录数据分类类型以及是收入还是支出
-//    private String[] statistic2 = new String[]{"type","in"};
-//    private String[] statistic3 = new String[]{"type","out"};
     List<String> typeList = new ArrayList<>();//记录收入类型或者支出类型
     AddIncomeDAO addincomeDAO = new AddIncomeDAO();
     AddPayDAO addPayDAO =new AddPayDAO();
@@ -48,36 +46,20 @@ public class TotalChartTest extends Activity {
         Bundle bundle=intent.getExtras();		//获取传递的数据包
         statistic=bundle.getStringArray("statistic");
         passType=statistic[1];
-//		Resources res=getResources();	//获取Resources对象
 
-//        if("outinfo".equals(passType)){
-//            try {
-//                typeList = addPayDAO.findTypefromtransactions();
-//            } catch (SQLException e) {
-//                Log.e("SQL error", Arrays.toString(e.getStackTrace()));
-//            }
-//            type = typeList.toArray(new String[typeList.size()]);
-//        }else if("ininfo".equals(passType)){
-//            try {
-//                typeList = addincomeDAO.findTypefromtransactions() ;
-//            } catch (SQLException e) {
-//                Log.e("SQL error", Arrays.toString(e.getStackTrace()));
-//            }
-//            type = typeList.toArray(new String[typeList.size()]);
-//        }
             if("type".equals(statistic[0])){
                 if("outinfo".equals(passType)){
                     try {
                         typeList = addPayDAO.findTypefromtransactions();
                     } catch (SQLException e) {
-                        Log.e("SQL error", Arrays.toString(e.getStackTrace()));
+                        Log.e("SQL", Arrays.toString(e.getStackTrace()));
                     }
                     type = typeList.toArray(new String[typeList.size()]);
                 }else if("ininfo".equals(passType)){
                     try {
                         typeList = addincomeDAO.findTypefromtransactions() ;
                     } catch (SQLException e) {
-                        Log.e("SQL error", Arrays.toString(e.getStackTrace()));
+                        Log.e("SQL", Arrays.toString(e.getStackTrace()));
                     }
                     type = typeList.toArray(new String[typeList.size()]);
                 }
@@ -87,14 +69,14 @@ public class TotalChartTest extends Activity {
                     try {
                         typeList = addPayDAO.finduserfromtransactions();
                     } catch (SQLException e) {
-                        Log.e("SQL error", Arrays.toString(e.getStackTrace()));
+                        Log.e("SQL", Arrays.toString(e.getStackTrace()));
                     }
                     type = typeList.toArray(new String[typeList.size()]);
                 }else if("ininfo".equals(passType)){
                     try {
                         typeList = addincomeDAO.finduserfromtransactions() ;
                     } catch (SQLException e) {
-                        Log.e("SQL error", Arrays.toString(e.getStackTrace()));
+                        Log.e("SQL", Arrays.toString(e.getStackTrace()));
                     }
                     type = typeList.toArray(new String[typeList.size()]);
                 }
@@ -186,7 +168,7 @@ public class TotalChartTest extends Activity {
                 try {
                     mapMoney = addincomeDAO.FindTypeMoney();
                 } catch (SQLException e) {
-                    Log.e("SQL error", Arrays.toString(e.getStackTrace()));
+                    Log.e("SQL", Arrays.toString(e.getStackTrace()));
                 }
 
             } else if ("outinfo".equals(flagType)) {
@@ -195,7 +177,7 @@ public class TotalChartTest extends Activity {
                 try {
                     mapMoney = addPayDAO.FindTypeMoney();
                 } catch (SQLException e) {
-                    Log.e("SQL error", Arrays.toString(e.getStackTrace()));
+                    Log.e("SQL", Arrays.toString(e.getStackTrace()));
                 }
             }
         }else if("user_name".equals(statistic[0])){
@@ -205,7 +187,7 @@ public class TotalChartTest extends Activity {
                 try {
                     mapMoney = addincomeDAO.FindUserMoney();
                 } catch (SQLException e) {
-                    Log.e("SQL error", Arrays.toString(e.getStackTrace()));
+                    Log.e("SQL", Arrays.toString(e.getStackTrace()));
                 }
 
             } else if ("outinfo".equals(flagType)) {
@@ -214,7 +196,7 @@ public class TotalChartTest extends Activity {
                 try {
                     mapMoney = addPayDAO.FindUserMoney();
                 } catch (SQLException e) {
-                    Log.e("SQL error", Arrays.toString(e.getStackTrace()));
+                    Log.e("SQL", Arrays.toString(e.getStackTrace()));
                 }
             }
         }
