@@ -2,7 +2,6 @@ package com.example.as.activity;
 
 import java.sql.SQLException;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -11,7 +10,6 @@ import java.util.Map;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -24,8 +22,6 @@ import android.widget.FrameLayout;
 import com.example.as.R;
 import com.example.as.dao.AddIncomeDAO;
 import com.example.as.dao.AddPayDAO;
-import com.example.as.dao.InaccountDAO;
-import com.example.as.dao.OutaccountDAO;
 
 public class TotalChartspan extends Activity {
     private float[] money = new float[]{600, 1000, 600, 300, 1500};    //各项金额的默认值

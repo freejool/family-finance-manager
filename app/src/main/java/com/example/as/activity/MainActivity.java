@@ -32,12 +32,10 @@ import java.util.Vector;
 
 
 public class MainActivity extends FragmentActivity {
-    ListView gvInfo;// 创建GridView对象
+    ListView gvInfo;
     TextView balanceTextview;
     Vector<StrFuncPair> name2FuncList;
-    // 定义字符串数组，存储系统功能
-    String[] titles = new String[]{"新增支出", "新增收入", "我的支出", "我的收入",
-            "收支分析", "系统设置", "投资收益", "收支类型", "债务", "用户信息"};
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,8 +43,6 @@ public class MainActivity extends FragmentActivity {
         setContentView(R.layout.main);// 设置布局文件
 
         init();
-        //TODO:检测转账
-
         balanceTextview = findViewById(R.id.balance_textview);
         CommonDAO<Account> dao = new CommonDAO<>();
         Account acc = new Account();
@@ -95,11 +91,6 @@ public class MainActivity extends FragmentActivity {
                     Toast.makeText(this,"我们建议您等待此功能",Toast.LENGTH_SHORT);
                 }));
         name2FuncList.add
-                (new StrFuncPair("系统设置", () -> {
-                    Intent intent = new Intent(MainActivity.this, Sysset.class);// 使用Sysset窗口初始化Intent
-                    startActivity(intent);// 打开Sysset
-                }));
-        name2FuncList.add
                 (new StrFuncPair("投资收益", () -> {
                     Intent intent = new Intent(MainActivity.this, Profit.class);// 使用Profit窗口初始化Intent
                     startActivity(intent);// 打开Profit
@@ -120,11 +111,6 @@ public class MainActivity extends FragmentActivity {
                     startActivity(intent);
                 }));
         name2FuncList.add
-                (new StrFuncPair("帮助", () -> {
-                    Intent intent = new Intent(MainActivity.this, Help.class);// 使用Help窗口初始化Intent
-                    startActivity(intent);// 打开Help
-                }));
-        name2FuncList.add
                 (new StrFuncPair("退出", () -> {
                     finish();// 关闭当前Activity
                 }));
@@ -138,48 +124,6 @@ public class MainActivity extends FragmentActivity {
             {
                 Pair<String,Runnable> str_func_pair= (Pair<String, Runnable>) gvInfo.getItemAtPosition(position);
                 str_func_pair.second.run();
-//                Intent intent = null;// 创建Intent对象
-//                switch (position) {
-//                    case 0:
-//                        AddOutcomeDialog dialogaddpay = new AddOutcomeDialog();
-//                        dialogaddpay.show(MainActivity.this.getSupportFragmentManager(), "addpay");
-//                        break;
-//                    case 1:
-//                        AddIncomeDialog dialogaddincome = new AddIncomeDialog();
-//                        dialogaddincome.show(MainActivity.this.getSupportFragmentManager(), "register");
-//                        break;
-//                    case 2:
-//                        intent = new Intent(MainActivity.this, Outaccountinfo.class);// 使用Outaccountinfo窗口初始化Intent
-//                        startActivity(intent);// 打开Outaccountinfo
-//                        break;
-//                    case 3:
-//                        intent = new Intent(MainActivity.this, InAccountInfo.class);// 使用Inaccountinfo窗口初始化Intent
-//                        startActivity(intent);// 打开Inaccountinfo
-//                        break;
-//                    case 4:
-//                        intent = new Intent(MainActivity.this, StatisticsTransactions.class);// 使用Showinfo窗口初始化Intent
-//                        startActivity(intent);// 打开Showinfo
-//                        break;
-//                    case 5:
-//                        intent = new Intent(MainActivity.this, Sysset.class);// 使用Sysset窗口初始化Intent
-//                        startActivity(intent);// 打开Sysset
-//                        break;
-//                    case 6:
-//                        intent = new Intent(MainActivity.this, Profit.class);// 使用Profit窗口初始化Intent
-//                        startActivity(intent);// 打开Profit
-//                        break;
-//                    case 7:
-//                        intent = new Intent(MainActivity.this, TransTypeModify.class);
-//                        startActivity(intent);
-//                        break;
-//                    case 8:
-//                        intent = new Intent(MainActivity.this, Help.class);// 使用Help窗口初始化Intent
-//                        startActivity(intent);// 打开Help
-//                        break;
-//                    case 9:
-//                        finish();// 关闭当前Activity
-//                        break;
-//                }
             }
         });
     }
@@ -192,9 +136,6 @@ public class MainActivity extends FragmentActivity {
             db = new DatabaseQuery(sql);
             db.start();
             db.join();
-//        } catch (SQLException e) {
-//            Log.e("SQL", Arrays.toString(e.getStackTrace()));
-//            Toast.makeText(getApplicationContext(), Arrays.toString(e.getStackTrace()), Toast.LENGTH_LONG).show();
         } catch (InterruptedException e) {
             Log.e("Thread", Arrays.toString(e.getStackTrace()));
             Toast.makeText(getApplicationContext(), Arrays.toString(e.getStackTrace()), Toast.LENGTH_LONG).show();

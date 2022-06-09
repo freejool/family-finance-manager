@@ -22,14 +22,8 @@
         </activity>
         <activity android:name="com.example.as.activity.MainActivity" />
         <activity
-            android:name="com.example.as.activity.Outaccountinfo"
-            android:label="@string/outaccountinfo" />
-        <activity
             android:name="com.example.as.activity.InAccountInfo"
             android:label="@string/inaccountinfo" />
-        <activity
-            android:name="com.example.as.activity.Showinfo"
-            android:label="@string/showinfo" />
         <activity
             android:name="com.example.as.activity.StatisticsTransactions"
             android:label="@string/statistics_transactions" />
@@ -48,12 +42,6 @@
         <activity
             android:name="com.example.as.activity.debt.Debt"
             android:label="债务" />
-        <activity
-            android:name="com.example.as.activity.InfoManage"
-            android:label="@string/infomanage" />
-        <activity
-            android:name="com.example.as.activity.FlagManage"
-            android:label="@string/flagmanage" />
         <activity
             android:name="com.example.as.activity.Help"
             android:label="@string/help" />
