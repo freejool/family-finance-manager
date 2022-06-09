@@ -9,6 +9,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Arrays;
@@ -380,7 +381,11 @@ public class Row implements IRow {
             timeCatcher = (rs, col_name) ->
             {
                 try {
-                    return rs.getTimestamp(col_name).toInstant().atZone(ZoneId.of("CST")).toLocalDateTime();
+                    Timestamp stamp=rs.getTimestamp(col_name);
+                    if(stamp==null)
+                        return null;
+                    else
+                        return stamp.toInstant().atZone(ZoneId.of("CST")).toLocalDateTime();
                 } catch (SQLException e) {
                     Log.e("SQL", Arrays.toString(e.getStackTrace()));
                     return null;

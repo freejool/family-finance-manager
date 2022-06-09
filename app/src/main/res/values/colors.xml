@@ -12,10 +12,13 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="transaction_in_bk">#FF225340</color>
+    <color name="transaction_in_dark">#20322B</color>
     <color name="transaction_in_char">#C5FFE4</color>
     <color name="transaction_out_bk">#532222</color>
+    <color name="transaction_out_dark">#3E2323</color>
     <color name="transaction_out_char">#FFD1D1</color>
     <color name="transaction_ud_bk">#223F53</color>
+    <color name="transaction_ud_dark">#232B3E</color>
     <color name="transaction_ud_char">#AEF8FF</color>
     <color name="common_alert">#FFF300</color>
     <color name="stressed_text">#ABD3FF</color>

@@ -4,8 +4,11 @@ import com.example.as.database.CanBeRef;
 import com.example.as.database.Col;
 import com.example.as.database.Row;
 
+import java.lang.reflect.Field;
 import java.sql.ResultSet;
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Vector;
 
 public class Debt extends Row {
     @Col(order = 0)
@@ -27,6 +30,15 @@ public class Debt extends Row {
     @Col(order = 8)
     public CanBeRef<Integer> user_id;
 
+    protected static HashMap<String, Field> str2FldDict=new HashMap<>();
+    protected static HashMap<Field, String> fld2StrDict=new HashMap<>();
+    protected static Vector<String> columnNameList=new Vector<>();
+    protected static String tableName = "";
+    @Override
+    public String getTableName() {
+        return tableName;
+    }
+
     static {
         initRow(Debt.class);
     }
@@ -44,7 +56,7 @@ public class Debt extends Row {
         state = new CanBeRef<>(DBCatcher.stringCatcher, DBTransfer.stringTransfer);
         user_id = new CanBeRef<>(DBCatcher.intCatcher, DBTransfer.intTransfer);
 
-        Bind();
+        Bind(Debt.class);
     }
 
     public Debt(ResultSet resultSet) {

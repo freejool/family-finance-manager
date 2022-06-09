@@ -52,6 +52,13 @@
     <string name="trans_add_money_title">金额：</string>
     <string name="trans_add_type_title">类别：</string>
     <string name="trans_add_note_title">备注：</string>
+    <string name="tform_title">发起转账</string>
+    <string name="tform_dest">目标用户：</string>
+    <string name="tform_to_accept">待确认</string>
+    <string name="tform_accept">接受</string>
+    <string name="tform_refuse">拒绝</string>
+    <string name="tform_finished">已结束</string>
+    <string name="tform_promoted">已发起</string>
     <string name="investment_advice">显示投资建议</string>
     <string name="investment_advise">投资建议</string>
     <string name="new_pay">新增支出</string>
@@ -59,4 +66,7 @@
         <item>收入</item>
         <item>支出</item>
     </string-array>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 </resources>

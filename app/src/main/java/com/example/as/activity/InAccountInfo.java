@@ -7,14 +7,12 @@ import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Objects;
 import java.util.Vector;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -32,8 +30,6 @@ import androidx.annotation.Nullable;
 import com.example.as.Entity.Transactions;
 import com.example.as.R;
 import com.example.as.dao.CommonDAO;
-import com.example.as.database.AppDatabase;
-import com.example.as.database.DatabaseQuery;
 
 public class InAccountInfo extends Activity {
     public static final String FLAG = "id";// 定义一个常量，用来作为请求码
@@ -50,10 +46,10 @@ public class InAccountInfo extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.inaccountinfo);// 设置布局文件
-        lvinfo = findViewById(R.id.in_come_info_listview);// 获取布局文件中的ListView组件
-        in_out_button=findViewById(R.id.tran_inout_button);
-        only_in_button=findViewById(R.id.tran_in_button);
-        only_out_button=findViewById(R.id.tran_out_button);
+        lvinfo = findViewById(R.id.tform_list_view);// 获取布局文件中的ListView组件
+        in_out_button=findViewById(R.id.tform_finished);
+        only_in_button=findViewById(R.id.tform_to_accept);
+        only_out_button=findViewById(R.id.tform_promoted);
         SharedPreferences shd=getSharedPreferences("user_info",Context.MODE_PRIVATE);
         int user_id=shd.getInt("id",-1);
         in_out_button.setOnClickListener(v -> ShowInfo(String.format(in_out_condition, user_id)));

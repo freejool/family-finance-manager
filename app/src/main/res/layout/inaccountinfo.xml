@@ -14,7 +14,7 @@
 
 
         <ListView
-            android:id="@+id/in_come_info_listview"
+            android:id="@+id/tform_list_view"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -29,7 +29,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/tran_inout_button"
+                android:id="@+id/tform_finished"
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -40,7 +40,7 @@
                 android:textSize="24sp" />
 
             <Button
-                android:id="@+id/tran_in_button"
+                android:id="@+id/tform_to_accept"
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -51,7 +51,7 @@
                 android:textSize="24sp" />
 
             <Button
-                android:id="@+id/tran_out_button"
+                android:id="@+id/tform_promoted"
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

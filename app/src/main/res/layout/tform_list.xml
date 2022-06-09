@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ListView
+        android:id="@+id/tform_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/tform_to_accept"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/transaction_in_bk"
+            android:text="@string/tform_to_accept"
+            android:textColor="@color/transaction_in_char"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/tform_promoted"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/transaction_out_bk"
+            android:text="@string/tform_promoted"
+            android:textColor="@color/transaction_out_char"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/tform_finished"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/transaction_ud_bk"
+            android:text="@string/tform_finished"
+            android:textColor="@color/transaction_ud_char"
+            android:textSize="24sp" />
+    </LinearLayout>
+</LinearLayout>

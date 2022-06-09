@@ -1,15 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-
-    android:id="@+id/initem"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/transaction_ud_bk"
-    android:gravity="top"
-    android:minWidth="500dp"
-    android:minHeight="700dp"
-    android:orientation="vertical">
-
+    android:orientation="vertical" >
 
     <TextView
         android:layout_width="match_parent"
@@ -21,10 +14,9 @@
         android:background="@color/common_alert"
         android:gravity="center_horizontal"
         android:paddingVertical="5dp"
-        android:text="@string/trans_add"
+        android:text="@string/tform_title"
         android:textColor="@color/black"
         android:textStyle="bold" />
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -61,6 +53,34 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/income_type_label"
+            android:layout_width="140dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0"
+            android:gravity="center"
+            android:paddingStart="5dp"
+            android:paddingEnd="0dp"
+            android:text="@string/tform_dest"
+            android:textSize="24sp" />
+
+        <Spinner
+            android:id="@+id/income_type_spinner"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+
+
+            android:layout_marginEnd="20dp"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_margin="@dimen/padding_s"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
             android:id="@+id/income_in_money_label"
             android:layout_width="125dp"
             android:layout_height="match_parent"
@@ -83,62 +103,21 @@
             android:textSize="24sp" />
     </LinearLayout>
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/tform_description"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_margin="@dimen/padding_s"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:text="预览文本"
+        android:textColor="@color/stressed_text"
+        android:textSize="34sp" />
 
-        <TextView
-            android:id="@+id/income_type_label"
-            android:layout_width="125dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0"
-            android:gravity="center"
-            android:paddingStart="15dp"
-            android:paddingEnd="0dp"
-            android:text="@string/trans_add_type_title"
-            android:textSize="24sp" />
-
-        <Spinner
-            android:id="@+id/income_type_spinner"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-
-
-            android:layout_marginEnd="20dp"
-            android:layout_weight="1" />
-    </LinearLayout>
-
-    <LinearLayout
+    <TextView
+        android:id="@+id/tform_alert"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_margin="@dimen/padding_s"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/income_note"
-            android:layout_width="125dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0"
-            android:gravity="center"
-            android:paddingStart="15dp"
-            android:paddingEnd="0dp"
-            android:text="@string/trans_add_note_title"
-            android:textSize="24sp" />
-
-        <EditText
-            android:id="@+id/income_note_edittext"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:inputType="text"
-            android:minHeight="48dp"
-            android:singleLine="false"
-            android:textSize="24sp" />
-    </LinearLayout>
+        android:layout_height="wrap_content"
+        android:text="警告文本"
+        android:textColor="@color/common_alert"
+        android:textSize="34sp" />
 
     <Space
         android:layout_width="match_parent"

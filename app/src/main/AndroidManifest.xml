@@ -1,78 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-
-    package="com.example.as">
+    package="com.example.as" >
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:icon="@color/backgroundColor"
         android:label="@string/app_name"
-        android:theme="@android:style/Theme.DeviceDefault">
-
+        android:theme="@android:style/Theme.DeviceDefault" >
         <activity
-            android:name="com.example.as.activity.login.Login"
+            android:name=".activity.login.Login"
             android:exported="true"
-            android:label="@string/app_name">
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.as.activity.MainActivity" />
+        <activity android:name=".activity.MainActivity" />
         <activity
-            android:name="com.example.as.activity.Outaccountinfo"
+            android:name=".activity.Outaccountinfo"
             android:label="@string/outaccountinfo" />
         <activity
-            android:name="com.example.as.activity.InAccountInfo"
+            android:name=".activity.InAccountInfo"
             android:label="@string/inaccountinfo" />
         <activity
-            android:name="com.example.as.activity.Showinfo"
+            android:name=".activity.Showinfo"
             android:label="@string/showinfo" />
         <activity
-            android:name="com.example.as.activity.StatisticsTransactions"
+            android:name=".activity.StatisticsTransactions"
             android:label="@string/statistics_transactions" />
         <activity
-            android:name="com.example.as.activity.InOrOut"
+            android:name=".activity.InOrOut"
             android:label="@string/InOrOut" />
         <activity
-            android:name="com.example.as.activity.TotalChartTest"
+            android:name=".activity.TotalChartTest"
             android:label="@string/TotalChart" />
         <activity
-            android:name="com.example.as.activity.Sysset"
+            android:name=".activity.Sysset"
             android:label="@string/sysset" />
         <activity
-            android:name="com.example.as.activity.profit.Profit"
+            android:name=".activity.profit.Profit"
             android:label="@string/profit" />
         <activity
-            android:name="com.example.as.activity.debt.Debt"
+            android:name=".activity.debt.Debt"
             android:label="债务" />
         <activity
-            android:name="com.example.as.activity.InfoManage"
+            android:name=".activity.InfoManage"
             android:label="@string/infomanage" />
         <activity
-            android:name="com.example.as.activity.FlagManage"
+            android:name=".activity.FlagManage"
             android:label="@string/flagmanage" />
         <activity
-            android:name="com.example.as.activity.Help"
+            android:name=".activity.Help"
             android:label="@string/help" />
         <activity
-            android:name="com.example.as.activity.TotalChart"
+            android:name=".activity.TotalChart"
             android:label="@string/chart" />
         <activity
-            android:name="com.example.as.activity.user_span"
+            android:name=".activity.user_span"
             android:label="@string/user_span" />
         <activity
-            android:name="com.example.as.activity.TotalChartspan"
+            android:name=".activity.TotalChartspan"
             android:label="@string/chart" />
         <activity
             android:name=".activity.modify_trans_type.TransTypeModify"
             android:label="收支类型" />
-
         <activity
             android:name=".activity.VSafeUserInfo"
             android:label="用户信息" />
+        <activity
+            android:name=".activity.TransformationList"
+            android:label="转账列表" />
     </application>
 
 </manifest>
