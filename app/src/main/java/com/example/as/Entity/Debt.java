@@ -44,7 +44,7 @@ public class Debt extends Row {
         state = new CanBeRef<>(DBCatcher.stringCatcher, DBTransfer.stringTransfer);
         user_id = new CanBeRef<>(DBCatcher.intCatcher, DBTransfer.intTransfer);
 
-        Bind();
+        Bind(Debt.class);
     }
 
     public Debt(ResultSet resultSet) {

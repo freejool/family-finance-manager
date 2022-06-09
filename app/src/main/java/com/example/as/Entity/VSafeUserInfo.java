@@ -34,7 +34,7 @@ public class VSafeUserInfo extends Row {
         create_date = new CanBeRef<>(DBCatcher.timeCatcher, DBTransfer.timeTransfer);
         isAdmin = new CanBeRef<>(DBCatcher.intCatcher, DBTransfer.intTransfer);
 
-        Bind();
+        Bind(VSafeUserInfo.class);
     }
 
     public VSafeUserInfo(ResultSet rs) {

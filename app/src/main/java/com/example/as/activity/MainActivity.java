@@ -27,11 +27,13 @@ import com.example.as.database.DatabaseQuery;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
+import java.util.Locale;
 import java.util.Vector;
 
 
 public class MainActivity extends FragmentActivity {
     ListView gvInfo;// 创建GridView对象
+    TextView balanceTextview;
     Vector<StrFuncPair> name2FuncList;
     // 定义字符串数组，存储系统功能
     String[] titles = new String[]{"新增支出", "新增收入", "我的支出", "我的收入",
@@ -114,7 +116,7 @@ public class MainActivity extends FragmentActivity {
                 }));
         name2FuncList.add
                 (new StrFuncPair("用户信息", () -> {
-                    intent = new Intent(MainActivity.this, VSafeUserInfo.class); // 用户信息
+                    Intent intent = new Intent(MainActivity.this, VSafeUserInfo.class); // 用户信息
                     startActivity(intent);
                 }));
         name2FuncList.add
