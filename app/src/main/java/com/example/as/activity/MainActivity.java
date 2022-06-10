@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,7 +37,7 @@ public class MainActivity extends FragmentActivity {
     ListView gvInfo;
     TextView balanceTextview;
     Vector<StrFuncPair> name2FuncList;
-
+    Button refreshButton;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,32 +47,17 @@ public class MainActivity extends FragmentActivity {
         StrictMode.setThreadPolicy(policy);
         init();
         balanceTextview = findViewById(R.id.balance_textview);
-        CommonDAO<Account> dao = new CommonDAO<>();
-        Account acc = new Account();
-        SharedPreferences shd = getApplicationContext().getSharedPreferences("user_info", Context.MODE_PRIVATE);
-        int user_id = shd.getInt("id", -1);
-        assert user_id != -1;
-
-        acc.user_id.value = user_id;
-        acc.type.value = "默认";
-        double balance = 0;
-        try {
-            ResultSet rs;
-            rs = dao.find(acc, "balance", "where type='" + acc.type + "' and user_id=" + acc.user_id);
-            while (rs.next()) {
-                balance = rs.getDouble(1);
-            }
-            balanceTextview.setText(String.format(Locale.getDefault(), "   余额：%.2f", balance));
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+        refreshButton=findViewById(R.id.refresh_button);
+        refreshButton.setOnClickListener(v->refreshBalance());
+        refreshBalance();
 
 
         gvInfo = findViewById(R.id.gv_info);// 获取布局文件中的gvInfo组件
         name2FuncList =new Vector<>();
         name2FuncList.add
                 (new StrFuncPair("我的账户", () -> {
-                    Toast.makeText(this,"我们建议您等待此功能",Toast.LENGTH_SHORT);
+                    Intent intent = new Intent(MainActivity.this, AccountList.class);
+                    startActivity(intent);
                 }));
         name2FuncList.add
                 (new StrFuncPair("新增收支", () -> {
@@ -90,7 +76,8 @@ public class MainActivity extends FragmentActivity {
                 }));
         name2FuncList.add
                 (new StrFuncPair("发起转账", () -> {
-                    Toast.makeText(this,"我们建议您等待此功能",Toast.LENGTH_SHORT);
+                    Intent intent = new Intent(MainActivity.this, TransformationPromotion.class);
+                    startActivity(intent);
                 }));
         name2FuncList.add
                 (new StrFuncPair("转账列表", () -> {
@@ -149,6 +136,28 @@ public class MainActivity extends FragmentActivity {
         }
     }
 
+    void refreshBalance()
+    {
+        CommonDAO<Account> dao = new CommonDAO<>();
+        Account acc = new Account();
+        SharedPreferences shd = getApplicationContext().getSharedPreferences("user_info", Context.MODE_PRIVATE);
+        int user_id = shd.getInt("id", -1);
+        assert user_id != -1;
+
+        acc.user_id.value = user_id;
+        acc.type.value = "默认";
+        double balance = 0;
+        try {
+            ResultSet rs;
+            rs = dao.find(acc, "balance", "where type='" + acc.type + "' and user_id=" + acc.user_id);
+            while (rs.next()) {
+                balance = rs.getDouble(1);
+            }
+            balanceTextview.setText(String.format(Locale.getDefault(), "   余额：%.2f", balance));
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
 }
 
 class StrFuncPair extends Pair<String,Runnable>

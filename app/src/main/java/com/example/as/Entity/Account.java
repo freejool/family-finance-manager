@@ -56,4 +56,10 @@ public class Account extends Row {
         this();
         setByResultSet(resultSet);
     }
+
+    @Override
+    public String toString()
+    {
+        return "账户类型:"+type+",余额:"+balance+",备注:"+note;
+    }
 }

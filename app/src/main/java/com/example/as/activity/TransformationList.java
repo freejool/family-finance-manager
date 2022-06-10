@@ -105,7 +105,7 @@ class VTransformationAdapter extends ArrayAdapter<HashMap<String,Object>>
     static String state_accepted="已接受";
     static String state_be_refused="已被拒绝";
     static String state_refused="已拒绝";
-    static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd\nHH:mm:ss");
     class ViewHolder
     {
         TextView tformLeftTitle;
@@ -172,7 +172,7 @@ class VTransformationAdapter extends ArrayAdapter<HashMap<String,Object>>
         HashMap<String,Object> dict=getItem(position);
         Log.i("SQL", dict.toString());
 
-        holder.tformAmount.setText(String.format("+%.2f", dict.get("amount")));
+        holder.tformAmount.setText(String.format("%.2f", dict.get("amount")));
 
         //需要被确认，则保持按钮
         if(Objects.equals(dict.get("accept"),"to_be_confirmed"))
@@ -188,6 +188,10 @@ class VTransformationAdapter extends ArrayAdapter<HashMap<String,Object>>
                     String sql=String.format("exec p_accept_one_transformation %d,1",(Integer)dict.get("ID"));
                     DatabaseQuery db=new DatabaseQuery(sql);
                     db.run();
+                    if(db.getException()!=null)
+                    {
+                        Toast.makeText(getContext(),db.getException().toString(),Toast.LENGTH_SHORT).show();
+                    }
                     db.close();
                     ((TransformationList)getContext()).showInfo(String.format(TransformationList.to_accept_condition,user_id));
                 });
@@ -197,6 +201,10 @@ class VTransformationAdapter extends ArrayAdapter<HashMap<String,Object>>
                     String sql=String.format("exec p_refuse_one_transformation %d",(Integer)dict.get("ID"));
                     DatabaseQuery db=new DatabaseQuery(sql);
                     db.run();
+                    if(db.getException()!=null)
+                    {
+                        Toast.makeText(getContext(),db.getException().toString(),Toast.LENGTH_SHORT).show();
+                    }
                     db.close();
                     ((TransformationList)getContext()).showInfo(String.format(TransformationList.to_accept_condition,user_id));
                 });

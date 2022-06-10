@@ -62,6 +62,12 @@
         <activity
             android:name=".activity.TransformationList"
             android:label="转账列表" />
+        <activity
+            android:name=".activity.TransformationPromotion"
+            android:label="发起转账" />
+        <activity
+            android:name=".activity.AccountList"
+            android:label="账户列表" />
     </application>
 
 </manifest>

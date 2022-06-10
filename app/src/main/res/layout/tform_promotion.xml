@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/back"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:clickable="true"
+    android:focusable="auto"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
@@ -25,24 +29,26 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/trans_in_switch"
+            android:id="@+id/tform_out_switch"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:autoSizeTextType="uniform"
-            android:background="@color/transaction_in_bk"
-            android:text="+"
-            android:textColor="@color/transaction_in_char" />
-
-        <Button
-            android:id="@+id/trans_out_switch"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:autoSizeMaxTextSize="45sp"
             android:autoSizeTextType="uniform"
             android:background="@color/transaction_out_bk"
-            android:text="-"
+            android:text="转出"
             android:textColor="@color/transaction_out_char" />
+
+        <Button
+            android:id="@+id/tform_in_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:autoSizeMaxTextSize="45sp"
+            android:autoSizeTextType="uniform"
+            android:background="@color/transaction_in_bk"
+            android:text=" 转入"
+            android:textColor="@color/transaction_in_char" />
     </LinearLayout>
 
     <LinearLayout
@@ -53,7 +59,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/income_type_label"
+            android:id="@+id/dest_user_label"
             android:layout_width="140dp"
             android:layout_height="match_parent"
             android:layout_weight="0"
@@ -64,11 +70,11 @@
             android:textSize="24sp" />
 
         <Spinner
-            android:id="@+id/income_type_spinner"
+            android:id="@+id/dest_user_spinner"
             android:layout_width="0dp"
+
+
             android:layout_height="48dp"
-
-
             android:layout_marginEnd="20dp"
             android:layout_weight="1" />
     </LinearLayout>
@@ -81,7 +87,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/income_in_money_label"
+            android:id="@+id/money_label"
             android:layout_width="125dp"
             android:layout_height="match_parent"
             android:layout_weight="0"
@@ -92,7 +98,7 @@
             android:textSize="24sp" />
 
         <EditText
-            android:id="@+id/income_money_edittext"
+            android:id="@+id/money_edittext"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -109,7 +115,7 @@
         android:layout_height="wrap_content"
         android:text="预览文本"
         android:textColor="@color/stressed_text"
-        android:textSize="34sp" />
+        android:textSize="24sp" />
 
     <TextView
         android:id="@+id/tform_alert"
@@ -117,7 +123,7 @@
         android:layout_height="wrap_content"
         android:text="警告文本"
         android:textColor="@color/common_alert"
-        android:textSize="34sp" />
+        android:textSize="24sp" />
 
     <Space
         android:layout_width="match_parent"
@@ -138,7 +144,7 @@
 
 
             <Button
-                android:id="@+id/income_cancel_button"
+                android:id="@+id/cancel_button"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_s"
@@ -146,7 +152,7 @@
                 android:text="@string/cancel" />
 
             <Button
-                android:id="@+id/income_save_button"
+                android:id="@+id/confirm_button"
                 android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_s"
